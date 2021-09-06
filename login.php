@@ -51,7 +51,7 @@
               <div class="icheck-primary">
                 <input type="checkbox" id="remember">
                 <label for="remember">
-                  Recuerdame
+                  Recuerdame 
                 </label>
               </div>
             </div>
