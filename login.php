@@ -112,6 +112,9 @@
                 else if (response == 4){
                   window.location = "pages/geologia/modulo_geologia.php";
                 }
+                else if (response == 5){
+                  window.location = "pages/laboratorio/modulo_laboratorio.php";
+                }
                 else {
                   window.alert("nombre o contraseña inválida");
                   msg = "";
