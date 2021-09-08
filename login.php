@@ -109,6 +109,9 @@
                 else if (response == 3){
                   window.location = "pages/taller/mina_taller.php";
                 }
+                else if (response == 4){
+                  window.location = "pages/geologia/modulo_geologia.php";
+                }
                 else {
                   window.alert("nombre o contraseña inválida");
                   msg = "";

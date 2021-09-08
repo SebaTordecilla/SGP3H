@@ -20,6 +20,10 @@ if ($uname != "" && $password != ""){
         $_SESSION['uname'] = $uname;
         echo 3;
     }
+    else if($nivel ==4){
+        $_SESSION['uname'] = $uname;
+        echo 4;
+    }
     else{
         echo 0;
     }

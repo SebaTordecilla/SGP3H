@@ -103,7 +103,7 @@ function disparo_nuevo() {
 function confirmar_disparo(id_disparo) {
     var url = "confirmar_disparo.php";
     var id_disparo = id_disparo;
-    if (confirm('Desea Confrimar Registro?')) {
+    if (confirm('Desea Confirmar Registro?')) {
         $.ajax({
             type: "POST",
             url: url,
