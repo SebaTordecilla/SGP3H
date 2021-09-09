@@ -95,7 +95,7 @@ include "../../conexion.php";
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1><img src="../../dist/img/laboratorio.png" width="60" height="60"> Laboratorio </h1>
+            <h1><img src="../../dist/img/laboratorio.png" width="60" height="60"> Laboratorio | Muestras Geologia </h1>
 
           </div>
         </div>
@@ -111,7 +111,28 @@ include "../../conexion.php";
               </div>
 
               <!-- /.card-header -->
+              <div class="card-body p-0">
+                <div class="table-responsive">
+                  <table class="table m-0">
+                    <thead>
+                      <tr>
+                        <th>ID Muestra</th>
+                        <th>Mina</th>
+                        <th>Ubicación</th>
+                        <th>Fecha</th>
+                        <th>CutLab</th>
+                        <th>CusLab</th>
+                        <th>Tipo</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <?php
+                    include('tabla_muestra_geo.php')
+                    ?>
 
+                  </table>
+                </div>
+              </div>
 
               <!-- /.card-body -->
             </div>
@@ -192,70 +213,6 @@ include "../../conexion.php";
   <script>
     $(function() {
       $("#example1").DataTable({
-        "fnRowCallback": function(nRow, aData, iDisplayIndex, iDisplayIndexFull) {
-          if (aData[4]>0 && aData[4]<0.50) //
-          {
-            $('td:eq(4)',nRow).css('background-color', '#DDFBFE');
-          }
-          else if (aData[4]>=0.50 && aData[4]<1.00) //
-          {
-            $('td:eq(4)',nRow).css('background-color', '#FEFEDC');
-          }
-          else if (aData[4]>=1.00 && aData[4]<1.50) //
-          {
-            $('td:eq(4)',nRow).css('background-color', '#FEE5DC');
-          }
-          else if (aData[4]>=1.50 && aData[4]<2.00) //
-          {
-            $('td:eq(4)',nRow).css('background-color', '#FFCBCB');
-          }
-          else if (aData[4]>=2.00) //
-          {
-            $('td:eq(4)',nRow).css('background-color', '#F2CEFF');
-          }
-          //columna5
-          if (aData[5]>0 && aData[5]<0.50) //
-          {
-            $('td:eq(5)',nRow).css('background-color', '#DDFBFE');
-          }
-          else if (aData[5]>=0.50 && aData[5]<1.00) //
-          {
-            $('td:eq(5)',nRow).css('background-color', '#FEFEDC');
-          }
-          else if (aData[5]>=1.00 && aData[5]<1.50) //
-          {
-            $('td:eq(5)',nRow).css('background-color', '#FEE5DC');
-          }
-          else if (aData[5]>=1.50 && aData[5]<2.00) //
-          {
-            $('td:eq(5)',nRow).css('background-color', '#FFCBCB');
-          }
-          else if (aData[5]>=2.00) //
-          {
-            $('td:eq(5)',nRow).css('background-color', '#F2CEFF');
-          }
-          //columna6
-          if (aData[6]>0 && aData[6]<0.50) //
-          {
-            $('td:eq(6)',nRow).css('background-color', '#DDFBFE');
-          }
-          else if (aData[6]>=0.50 && aData[6]<1.00) //
-          {
-            $('td:eq(6)',nRow).css('background-color', '#FEFEDC');
-          }
-          else if (aData[6]>=1.00 && aData[6]<1.50) //
-          {
-            $('td:eq(6)',nRow).css('background-color', '#FEE5DC');
-          }
-          else if (aData[6]>=1.50 && aData[6]<2.00) //
-          {
-            $('td:eq(6)',nRow).css('background-color', '#FFCBCB');
-          }
-          else if (aData[6]>=2.00) //
-          {
-            $('td:eq(6)',nRow).css('background-color', '#F2CEFF');
-          }
-        },
         "responsive": true,
         "lengthChange": false,
         "autoWidth": false,
@@ -271,13 +228,6 @@ include "../../conexion.php";
         "responsive": true,
       });
     });
-
-    /*$(function() {
-      $("table tr").dblclick(function() {
-        alert(this.rowIndex);
-      });
-
-    });*/
   </script>
 </body>
 

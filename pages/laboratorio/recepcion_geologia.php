@@ -95,7 +95,7 @@ $id = $_GET['id'];
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1><img src="../../dist/img/laboratorio.png" width="60" height="60"> Laboratorio </h1>
+                        <h1><img src="../../dist/img/laboratorio.png" width="60" height="60"> Laboratorio | Recepción de Muestras</h1>
 
                     </div>
                 </div>
@@ -142,8 +142,7 @@ $id = $_GET['id'];
                                                         <td><?php echo $row['ubicacion']; ?></td>
                                                         <td><?php echo date("d-m-Y", strtotime($row['fecha'])); ?></td>
                                                         <td><?php echo strtoupper( $row['tipo']); ?></td>
-                                                        <td align="center"><a href="#" onclick="recepcion_geo('<?php echo $row['id']; ?>','<?php echo $usuario ?>')"><button class="btn naranjo"> Recepcionar</button>
-                                                                </i></a></td>
+                                                        <td align="center"><a href="#" onclick="recepcion_geo('<?php echo $row['id']; ?>','<?php echo $usuario ?>')"><button class="btn naranjo"> Recepcionar</button></a></td>
                                                     </tr>
                                             <?php
                                                 }

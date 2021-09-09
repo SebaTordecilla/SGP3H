@@ -19,7 +19,7 @@
                 <td><?php echo $row['frente']; ?></td>
                 <td><?php echo $row['tipo']; ?></td>
                 <td><?php echo $row['observaciones']; ?></td>
-                <td align="center"><a href="#" onclick="etiqueta_muestra_geo('<?php echo $row['id']; ?>')"><i class="nav-icon far fa-plus-square fondo_icono"></i></a></td>
+                <td align="center"><a href="#" onclick="etiqueta_muestra_geo('<?php echo $row['id']; ?>')"><small class="badge badge-primary">Ticket</small></a></td>
             </tr>
     <?php
         }

@@ -10,19 +10,19 @@
             </a>
             <ul class="nav nav-treeview">
                 <li class="nav-item">
-                    <a href="modulo_operaciones.php" class="nav-link">
+                    <a href="muestras_geo.php" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Geologia</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="historial_disparos.php" class="nav-link">
+                    <a href="muestras_mina.php" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Mina</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="historial_disparos.php" class="nav-link">
+                    <a href="muestras_lotes.php" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Lotes</p>
                     </a>

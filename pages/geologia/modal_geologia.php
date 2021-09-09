@@ -29,8 +29,12 @@
                             <div class="form-group"><label for="state_id" class="control-label">Manto</label>
                                 <select class="form-control" id="geo_id_manto" name="geo_id_manto">
                                     <option value=""></option>
-                                    <option value="1">Z8</option>
-                                    <option value="2">Z8 1/2</option>
+                                    <?php
+                                    $query = $con->query("SELECT * FROM mantos");
+                                    while ($valores = mysqli_fetch_array($query)) {
+                                        echo '<option value="' . $valores[id_manto] . '">' . $valores[coordenada] . '</option>';
+                                    }
+                                    ?>
                                 </select>
                             </div>
                         </div>
@@ -99,7 +103,7 @@
                         </div>
                         <input type="hidden" class="form-control salida_equipo" id="usuario" name="usuario" value="<?php echo $_SESSION['uname']; ?>">
                     </div>
- 
+
                 </form>
             </div>
 
