@@ -74,24 +74,19 @@
                             </div>
                         </div>
                         <div class="col-sm-2">
-                            <div class="form-group"><label for="state_id" class="control-label">Manto</label>
-                                <select class="form-control" id="disp_id_manto" name="disp_id_manto">
-                                    <option value=""></option>
-                                    <?php
-                                    $query = $con->query("SELECT * FROM mantos");
-                                    while ($valores = mysqli_fetch_array($query)) {
-                                        echo '<option value="' . $valores[id_manto] . '">' . $valores[coordenada] . '</option>';
-                                    }
-                                    ?>
-                                </select>
-                            </div>
+                            <div id="select_manto"></div>
+
                         </div>
                         <div class="col-sm-2">
                             <div class="form-group"><label for="state_id" class="control-label">Calle</label>
                                 <select class="form-control" id="disp_id_calle" name="disp_id_calle">
                                     <option value=""></option>
-                                    <option value="1">12N</option>
-                                    <option value="2">12S</option>
+                                    <?php
+                                    $query = $con->query("SELECT * from calles order BY coordenada ASC;");
+                                    while ($valores = mysqli_fetch_array($query)) {
+                                        echo '<option value="' . $valores[id_calle] . '">' . $valores[coordenada] . '</option>';
+                                    }
+                                    ?>
                                 </select>
                             </div>
                         </div>
@@ -99,8 +94,12 @@
                             <div class="form-group"><label for="state_id" class="control-label">Labor</label>
                                 <select class="form-control" id="disp_id_labor" name="disp_id_labor">
                                     <option value=""></option>
-                                    <option value="1">L12</option>
-                                    <option value="2">L13</option>
+                                    <?php
+                                    $query = $con->query("SELECT * from levantes order BY coordenada ASC;");
+                                    while ($valores = mysqli_fetch_array($query)) {
+                                        echo '<option value="' . $valores[id_calle] . '">' . $valores[coordenada] . '</option>';
+                                    }
+                                    ?>
                                 </select>
                             </div>
                         </div>

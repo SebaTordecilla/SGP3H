@@ -95,7 +95,7 @@ include "../../conexion.php";
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1><img src="../../dist/img/geologia.png" width="60" height="60"> Geologia </h1>
+            <h1><img src="../../dist/img/geologia.png" width="60" height="60"> Geologia | Ingreso de Muestras</h1>
 
           </div>
         </div>

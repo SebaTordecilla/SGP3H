@@ -1,9 +1,5 @@
 <?php
 include "../../conexion.php";
-/*
-if(!isset($_SESSION['uname'])){
-  header("Location: ../../login.php");
-}*/
 
 ?>
 
@@ -86,7 +82,7 @@ if(!isset($_SESSION['uname'])){
       </div>
 
       <!-- Sidebar Menu -->
-      <?php include("lateral_operaciones.php") ?>
+      <?php include("lateral_geologia.php") ?>
       <!-- /.sidebar-menu -->
   </div>
   <!-- /.sidebar -->
@@ -99,15 +95,13 @@ if(!isset($_SESSION['uname'])){
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1><img src="../../dist/img/operaciones.png" width="60" height="50"> Operaciones | Disparos</h1>
+            <h1><img src="../../dist/img/geologia.png" width="60" height="60"> Geologia | Historico de Muestras</h1>
 
           </div>
         </div>
       </div><!-- /.container-fluid -->
     </section>
 
-    <!-- Main content -->
-    <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
         <div class="row">
@@ -116,46 +110,46 @@ if(!isset($_SESSION['uname'])){
               <div class="card-header">
                 <!--<h3 class="card-title">Programación de Mantenciones</h3>
                   <br>-->
-                <button type="button" class="btn naranjo" data-toggle="modal" data-target="#modal_nuevo_disparo"> Ingresar</button>
               </div>
 
               <!-- /.card-header -->
-              <div class="card-body p-0">
-                <div class="table-responsive">
-                  <table class="table m-0">
-                    <thead>
-                      <tr>
-                        <th>Fecha</th>
-                        <th>Turno</th>
-                        <th>Jorn.</th>
-                        <th>Perf.</th>
-                        <th>Tipo</th>
-                        <th>Mina</th>
-                        <th>Ubicación</th>
-                        <th>Tiros</th>
-                        <th>L.Tiro</th>
-                        <th>Observaciones</th>
-                        <th></th>
-                      </tr>
-                    </thead>
-                    <?php
-                    include('tabla_hist_disparos.php')
-                    ?>
 
-                  </table>
-                </div>
-                <!-- /.card-body -->
+              <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Ubicación</th>
+                      <th>Fecha</th>
+                      <th>CutVisual</th>
+                      <th>CusVisual</th>
+                      <th>%Frente</th>
+                      <th>CutLab</th>
+                      <th>CusLab</th>
+                      <th>Tipo</th>
+                      <th>Observaciones</th>
+                    </tr>
+                  </thead>
+                  <?php
+                  include('tabla_historico_muestras_geo.php')
+                  ?>
+
+                </table>
               </div>
-              <!-- /.card -->
+              <!-- /.card-body -->
             </div>
-            <!-- /.col -->
+            <!-- /.card -->
           </div>
-          <!-- /.row -->
+          <!-- /.col -->
         </div>
-        <!-- /.container-fluid -->
+        <!-- /.row -->
+      </div>
+      <!-- Main content -->
 
-        <!--Se debe incluir modales-->
-        <?php include('modal_operaciones.php'); ?>
+      <!-- /.container-fluid -->
+
+      <!--Se debe incluir modales-->
+      <?php include('modal_geologia.php'); ?>
 
     </section>
 
@@ -216,11 +210,117 @@ if(!isset($_SESSION['uname'])){
   <!-- AdminLTE for demo purposes -->
   <script src="../../dist/js/demo.js"></script>
   <!-- Page specific script -->
-  <script src="../funcionesjs/funciones_operaciones.js"></script>
+  <script src="../funcionesjs/funciones_geologia.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
   <script>
     $(function() {
       $("#example1").DataTable({
+        "fnRowCallback": function(nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+          if (aData[4]>0 && aData[4]<0.50) //
+          {
+            $('td:eq(4)',nRow).css('background-color', '#DDFBFE');
+          }
+          else if (aData[4]>=0.50 && aData[4]<1.00) //
+          {
+            $('td:eq(4)',nRow).css('background-color', '#FEFEDC');
+          }
+          else if (aData[4]>=1.00 && aData[4]<1.50) //
+          {
+            $('td:eq(4)',nRow).css('background-color', '#FEE5DC');
+          }
+          else if (aData[4]>=1.50 && aData[4]<2.00) //
+          {
+            $('td:eq(4)',nRow).css('background-color', '#FFCBCB');
+          }
+          else if (aData[4]>=2.00) //
+          {
+            $('td:eq(4)',nRow).css('background-color', '#F2CEFF');
+          }
+          //columna5
+          if (aData[5]>0 && aData[5]<0.50) //
+          {
+            $('td:eq(5)',nRow).css('background-color', '#DDFBFE');
+          }
+          else if (aData[5]>=0.50 && aData[5]<1.00) //
+          {
+            $('td:eq(5)',nRow).css('background-color', '#FEFEDC');
+          }
+          else if (aData[5]>=1.00 && aData[5]<1.50) //
+          {
+            $('td:eq(5)',nRow).css('background-color', '#FEE5DC');
+          }
+          else if (aData[5]>=1.50 && aData[5]<2.00) //
+          {
+            $('td:eq(5)',nRow).css('background-color', '#FFCBCB');
+          }
+          else if (aData[5]>=2.00) //
+          {
+            $('td:eq(5)',nRow).css('background-color', '#F2CEFF');
+          }
+          //columna6
+          if (aData[6]>0 && aData[6]<0.50) //
+          {
+            $('td:eq(6)',nRow).css('background-color', '#DDFBFE');
+          }
+          else if (aData[6]>=0.50 && aData[6]<1.00) //
+          {
+            $('td:eq(6)',nRow).css('background-color', '#FEFEDC');
+          }
+          else if (aData[6]>=1.00 && aData[6]<1.50) //
+          {
+            $('td:eq(6)',nRow).css('background-color', '#FEE5DC');
+          }
+          else if (aData[6]>=1.50 && aData[6]<2.00) //
+          {
+            $('td:eq(6)',nRow).css('background-color', '#FFCBCB');
+          }
+          else if (aData[6]>=2.00) //
+          {
+            $('td:eq(6)',nRow).css('background-color', '#F2CEFF');
+          }
+          //columna 3
+          if (aData[3]>0 && aData[3]<0.50) //
+          {
+            $('td:eq(3)',nRow).css('background-color', '#DDFBFE');
+          }
+          else if (aData[3]>=0.50 && aData[3]<1.00) //
+          {
+            $('td:eq(3)',nRow).css('background-color', '#FEFEDC');
+          }
+          else if (aData[3]>=1.00 && aData[3]<1.50) //
+          {
+            $('td:eq(3)',nRow).css('background-color', '#FEE5DC');
+          }
+          else if (aData[3]>=1.50 && aData[3]<2.00) //
+          {
+            $('td:eq(3)',nRow).css('background-color', '#FFCBCB');
+          }
+          else if (aData[3]>=2.00) //
+          {
+            $('td:eq(3)',nRow).css('background-color', '#F2CEFF');
+          }
+          //columna 3
+          if (aData[7]>0 && aData[7]<0.50) //
+          {
+            $('td:eq(7)',nRow).css('background-color', '#DDFBFE');
+          }
+          else if (aData[7]>=0.50 && aData[7]<1.00) //
+          {
+            $('td:eq(7)',nRow).css('background-color', '#FEFEDC');
+          }
+          else if (aData[7]>=1.00 && aData[7]<1.50) //
+          {
+            $('td:eq(7)',nRow).css('background-color', '#FEE5DC');
+          }
+          else if (aData[7]>=1.50 && aData[7]<2.00) //
+          {
+            $('td:eq(7)',nRow).css('background-color', '#FFCBCB');
+          }
+          else if (aData[7]>=2.00) //
+          {
+            $('td:eq(7)',nRow).css('background-color', '#F2CEFF');
+          }
+        },
         "responsive": true,
         "lengthChange": false,
         "autoWidth": false,

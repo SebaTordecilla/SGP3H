@@ -11,7 +11,7 @@ function muestra_geo_nueva() {
     var observaciones = document.getElementById('geo_observaciones').value;
     var tipo = document.getElementById('geo_tipo').value;
     var usuario = document.getElementById('usuario').value;
-    //window.alert(tipo);
+
     if (id_ubicacion == "") {
         alert('Debe ingresar Mina');
         return;
@@ -89,4 +89,25 @@ function muestra_geo_nueva() {
 
 function etiqueta_muestra_geo(id) {
     window.open('codeqr.php?id=' + id);
+};
+
+/* select dinamico */
+$(document).ready(function() {
+    $('#geo_id_mina').val(1);
+    recargarLista();
+
+    $('#geo_id_mina').change(function() {
+        recargarLista();
+    });
+});
+
+function recargarLista() {
+    $.ajax({
+        type: "POST",
+        url: "select_manto_dinamico.php",
+        data: "tipo=" + $('#geo_id_mina').val(),
+        success: function(r) {
+            $('#select_manto').html(r);
+        }
+    });
 };

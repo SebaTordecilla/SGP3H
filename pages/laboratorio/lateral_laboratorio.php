@@ -6,7 +6,10 @@
         <li class="nav-item">
             <a href="" class="nav-link">
                 <i class="nav-icon far fa-bookmark"></i>
-                <i class="fas fa-angle-left right"></i><p>Muestras</p>
+                <p>
+                    Muestras
+                    <i class="fas fa-angle-left right"></i>
+                </p>
             </a>
             <ul class="nav nav-treeview">
                 <li class="nav-item">

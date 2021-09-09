@@ -115,6 +115,9 @@
                 else if (response == 5){
                   window.location = "pages/laboratorio/modulo_laboratorio.php";
                 }
+                else if (response == 6){
+                  window.location = "pages/operaciones/modulo_operaciones.php";
+                }
                 else {
                   window.alert("nombre o contraseña inválida");
                   msg = "";

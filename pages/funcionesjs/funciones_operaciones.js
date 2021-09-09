@@ -125,3 +125,24 @@ function confirmar_disparo(id_disparo) {
         });
     }
 }
+
+/* select dinamico */
+$(document).ready(function() {
+    $('#disp_id_mina').val(1);
+    recargarLista();
+
+    $('#disp_id_mina').change(function() {
+        recargarLista();
+    });
+});
+
+function recargarLista() {
+    $.ajax({
+        type: "POST",
+        url: "select_manto_dinamico.php",
+        data: "tipo=" + $('#disp_id_mina').val(),
+        success: function(r) {
+            $('#select_manto').html(r);
+        }
+    });
+};

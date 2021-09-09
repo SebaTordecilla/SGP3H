@@ -132,7 +132,7 @@ $id = $_GET['id'];
                                             $db = $database->open();
                                             $usuario = $_SESSION['uname'];
                                             try {
-                                                $sql = "SELECT mg.id_geom as id,um.nombre as mina,CONCAT(mg.id_manto,' ',mg.id_calle,' ',mg.id_labor) as ubicacion, mg.fecha,mg.cutvisual,mg.cusvisual,mg.frente,mg.tipo,mg.observaciones from muestras_geologia mg INNER JOIN ubicaciones_minas um on mg.id_ubicacion=um.id_ubicacion where mg.estado = 1 and mg.id_geom=" . $id . ";";
+                                                $sql = "SELECT mg.id_geom as id,um.nombre as mina,IF(mg.id_calle>0,IF(mg.id_labor>0,CONCAT(man.coordenada,' ',cal.coordenada,' ',lev.coordenada),CONCAT(man.coordenada,' ',cal.coordenada)),CONCAT(man.coordenada)) as ubicacion, mg.fecha,mg.cutvisual,mg.cusvisual,mg.frente,mg.tipo,mg.observaciones from muestras_geologia mg INNER JOIN ubicaciones_minas um on mg.id_ubicacion=um.id_ubicacion LEFT JOIN mantos man on man.id_manto = mg.id_manto LEFT JOIN calles cal on cal.id_calle= mg.id_calle LEFT JOIN levantes lev on lev.id_levante = mg.id_labor where mg.estado = 1 and mg.id_geom=" . $id . ";";
                                                 foreach ($db->query($sql) as $row) {
                                             ?>
                                                     <tr>
