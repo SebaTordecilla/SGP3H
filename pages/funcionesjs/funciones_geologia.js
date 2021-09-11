@@ -1,5 +1,5 @@
+//nueva muestra
 function muestra_geo_nueva() {
-
     var id_ubicacion = document.getElementById('geo_id_mina').value;
     var id_manto = document.getElementById('geo_id_manto').value;
     var id_calle = document.getElementById('geo_id_calle').value;
@@ -86,7 +86,7 @@ function muestra_geo_nueva() {
 
 };
 
-
+// funcion etiqueta QR
 function etiqueta_muestra_geo(id) {
     window.open('codeqr.php?id=' + id);
 };
@@ -110,4 +110,65 @@ function recargarLista() {
             $('#select_manto').html(r);
         }
     });
+};
+
+//Nueva coordenada
+function nueva_coordenada() {
+    var tipo = document.getElementById('tipo_coordenada').value;
+    var id_ubicacion = document.getElementById('coordenada_mina').value;
+    var coordenada = document.getElementById('coordenada_nueva').value;
+    var usuario = document.getElementById('usuario').value;
+
+    if (tipo == "") {
+        alert('Debe ingresar Tipo');
+        return;
+    } else {
+        if (coordenada == "") {
+            alert('Debe ingresar Coordenada');
+            return;
+        } else {
+            if (confirm('Desea Ingresar Coordenada?')) {
+                $.ajax({
+                    url: 'nueva_coordenada.php',
+                    type: 'post',
+                    data: {
+                        tipo: tipo,
+                        id_ubicacion: id_ubicacion,
+                        coordenada: coordenada,
+                        usuario: usuario
+                    },
+                    success: function(response) {
+                        if (response == 1) {
+                            window.alert("Debe ingresar Mina");
+                            return;
+                        } else if (response == 2) {
+                            window.alert("Coordenada Ingresada");
+                            location.reload();
+                        } else if (response == 3) {
+                            window.alert("Coordenada ya existe");
+                            return;
+                        } else if (response == 4) {
+                            window.alert("Este usuario no tiene permitido realizar esta acción");
+                            return;
+                        } else {
+                            window.alert("Error en Ingreso");
+                            return;
+                        }
+                    }
+                });
+            }
+
+        }
+    }
+};
+
+
+
+function getDetails(id, ubicacion) {
+    $('.id_geo').val(id);
+    $('.cod_ubicacion').html(ubicacion);
+};
+
+function ingresar_xyz() {
+    $('#ingreso_xyz').modal('show');
 };

@@ -95,7 +95,7 @@ include "../../conexion.php";
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1><img src="../../dist/img/geologia.png" width="60" height="60"> Geologia | Historico de Muestras</h1>
+            <h1><img src="../../dist/img/geologia.png" width="60" height="60"> Geología | Histórico de Muestras</h1>
 
           </div>
         </div>
@@ -128,6 +128,7 @@ include "../../conexion.php";
                       <th>CusLab</th>
                       <th>Tipo</th>
                       <th>Observaciones</th>
+                      <th></th>
                     </tr>
                   </thead>
                   <?php

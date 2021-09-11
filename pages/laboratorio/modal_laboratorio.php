@@ -1,4 +1,4 @@
-<!--./ Modal Nueva Mantencion Camioneta-->
+<!--./ Modal leyes lab-->
 <div class="modal fade" id="ingreso_muestras_geo">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">

@@ -95,7 +95,7 @@ include "../../conexion.php";
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1><img src="../../dist/img/geologia.png" width="60" height="60"> Geologia | Ingreso de Muestras</h1>
+            <h1><img src="../../dist/img/geologia.png" width="60" height="60"> Geología | Ingreso de Muestras</h1>
 
           </div>
         </div>
@@ -108,49 +108,55 @@ include "../../conexion.php";
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-                <!--<h3 class="card-title">Programación de Mantenciones</h3>
-                  <br>-->
-                <button type="button" class="btn naranjo" data-toggle="modal" data-target="#modal_nuevo_disparo"> Ingresar</button>
+                <div class="btn-group">
+                  <button type="button" class="btn naranjo btn-info dropdown-toggle dropdown-icon" data-toggle="dropdown">Acciones </button>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" data-toggle="modal" data-target="#modal_nuevo_disparo">Ingresar Muestra</a>
+                    <a class="dropdown-item" data-toggle="modal" data-target="#modal_nueva_coordenada">Nueva coordenada</a>
+                  </div>
+                </div>
               </div>
 
               <!-- /.card-header -->
 
-              <div class="card-body">
-                <table id="example1" class="table table-bordered table-striped">
-                  <thead>
-                    <tr>
-                      <th>ID Muestra</th>
-                      <th>Mina</th>
-                      <th>Ubicación</th>
-                      <th>Fecha</th>
-                      <th>CutVisual</th>
-                      <th>CusVisual</th>
-                      <th>%Frente</th>
-                      <th>Tipo</th>
-                      <th>Observaciones</th>
-                      <th></th>
-                    </tr>
-                  </thead>
-                  <?php
-                  include('tabla_geo_muestra_ingreso.php')
-                  ?>
 
-                </table>
+              <div class="card-body p-0">
+                <div class="table-responsive">
+                  <table class="table m-0">
+                    <thead>
+                      <tr>
+                        <th>ID Muestra</th>
+                        <th>Mina</th>
+                        <th>Ubicación</th>
+                        <th>Fecha</th>
+                        <th>CutVisual</th>
+                        <th>CusVisual</th>
+                        <th>%Frente</th>
+                        <th>Tipo</th>
+                        <th>Observaciones</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <?php
+                    include('tabla_geo_muestra_ingreso.php')
+                    ?>
+
+                  </table>
+                </div>
+                <!-- /.card-body -->
               </div>
-              <!-- /.card-body -->
+              <!-- /.card -->
             </div>
-            <!-- /.card -->
+            <!-- /.col -->
           </div>
-          <!-- /.col -->
+          <!-- /.row -->
         </div>
-        <!-- /.row -->
-      </div>
-      <!-- Main content -->
+        <!-- Main content -->
 
-      <!-- /.container-fluid -->
+        <!-- /.container-fluid -->
 
-      <!--Se debe incluir modales-->
-      <?php include('modal_geologia.php'); ?>
+        <!--Se debe incluir modales-->
+        <?php include('modal_geologia.php'); ?>
 
     </section>
 
@@ -217,67 +223,55 @@ include "../../conexion.php";
     $(function() {
       $("#example1").DataTable({
         "fnRowCallback": function(nRow, aData, iDisplayIndex, iDisplayIndexFull) {
-          if (aData[4]>0 && aData[4]<0.50) //
+          if (aData[4] > 0 && aData[4] < 0.50) //
           {
-            $('td:eq(4)',nRow).css('background-color', '#DDFBFE');
-          }
-          else if (aData[4]>=0.50 && aData[4]<1.00) //
+            $('td:eq(4)', nRow).css('background-color', '#DDFBFE');
+          } else if (aData[4] >= 0.50 && aData[4] < 1.00) //
           {
-            $('td:eq(4)',nRow).css('background-color', '#FEFEDC');
-          }
-          else if (aData[4]>=1.00 && aData[4]<1.50) //
+            $('td:eq(4)', nRow).css('background-color', '#FEFEDC');
+          } else if (aData[4] >= 1.00 && aData[4] < 1.50) //
           {
-            $('td:eq(4)',nRow).css('background-color', '#FEE5DC');
-          }
-          else if (aData[4]>=1.50 && aData[4]<2.00) //
+            $('td:eq(4)', nRow).css('background-color', '#FEE5DC');
+          } else if (aData[4] >= 1.50 && aData[4] < 2.00) //
           {
-            $('td:eq(4)',nRow).css('background-color', '#FFCBCB');
-          }
-          else if (aData[4]>=2.00) //
+            $('td:eq(4)', nRow).css('background-color', '#FFCBCB');
+          } else if (aData[4] >= 2.00) //
           {
-            $('td:eq(4)',nRow).css('background-color', '#F2CEFF');
+            $('td:eq(4)', nRow).css('background-color', '#F2CEFF');
           }
           //columna5
-          if (aData[5]>0 && aData[5]<0.50) //
+          if (aData[5] > 0 && aData[5] < 0.50) //
           {
-            $('td:eq(5)',nRow).css('background-color', '#DDFBFE');
-          }
-          else if (aData[5]>=0.50 && aData[5]<1.00) //
+            $('td:eq(5)', nRow).css('background-color', '#DDFBFE');
+          } else if (aData[5] >= 0.50 && aData[5] < 1.00) //
           {
-            $('td:eq(5)',nRow).css('background-color', '#FEFEDC');
-          }
-          else if (aData[5]>=1.00 && aData[5]<1.50) //
+            $('td:eq(5)', nRow).css('background-color', '#FEFEDC');
+          } else if (aData[5] >= 1.00 && aData[5] < 1.50) //
           {
-            $('td:eq(5)',nRow).css('background-color', '#FEE5DC');
-          }
-          else if (aData[5]>=1.50 && aData[5]<2.00) //
+            $('td:eq(5)', nRow).css('background-color', '#FEE5DC');
+          } else if (aData[5] >= 1.50 && aData[5] < 2.00) //
           {
-            $('td:eq(5)',nRow).css('background-color', '#FFCBCB');
-          }
-          else if (aData[5]>=2.00) //
+            $('td:eq(5)', nRow).css('background-color', '#FFCBCB');
+          } else if (aData[5] >= 2.00) //
           {
-            $('td:eq(5)',nRow).css('background-color', '#F2CEFF');
+            $('td:eq(5)', nRow).css('background-color', '#F2CEFF');
           }
           //columna6
-          if (aData[6]>0 && aData[6]<0.50) //
+          if (aData[6] > 0 && aData[6] < 0.50) //
           {
-            $('td:eq(6)',nRow).css('background-color', '#DDFBFE');
-          }
-          else if (aData[6]>=0.50 && aData[6]<1.00) //
+            $('td:eq(6)', nRow).css('background-color', '#DDFBFE');
+          } else if (aData[6] >= 0.50 && aData[6] < 1.00) //
           {
-            $('td:eq(6)',nRow).css('background-color', '#FEFEDC');
-          }
-          else if (aData[6]>=1.00 && aData[6]<1.50) //
+            $('td:eq(6)', nRow).css('background-color', '#FEFEDC');
+          } else if (aData[6] >= 1.00 && aData[6] < 1.50) //
           {
-            $('td:eq(6)',nRow).css('background-color', '#FEE5DC');
-          }
-          else if (aData[6]>=1.50 && aData[6]<2.00) //
+            $('td:eq(6)', nRow).css('background-color', '#FEE5DC');
+          } else if (aData[6] >= 1.50 && aData[6] < 2.00) //
           {
-            $('td:eq(6)',nRow).css('background-color', '#FFCBCB');
-          }
-          else if (aData[6]>=2.00) //
+            $('td:eq(6)', nRow).css('background-color', '#FFCBCB');
+          } else if (aData[6] >= 2.00) //
           {
-            $('td:eq(6)',nRow).css('background-color', '#F2CEFF');
+            $('td:eq(6)', nRow).css('background-color', '#F2CEFF');
           }
         },
         "responsive": true,
@@ -296,6 +290,19 @@ include "../../conexion.php";
       });
     });
 
+
+    // funcion desactivar cajas de textos
+    $(function() {
+      $("#tipo_coordenada").change(function() {
+        if ($(this).val() === "1") {
+          $("#coordenada_mina").prop("disabled", false);
+        } else {
+          $("#coordenada_mina").prop("disabled", true);
+        }
+
+      });
+
+    });
     /*$(function() {
       $("table tr").dblclick(function() {
         alert(this.rowIndex);

@@ -20,6 +20,7 @@
                 <td><?php echo $row['cuslab']; ?></td>
                 <td><?php echo strtoupper($row['tipo']); ?></td>
                 <td><?php echo strtoupper($row['observaciones']); ?></td>
+                <td align="center"><a href="#" onclick="ingresar_xyz();getDetails('<?php echo $row['id']; ?>','<?php echo $row['ubicacion']; ?>')"><small class="badge badge-primary">Coord.</small></a></td>
             </tr>
     <?php
         }
