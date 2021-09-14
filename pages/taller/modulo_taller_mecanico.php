@@ -1,5 +1,10 @@
 <?php
 include "../../conexion.php";
+/*
+if(!isset($_SESSION['uname'])){
+  header("Location: ../../login.php");
+}*/
+
 ?>
 
 <!DOCTYPE html>
@@ -68,95 +73,57 @@ include "../../conexion.php";
         <span class="brand-text font-weight-light">SGP3H</span>
       </a>
 
-        <!-- SidebarSearch Form -->
-        <div class="form-inline">
-          <div class="input-group" data-widget="sidebar-search">
-            <input class="form-control form-control-sidebar" type="search" placeholder="Buscar" aria-label="Buscar">
-            <div class="input-group-append">
-              <button class="btn btn-sidebar">
-                <i class="fas fa-search fa-fw"></i>
-              </button>
-            </div>
+      <!-- SidebarSearch Form -->
+      <div class="form-inline">
+        <div class="input-group" data-widget="sidebar-search">
+          <input class="form-control form-control-sidebar" type="search" placeholder="Buscar" aria-label="Buscar">
+          <div class="input-group-append">
+            <button class="btn btn-sidebar">
+              <i class="fas fa-search fa-fw"></i>
+            </button>
           </div>
         </div>
-
-        <!-- Sidebar Menu -->
-        <?php include("lateral_taller.php")?>
-        <!-- /.sidebar-menu -->
       </div>
-      <!-- /.sidebar -->
-    </aside>
 
-    <!-- Contenido tablas-->
-    <div class="content-wrapper">
-      <!-- Content Header (Page header) -->
-      <section class="content-header">
-        <div class="container-fluid">
-          <div class="row mb-2">
-            <div class="col-sm-6">
-            <h1><img src="../../dist/img/equipos.png" width="60" height="50"> Taller Mecánico | Historial Mantenciones </h1>
-            </div>
+      <!-- Sidebar Menu -->
+      <?php include("lateral_taller.php") ?>
+      <!-- /.sidebar-menu -->
+  </div>
+  <!-- /.sidebar -->
+  </aside>
+
+  <!-- Contenido tablas-->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1><img src="../../dist/img/equipos.png" width="60" height="50"> Taller Mecánico  </h1>
+
           </div>
-        </div><!-- /.container-fluid -->
-      </section>
-
-      <!-- Main content -->
-      <section class="content">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-12">
-              <div class="card">
-                <div class="card-header">
-                  <!--<h3 class="card-title">Programación de Mantenciones</h3>
-                  <br>-->
-                  <button type="button" class="btn naranjo" data-toggle="modal" data-target="#modal_matencion">Nueva Mantención</button>
-                </div>
-
-                <!-- /.card-header -->
-                <div class="card-body">
-                  <table id="example1" class="table table-bordered table-striped">
-                    <thead>
-                      <tr>
-                        <th>Fecha</th>
-                        <th>Cod.</th>
-                        <th>Tipo</th>
-                        <th>Estado</th>
-                        <th>Acciones</th>
-                        <th>Observaciones</th>
-                      </tr>
-                    </thead>
-                    <?php
-                    include('tabla_historica_taller.php')
-                    ?>
-
-                  </table>
-                </div>
-                <!-- /.card-body -->
-              </div>
-              <!-- /.card -->
-            </div>
-            <!-- /.col -->
-          </div>
-          <!-- /.row -->
         </div>
-        <!-- /.container-fluid -->
+      </div><!-- /.container-fluid -->
+    </section>
 
-        <!--Se debe incluir modales-->
-        <?php include('modal_taller.php'); ?>
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
 
-      </section>
+      </div>
+    </section>
 
-    </div>
-    <!-- /.content-wrapper -->
-    <footer class="main-footer">
-      <!--Footer sin nada-->
-    </footer>
+  </div>
+  <!-- /.content-wrapper -->
+  <footer class="main-footer">
+    <!--Footer sin nada-->
+  </footer>
 
-    <!-- Control Sidebar -->
-    <aside class="control-sidebar control-sidebar-dark">
-      <!-- Control sidebar content goes here -->
-    </aside>
-    <!-- /.control-sidebar -->
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
   </div>
   <!-- ./wrapper -->
 
@@ -204,25 +171,7 @@ include "../../conexion.php";
   <!-- Page specific script -->
   <script src="../funcionesjs/funciones_taller.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-  <script>
-    $(function() {
-      $("#example1").DataTable({
-        "responsive": true,
-        "lengthChange": false,
-        "autoWidth": false,
-        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-      }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-      $('#example2').DataTable({
-        "paging": true,
-        "lengthChange": false,
-        "searching": false,
-        "ordering": true,
-        "info": true,
-        "autoWidth": false,
-        "responsive": true,
-      });
-    });
-  </script>
+  
 </body>
 
 </html>

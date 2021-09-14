@@ -20,7 +20,7 @@
                     <td><?php echo $row['hora_fin2']; ?></td>
                     <td><?php echo $row['Estado']; ?></td>
                     <td><?php echo $row['horas_tr']; ?></td>
-                    <td><a href="#" onclick="abrir_mant_cierre();getDetails2('<?php echo $row['ID']; ?>','<?php echo $row['Fecha']; ?>','<?php echo $row['id_sal_equipo']; ?>')"><i class="nav-icon far fa-plus-square fondo_icono"></i></a> </td>
+                    <td><a href="#" onclick="abrir_mant_cierre();getDetails2('<?php echo $row['ID']; ?>','<?php echo $row['Fecha']; ?>','<?php echo $row['id_sal_equipo']; ?>')"><small class="badge badge-primary">Cierre</small></a> </td>
                 </tr>
     <?php
             }

@@ -1,7 +1,23 @@
 <!--./menu lateral taller-->
+<?php
+$user =$_SESSION['uname'];
+
+$sql_query = "SELECT id_nivel,permiso FROM usuarios WHERE nombre ='".$user."'";
+$result = mysqli_query($con, $sql_query);
+$row = mysqli_fetch_array($result);
+$id_nivel = $row['id_nivel'];
+
+if($id_nivel!=2){
+    header("Location: ../../login.php");
+}
+
+?>
 <nav class="mt-2">
     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-        <li class="nav-header">TALLER</li>
+        <!--<li class="nav-header">TALLER</li>-->
+        <a href="modulo_taller_mecanico.php" class="nav-link">
+            <li class="nav-header">TALLER</li>
+        </a>
         <li class="nav-item">
             <a href="" class="nav-link">
                 <i class="nav-icon far fa-bookmark"></i>

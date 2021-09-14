@@ -70,7 +70,7 @@ if(!isset($_SESSION['uname'])){
 
         <img src="../../dist/img/logo3H.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3">
 
-        <span class="brand-text font-weight-light">Minera 3H</span>
+        <span class="brand-text font-weight-light">SGP3H</span>
       </a>
 
       <!-- SidebarSearch Form -->
@@ -99,7 +99,7 @@ if(!isset($_SESSION['uname'])){
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1><img src="../../dist/img/equipos.png" width="60" height="50"> Equipos </h1>
+            <h1><img src="../../dist/img/equipos.png" width="60" height="50"> Taller Mecánico | Listado de Equipos </h1>
             
           </div>
         </div>

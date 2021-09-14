@@ -104,7 +104,7 @@
               success: function(response) {
                 var msg = "";
                 if (response == 2) {
-                  window.location = "pages/taller/equipos_taller.php";
+                  window.location = "pages/taller/modulo_taller_mecanico.php";
                 } 
                 else if (response == 3){
                   window.location = "pages/taller/mina_taller.php";

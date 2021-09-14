@@ -65,7 +65,7 @@ include "../../conexion.php";
 
         <img src="../../dist/img/logo3H.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3">
 
-        <span class="brand-text font-weight-light">Minera 3H</span>
+        <span class="brand-text font-weight-light">SGP3H</span>
       </a>
 
       <!-- SidebarSearch Form -->
@@ -81,7 +81,7 @@ include "../../conexion.php";
       </div>
 
       <!-- Sidebar Menu -->
-  <?php include("lateral_taller.php")?>
+      <?php include("lateral_taller.php") ?>
       <!-- /.sidebar-menu -->
   </div>
   <!-- /.sidebar -->
@@ -94,7 +94,7 @@ include "../../conexion.php";
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Reparaciones en Terreno</h1>
+            <h1><img src="../../dist/img/equipos.png" width="60" height="50"> Taller Mecánico | Reparaciones en Terreno </h1>
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -114,10 +114,9 @@ include "../../conexion.php";
               </div>
 
               <!-- /.card-header -->
-              <div class="card-body">
-                <!-- CONTENIDO PAGINA -->
-                <form>
-                  <table id="example1" class="table table-bordered table-hover">
+              <div class="card-body p-0">
+                <div class="table-responsive">
+                  <table class="table m-0">
                     <thead>
                       <tr>
                         <th>Codigo</th>
@@ -132,8 +131,7 @@ include "../../conexion.php";
                     <?php
                     include('tabla_reparacion_terreno.php')
                     ?>
-                </form>
-
+                </div>
               </div>
 
             </div>

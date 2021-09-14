@@ -65,7 +65,7 @@ include "../../conexion.php";
 
         <img src="../../dist/img/logo3H.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3">
 
-        <span class="brand-text font-weight-light">Minera 3H</span>
+        <span class="brand-text font-weight-light">SGP3H</span>
       </a>
 
       <!-- SidebarSearch Form -->
@@ -94,7 +94,7 @@ include "../../conexion.php";
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Mantenciones Camionetas</h1>
+            <h1><img src="../../dist/img/camioneta.png" width="60" height="50"> Taller Mecánico | Mantenciones Camionetas </h1>
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -208,16 +208,6 @@ include "../../conexion.php";
   <script>
     $(function() {
       $("#example1").DataTable({
-        "fnRowCallback": function(nRow, aData, iDisplayIndex, iDisplayIndexFull) {
-          if (aData[3] =="FORD") //si la edad es menor de 40
-          {
-            $('td:eq(3)',nRow).css('background-color', '#FADEDE');
-          }
-          else if(aData[3] =="NISSAN") //si la edad es menor de 40
-          {
-            $('td:eq(3)', nRow).css('background-color', '#E6F9E8');
-          }
-        },
         "responsive": true,
         "lengthChange": false,
         "autoWidth": false,
@@ -233,17 +223,6 @@ include "../../conexion.php";
         "responsive": true,
       });
     });
-
-    /*$(document).ready(function() {
-      $('#example1').DataTable({
-        "fnRowCallback": function(nRow, aData, iDisplayIndex, iDisplayIndexFull) {
-          if (aData[5] < 40) //si la edad es menor de 40
-          {
-            $('td', nRow).css('background-color', '#F44336');
-          }
-        }
-      });
-    });*/
   </script>
 </body>
 

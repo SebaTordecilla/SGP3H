@@ -65,7 +65,7 @@ include "../../conexion.php";
 
         <img src="../../dist/img/logo3H.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3">
 
-        <span class="brand-text font-weight-light">Minera 3H</span>
+        <span class="brand-text font-weight-light">SGP3H</span>
       </a>
 
         <!-- SidebarSearch Form -->
