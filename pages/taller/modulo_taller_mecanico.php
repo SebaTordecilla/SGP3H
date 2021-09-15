@@ -99,13 +99,69 @@ if(!isset($_SESSION['uname'])){
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1><img src="../../dist/img/equipos.png" width="60" height="50"> Taller Mecánico  </h1>
+            <h1><img src="../../dist/img/equipos.png" width="60" height="50"> Taller Mecánico </h1>
 
           </div>
         </div>
       </div><!-- /.container-fluid -->
     </section>
 
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <!--<h5 class="card-title">Monthly Recap Report</h5>-->
+            <div class="card-tools">
+              <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                <i class="fas fa-minus"></i>
+              </button>
+              <button type="button" class="btn btn-tool" data-card-widget="remove">
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
+          </div>
+          <!-- -->
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-4">
+                <p class="text-center">
+                  <strong>Equipos Operativos</strong>
+                </p>
+                <?php
+                for ($i = 1; $i < 7; $i++) {
+                  $sql_query = "SELECT te.id_tequipo as id, te.nombre, COUNT(le.id_tequipo) as total, CASE te.id_tequipo when 1 then 'danger' when 2 then 'success' when 3 then 'warning' when 4 then 'info' when 5 then 'primary' when 6 then 'secondary'end as color FROM lista_equipos le INNER JOIN tipos_equipos te on le.id_tequipo = te.id_tequipo WHERE te.id_tequipo = " . $i . " GROUP BY le.id_tequipo";
+                  $result = mysqli_query($con, $sql_query);
+                  $row = mysqli_fetch_array($result);
+                  $nombre = $row['nombre'];
+                  $color = $row['color'];
+
+                  $sql_query2 = "SELECT id_tequipo, COUNT(id_equipo) total,SUM(IF(id_est_equipo=1,1,0)) as activos FROM lista_equipos WHERE id_tequipo =".$i." GROUP by id_tequipo;";
+                  $result2 = mysqli_query($con, $sql_query2);
+                  $row2 = mysqli_fetch_array($result2);
+                  $total = $row2['total']; 
+                  $activos = $row2['activos'];
+                  $porcentaje= ($activos/$total)*100;
+                  ?>
+
+                  <div class="progress-group">
+                    <?php echo $nombre ?>
+                    <span class="float-right"><b><?php echo $activos?></b>/<?php echo $total ?></span>
+                    <div class="progress progress-sm">
+                      <div class="progress-bar bg-<?php echo $color?>" style="width: <?php echo $porcentaje ?>%"></div>
+                    </div>
+                  </div>
+                <?php
+                }
+                ?>
+              </div>
+              <div class="col-md-4">
+                <img src="../../dist/img/topo3H.png" style="max-width:60%;width:auto;height:auto;" >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
@@ -171,7 +227,7 @@ if(!isset($_SESSION['uname'])){
   <!-- Page specific script -->
   <script src="../funcionesjs/funciones_taller.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-  
+
 </body>
 
 </html>

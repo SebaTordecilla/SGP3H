@@ -22,7 +22,7 @@
                 <td><?php echo strtoupper($row['NivelComb']); ?></td>
                 <td><?php echo strtoupper($row['observaciones']); ?></td>
                 <td align="center">
-                    <a href="#" onclick="pdf_control_camioneta('<?php echo $row['num']; ?>')"><i class="nav-icon fas fa-file fondo_icono"></i></a>
+                    <a href="#" onclick="pdf_control_camioneta('<?php echo $row['num']; ?>')"><small class="badge badge-primary">CheckList</small></a>
                 </td>
             </tr>
     <?php

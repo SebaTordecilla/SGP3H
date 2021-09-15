@@ -86,7 +86,7 @@ if(!isset($_SESSION['uname'])){
       </div>
 
       <!-- Sidebar Menu -->
-      <?php include("lateral_taller.php")?>
+      <?php include("lateral_taller.php") ?>
       <!-- /.sidebar-menu -->
   </div>
   <!-- /.sidebar -->
@@ -100,7 +100,7 @@ if(!isset($_SESSION['uname'])){
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1><img src="../../dist/img/equipos.png" width="60" height="50"> Taller Mecánico | Listado de Equipos </h1>
-            
+
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -215,6 +215,21 @@ if(!isset($_SESSION['uname'])){
   <script>
     $(function() {
       $("#example1").DataTable({
+        "fnRowCallback": function(nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+          if (aData[4] == "OPERATIVO") //
+          {
+            //$('td:eq(4)', nRow).css('background-color', '#DCFFDE');
+          }else if(aData[4] == "NO OPERATIVO"){
+            $('td:eq(4)', nRow).css('background-color', '#FFCBCB');
+            $('td:eq(0)', nRow).css('background-color', '#FFCBCB');
+            $('td:eq(1)', nRow).css('background-color', '#FFCBCB');
+            $('td:eq(2)', nRow).css('background-color', '#FFCBCB');
+            $('td:eq(3)', nRow).css('background-color', '#FFCBCB');
+            $('td:eq(5)', nRow).css('background-color', '#FFCBCB');
+            $('td:eq(6)', nRow).css('background-color', '#FFCBCB');
+            $('td:eq(7)', nRow).css('background-color', '#FFCBCB');
+          }
+        },
         "responsive": true,
         "lengthChange": false,
         "autoWidth": false,

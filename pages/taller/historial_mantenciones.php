@@ -207,6 +207,21 @@ include "../../conexion.php";
   <script>
     $(function() {
       $("#example1").DataTable({
+        "fnRowCallback": function(nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+          if (aData[4] == "OPERATIVO") //
+          {
+            //$('td:eq(4)', nRow).css('background-color', '#DCFFDE');
+          }else if(aData[3] == "FUERA DE SERVICIO"){
+            $('td:eq(4)', nRow).css('background-color', '#FFCBCB');
+            $('td:eq(0)', nRow).css('background-color', '#FFCBCB');
+            $('td:eq(1)', nRow).css('background-color', '#FFCBCB');
+            $('td:eq(2)', nRow).css('background-color', '#FFCBCB');
+            $('td:eq(3)', nRow).css('background-color', '#FFCBCB');
+            $('td:eq(5)', nRow).css('background-color', '#FFCBCB');
+            $('td:eq(6)', nRow).css('background-color', '#FFCBCB');
+            $('td:eq(7)', nRow).css('background-color', '#FFCBCB');
+          }
+        },
         "responsive": true,
         "lengthChange": false,
         "autoWidth": false,
