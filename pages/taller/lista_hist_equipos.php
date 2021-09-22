@@ -2,7 +2,7 @@
 include('../../conexion.php');
 $id = $_POST['num'];
 
-$resultado=$mysqli->query("SELECT le.sigla as codigo, le.nombre,DATE_FORMAT(me.fecha,'%d-%m-%Y') AS fecha, ee.nombre as estado,me.observaciones,me.check_list FROM mant_equipos me RIGHT JOIN lista_equipos le on me.id_equipo = le.id_equipo INNER JOIN estado_equipos ee ON ee.id_est_equipo = me.id_est_equipo WHERE le.id_equipo ='$id' ORDER BY me.fecha DESC");
+$resultado=$mysqli->query("SELECT le.sigla as codigo, le.nombre,DATE_FORMAT(me.fecha,'%d-%m-%Y') AS fecha, ee.nombre as estado,me.observaciones,me.check_list FROM mant_equipos me RIGHT JOIN lista_equipos le on me.id_equipo = le.id_equipo INNER JOIN estado_equipos ee ON ee.id_est_equipo = me.id_est_equipo WHERE le.id_equipo ='$id' ORDER BY me.fecha DESC LIMIT 5");
 
 $total=$resultado->num_rows;
 

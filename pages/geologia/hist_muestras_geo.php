@@ -121,14 +121,14 @@ include "../../conexion.php";
                       <th>ID</th>
                       <th>Ubicación</th>
                       <th>Fecha</th>
-                      <th>CutVisual</th>
-                      <th>CusVisual</th>
-                      <th>%Frente</th>
-                      <th>CutLab</th>
-                      <th>CusLab</th>
-                      <th>Tipo</th>
-                      <th>Observaciones</th>
-                      <th></th>
+                      <th>CuTVis</th>
+                      <th>CuSVis</th>
+                      <th>%Fr.</th>
+                      <th>CuTLab</th>
+                      <th>CuSLab</th>
+                      <th>%F*CuT</th>
+                      <th>%F*CuS</th>
+                      <!--<th></th>-->
                     </tr>
                   </thead>
                   <?php
@@ -217,110 +217,125 @@ include "../../conexion.php";
     $(function() {
       $("#example1").DataTable({
         "fnRowCallback": function(nRow, aData, iDisplayIndex, iDisplayIndexFull) {
-          if (aData[4]>0 && aData[4]<0.50) //
+          if (aData[4] > 0 && aData[4] < 0.50) //
           {
-            $('td:eq(4)',nRow).css('background-color', '#DDFBFE');
-          }
-          else if (aData[4]>=0.50 && aData[4]<1.00) //
+            $('td:eq(4)', nRow).css('background-color', '#DDFBFE');
+          } else if (aData[4] >= 0.50 && aData[4] < 1.00) //
           {
-            $('td:eq(4)',nRow).css('background-color', '#FEFEDC');
-          }
-          else if (aData[4]>=1.00 && aData[4]<1.50) //
+            $('td:eq(4)', nRow).css('background-color', '#FEFEDC');
+          } else if (aData[4] >= 1.00 && aData[4] < 1.50) //
           {
-            $('td:eq(4)',nRow).css('background-color', '#FEE5DC');
-          }
-          else if (aData[4]>=1.50 && aData[4]<2.00) //
+            $('td:eq(4)', nRow).css('background-color', '#FEE5DC');
+          } else if (aData[4] >= 1.50 && aData[4] < 2.00) //
           {
-            $('td:eq(4)',nRow).css('background-color', '#FFCBCB');
-          }
-          else if (aData[4]>=2.00) //
+            $('td:eq(4)', nRow).css('background-color', '#FFCBCB');
+          } else if (aData[4] >= 2.00) //
           {
-            $('td:eq(4)',nRow).css('background-color', '#F2CEFF');
+            $('td:eq(4)', nRow).css('background-color', '#F2CEFF');
           }
           //columna5
-          if (aData[5]>0 && aData[5]<0.50) //
+          if (aData[5] > 0 && aData[5] < 0.50) //
           {
-            $('td:eq(5)',nRow).css('background-color', '#DDFBFE');
-          }
-          else if (aData[5]>=0.50 && aData[5]<1.00) //
+            $('td:eq(5)', nRow).css('background-color', '#DDFBFE');
+          } else if (aData[5] >= 0.50 && aData[5] < 1.00) //
           {
-            $('td:eq(5)',nRow).css('background-color', '#FEFEDC');
-          }
-          else if (aData[5]>=1.00 && aData[5]<1.50) //
+            $('td:eq(5)', nRow).css('background-color', '#FEFEDC');
+          } else if (aData[5] >= 1.00 && aData[5] < 1.50) //
           {
-            $('td:eq(5)',nRow).css('background-color', '#FEE5DC');
-          }
-          else if (aData[5]>=1.50 && aData[5]<2.00) //
+            $('td:eq(5)', nRow).css('background-color', '#FEE5DC');
+          } else if (aData[5] >= 1.50 && aData[5] < 2.00) //
           {
-            $('td:eq(5)',nRow).css('background-color', '#FFCBCB');
-          }
-          else if (aData[5]>=2.00) //
+            $('td:eq(5)', nRow).css('background-color', '#FFCBCB');
+          } else if (aData[5] >= 2.00) //
           {
-            $('td:eq(5)',nRow).css('background-color', '#F2CEFF');
+            $('td:eq(5)', nRow).css('background-color', '#F2CEFF');
           }
           //columna6
-          if (aData[6]>0 && aData[6]<0.50) //
+          if (aData[6] > 0 && aData[6] < 0.50) //
           {
-            $('td:eq(6)',nRow).css('background-color', '#DDFBFE');
-          }
-          else if (aData[6]>=0.50 && aData[6]<1.00) //
+            $('td:eq(6)', nRow).css('background-color', '#DDFBFE');
+          } else if (aData[6] >= 0.50 && aData[6] < 1.00) //
           {
-            $('td:eq(6)',nRow).css('background-color', '#FEFEDC');
-          }
-          else if (aData[6]>=1.00 && aData[6]<1.50) //
+            $('td:eq(6)', nRow).css('background-color', '#FEFEDC');
+          } else if (aData[6] >= 1.00 && aData[6] < 1.50) //
           {
-            $('td:eq(6)',nRow).css('background-color', '#FEE5DC');
-          }
-          else if (aData[6]>=1.50 && aData[6]<2.00) //
+            $('td:eq(6)', nRow).css('background-color', '#FEE5DC');
+          } else if (aData[6] >= 1.50 && aData[6] < 2.00) //
           {
-            $('td:eq(6)',nRow).css('background-color', '#FFCBCB');
-          }
-          else if (aData[6]>=2.00) //
+            $('td:eq(6)', nRow).css('background-color', '#FFCBCB');
+          } else if (aData[6] >= 2.00) //
           {
-            $('td:eq(6)',nRow).css('background-color', '#F2CEFF');
+            $('td:eq(6)', nRow).css('background-color', '#F2CEFF');
           }
           //columna 3
-          if (aData[3]>0 && aData[3]<0.50) //
+          if (aData[3] > 0 && aData[3] < 0.50) //
           {
-            $('td:eq(3)',nRow).css('background-color', '#DDFBFE');
-          }
-          else if (aData[3]>=0.50 && aData[3]<1.00) //
+            $('td:eq(3)', nRow).css('background-color', '#DDFBFE');
+          } else if (aData[3] >= 0.50 && aData[3] < 1.00) //
           {
-            $('td:eq(3)',nRow).css('background-color', '#FEFEDC');
-          }
-          else if (aData[3]>=1.00 && aData[3]<1.50) //
+            $('td:eq(3)', nRow).css('background-color', '#FEFEDC');
+          } else if (aData[3] >= 1.00 && aData[3] < 1.50) //
           {
-            $('td:eq(3)',nRow).css('background-color', '#FEE5DC');
-          }
-          else if (aData[3]>=1.50 && aData[3]<2.00) //
+            $('td:eq(3)', nRow).css('background-color', '#FEE5DC');
+          } else if (aData[3] >= 1.50 && aData[3] < 2.00) //
           {
-            $('td:eq(3)',nRow).css('background-color', '#FFCBCB');
-          }
-          else if (aData[3]>=2.00) //
+            $('td:eq(3)', nRow).css('background-color', '#FFCBCB');
+          } else if (aData[3] >= 2.00) //
           {
-            $('td:eq(3)',nRow).css('background-color', '#F2CEFF');
+            $('td:eq(3)', nRow).css('background-color', '#F2CEFF');
           }
           //columna 3
-          if (aData[7]>0 && aData[7]<0.50) //
+          if (aData[7] > 0 && aData[7] < 0.50) //
           {
-            $('td:eq(7)',nRow).css('background-color', '#DDFBFE');
-          }
-          else if (aData[7]>=0.50 && aData[7]<1.00) //
+            $('td:eq(7)', nRow).css('background-color', '#DDFBFE');
+          } else if (aData[7] >= 0.50 && aData[7] < 1.00) //
           {
-            $('td:eq(7)',nRow).css('background-color', '#FEFEDC');
-          }
-          else if (aData[7]>=1.00 && aData[7]<1.50) //
+            $('td:eq(7)', nRow).css('background-color', '#FEFEDC');
+          } else if (aData[7] >= 1.00 && aData[7] < 1.50) //
           {
-            $('td:eq(7)',nRow).css('background-color', '#FEE5DC');
-          }
-          else if (aData[7]>=1.50 && aData[7]<2.00) //
+            $('td:eq(7)', nRow).css('background-color', '#FEE5DC');
+          } else if (aData[7] >= 1.50 && aData[7] < 2.00) //
           {
-            $('td:eq(7)',nRow).css('background-color', '#FFCBCB');
-          }
-          else if (aData[7]>=2.00) //
+            $('td:eq(7)', nRow).css('background-color', '#FFCBCB');
+          } else if (aData[7] >= 2.00) //
           {
-            $('td:eq(7)',nRow).css('background-color', '#F2CEFF');
+            $('td:eq(7)', nRow).css('background-color', '#F2CEFF');
           }
+          //columna 5
+          if (aData[8] > 0 && aData[8] < 0.50) //
+          {
+            $('td:eq(8)', nRow).css('background-color', '#DDFBFE');
+          } else if (aData[8] >= 0.50 && aData[8] < 1.00) //
+          {
+            $('td:eq(8)', nRow).css('background-color', '#FEFEDC');
+          } else if (aData[8] >= 1.00 && aData[8] < 1.50) //
+          {
+            $('td:eq(8)', nRow).css('background-color', '#FEE5DC');
+          } else if (aData[8] >= 1.50 && aData[8] < 2.00) //
+          {
+            $('td:eq(8)', nRow).css('background-color', '#FFCBCB');
+          } else if (aData[8] >= 2.00) //
+          {
+            $('td:eq(8)', nRow).css('background-color', '#F2CEFF');
+          }
+          //columna 6
+          if (aData[9] > 0 && aData[9] < 0.50) //
+          {
+            $('td:eq(9)', nRow).css('background-color', '#DDFBFE');
+          } else if (aData[9] >= 0.50 && aData[9] < 1.00) //
+          {
+            $('td:eq(9)', nRow).css('background-color', '#FEFEDC');
+          } else if (aData[9] >= 1.00 && aData[9] < 1.50) //
+          {
+            $('td:eq(9)', nRow).css('background-color', '#FEE5DC');
+          } else if (aData[9] >= 1.50 && aData[9] < 2.00) //
+          {
+            $('td:eq(9)', nRow).css('background-color', '#FFCBCB');
+          } else if (aData[9] >= 2.00) //
+          {
+            $('td:eq(9)', nRow).css('background-color', '#F2CEFF');
+          }
+
         },
         "responsive": true,
         "lengthChange": false,

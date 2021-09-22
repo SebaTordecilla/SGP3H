@@ -1,10 +1,5 @@
 <?php
 include "../../conexion.php";
-/*
-if(!isset($_SESSION['uname'])){
-  header("Location: ../../login.php");
-}*/
-
 ?>
 
 <!DOCTYPE html>

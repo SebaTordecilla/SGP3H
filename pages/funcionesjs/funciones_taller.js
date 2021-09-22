@@ -520,15 +520,14 @@ function mant_nuevo() {
                             },
                             success: function(response) {
                                 if (response == 1) {
-                                    window.alert("Equipo Cerrado");
-                                    location.reload();
-                                } else if (response == 3) {
-                                    window.alert("Equipo ya Cerrado");
-                                    return;
-                                } else {
                                     window.alert("Mantención Ingresada");
                                     location.reload();
-                                    msg = "";
+                                } else if (response == 2) {
+                                    window.alert("Error ");
+
+                                } else {
+                                    window.alert("Error");
+                                    return;
                                 }
                             }
                         });

@@ -51,7 +51,7 @@
               <div class="icheck-primary">
                 <input type="checkbox" id="remember">
                 <label for="remember">
-                  Recuerdame 
+                  Recuerdame
                 </label>
               </div>
             </div>
@@ -85,6 +85,7 @@
     <script src="dist/js/adminlte.min.js"></script>
 
     <script src="pages/funcionesjs/funciones.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type="text/javascript">
       //Login
       $(document).ready(function() {
@@ -105,24 +106,24 @@
                 var msg = "";
                 if (response == 2) {
                   window.location = "pages/taller/modulo_taller_mecanico.php";
-                } 
-                else if (response == 3){
-                  window.location = "pages/taller/mina_taller.php";
-                }
-                else if (response == 4){
+                } else if (response == 3) {
+                  window.location = "pages/supervisores/modulo_supervisor.php";
+                } else if (response == 4) {
                   window.location = "pages/geologia/modulo_geologia.php";
-                }
-                else if (response == 5){
+                } else if (response == 5) {
                   window.location = "pages/laboratorio/modulo_laboratorio.php";
-                }
-                else if (response == 6){
+                } else if (response == 6) {
                   window.location = "pages/operaciones/modulo_operaciones.php";
-                }
-                else {
+                } else {
+                  /*Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Nombre o Contraseña Inválida!',
+                  })*/
                   window.alert("nombre o contraseña inválida");
-                  msg = "";
+                  return;
                 }
-                $("#message").html(msg);
+
               }
             });
           }
