@@ -111,9 +111,7 @@ include "../../conexion.php";
                     </div>
                     <div class="row">
                       <div class="col-sm-12">
-                        <!--<table id="example1" class="table table-bordered table-striped">-->
                         <div id="tabla_colacion_diaria" style="padding-top:10px;"></div>
-
                       </div>
                     </div>
                   </form>
@@ -122,6 +120,8 @@ include "../../conexion.php";
             </div>
           </div>
         </div>
+        <?php include('modal_supervisor.php'); ?>
+
       </section>
     </div>
     <!-- /.content-wrapper -->
