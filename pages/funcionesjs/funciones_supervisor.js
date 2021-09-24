@@ -96,3 +96,36 @@ function Ingresar_colacion() {
         }
     }
 };
+
+
+/* funciones fecha y ubicacion dinamico */
+$(document).ready(function() {
+    $('#fecha_equipo').val(1);
+    recargarListaEquipos();
+
+    $('#id_ub_equipo').val(0);
+    recargarListaEquipos();
+
+    $('#id_ub_equipo').change(function() {
+        recargarListaEquipos();
+    });
+
+});
+
+function recargarListaEquipos() {
+    var url = "tabla_equipos_diaria.php";
+    var fecha = $('#fecha_equipo').val();
+    var id_ubicacion = $('#id_ub_equipo').val();
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: {
+            fecha: fecha,
+            id_ubicacion: id_ubicacion
+        },
+        success: function(datos) {
+            $('#tabla_equipos_diaria').html(datos);
+
+        }
+    });
+};

@@ -31,8 +31,8 @@ if ($hora_ini_col != '00:00:00' && $hora_fin_col != '00:00:00') {
     echo 1;
 } else if ($hora_ini_col == '00:00:00' && $hora_fin_col == '00:00:00') {
     if ($seg_ini_nuevo > $h_ini_final) {
-        /*$sql_query2 = "UPDATE salida_equipos SET hora_ini_col = '" . $hora_ini_col_nueva . "' WHERE id_ubicacion = " . $id_ubicacion . " and fecha = '" . $fecha . "' ;";
-        $result2 = mysqli_query($con, $sql_query2);*/
+        $sql_query2 = "UPDATE salida_equipos SET hora_ini_col = '" . $hora_ini_col_nueva . "' WHERE id_ubicacion = " . $id_ubicacion . " and fecha = '" . $fecha . "' ;";
+        $result2 = mysqli_query($con, $sql_query2);
         // inicio colacion ingresada
         echo 2;
     } else {
@@ -40,8 +40,8 @@ if ($hora_ini_col != '00:00:00' && $hora_fin_col != '00:00:00') {
     }
 } else if ($hora_ini_col != '00:00:00' && $hora_fin_col == '00:00:00') {
     if ($seg_fin_nuevo > $h_inicol_final) {
-        /*$sql_query2 = "UPDATE salida_equipos SET hora_fin_col = '" . $hora_fin_col_nueva . "' WHERE id_ubicacion = " . $id_ubicacion . " and fecha = '" . $fecha . "' ;";
-        $result2 = mysqli_query($con, $sql_query2);*/
+        $sql_query2 = "UPDATE salida_equipos SET hora_fin_col = '" . $hora_fin_col_nueva . "' WHERE id_ubicacion = " . $id_ubicacion . " and fecha = '" . $fecha . "' ;";
+        $result2 = mysqli_query($con, $sql_query2);
         // fin colacion ingresada
         echo 3;
     } else {

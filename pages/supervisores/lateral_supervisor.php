@@ -28,6 +28,12 @@ if ($id_nivel != 3) {
             </a>
             <ul class="nav nav-treeview">
                 <li class="nav-item">
+                    <a href="equipos_super.php" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Equipos</p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="colacion_diaria.php" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Colación</p>

@@ -102,6 +102,8 @@ include "../../conexion.php";
                   <form>
                     <div class="row">
                       <div class="col-sm-6">
+                        <label for="state_id" class="control-label">Fecha</label>
+
                         <center>
                           <div class="form-group">
                             <input type="date" class="form-control" id="fecha_colacion" name="fecha_colacion">

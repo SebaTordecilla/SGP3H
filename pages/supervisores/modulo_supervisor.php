@@ -104,6 +104,15 @@ include "../../conexion.php";
                       <div class="col-sm-6">
                         <center>
                           <div class="form-group">
+                            <button type="button" class="btn btn-block btn-info btn-lg"><img src="../../dist/img/vehiculo-pesado.png" width="30" height="30"><a style="color:white" href="equipos_super.php">Equipos</button>
+                          </div>
+                        </center>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <center>
+                          <div class="form-group">
                             <button type="button" class="btn btn-block btn-success btn-lg"><img src="../../dist/img/cubiertos.png" width="30" height="30"><a style="color:white" href="colacion_diaria.php"> Colación</button>
                           </div>
                         </center>
@@ -113,7 +122,7 @@ include "../../conexion.php";
                       <div class="col-sm-6">
                         <center>
                           <div class="form-group">
-                            <button type="button" class="btn btn-block btn-danger btn-lg"><img src="../../dist/img/llave.png" width="30" height="30"> Reparación</button>
+                            <button type="button" class="btn btn-block btn-danger btn-lg"><img src="../../dist/img/llave.png" width="30" height="30"><a style="color:white" href="colacion_diaria.php">Reparación</button>
                           </div>
                         </center>
                       </div>
@@ -122,7 +131,7 @@ include "../../conexion.php";
                       <div class="col-sm-6">
                         <center>
                           <div class="form-group">
-                            <button type="button" style="color:white" class="btn btn-block btn-warning btn-lg"><img src="../../dist/img/precaucion.png" width="30" height="30"> Incidentes</button>
+                            <button type="button" style="color:white" class="btn btn-block btn-warning btn-lg"><img src="../../dist/img/precaucion.png" width="30" height="30"><a style="color:white" href="colacion_diaria.php">Incidentes</button>
                           </div>
                         </center>
                       </div>
