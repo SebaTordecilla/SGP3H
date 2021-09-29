@@ -9,11 +9,30 @@ $total = $resultado->num_rows;
 if ($total > 0) {
     $tabla = "<table id=\"example1\" class=\"table table-sm\">";
     $tabla .= "<thead><tr><th>Mina</th><th>Estado</th></tr></thead>";
+
     while ($row = $resultado->fetch_assoc()) {
-        $tabla .= "<tr>";
-        $tabla .= "<td>" . $row['nombre'] . "  <span class=\"badge bg-success\">" . $row['cantidad'] . "</span></td>";
-        $tabla .= "<td><a href=\"#\" style=\"color:black\" onclick=\"  getDetails('" . $row['id_ubicacion'] . "','" . $row['fecha'] . "');horario_colacion()\">" . $row['estado'] . "</a></td>";
-        $tabla .= "</tr>";
+        $estado = $row['estado'];
+        if ($estado == 'RETORNO A FAENA') {
+            $tabla .= "<tr>";
+            $tabla .= "<td>" . $row['nombre'] . "  <span class=\"badge bg-success\">" . $row['cantidad'] . "</span></td>";
+            $tabla .= "<td align=\"center\"><a href=\"#\" style=\"color:black\" onclick=\"  getDetails('" . $row['id_ubicacion'] . "','" . $row['fecha'] . "');horario_colacion()\"><small class=\"badge badge-secondary\"> " . $row['estado'] . "</small></a></td>";
+            $tabla .= "</tr>";
+        } else if ($estado == 'EN COLACIÓN') {
+            $tabla .= "<tr>";
+            $tabla .= "<td>" . $row['nombre'] . "  <span class=\"badge bg-success\">" . $row['cantidad'] . "</span></td>";
+            $tabla .= "<td align=\"center\"><a href=\"#\" style=\"color:black\" onclick=\"  getDetails('" . $row['id_ubicacion'] . "','" . $row['fecha'] . "');horario_colacion()\"><small class=\"badge badge-success\"> " . $row['estado'] . "</small></a></td>";
+            $tabla .= "</tr>";
+        } else if ($estado == 'SIN REGISTRO') {
+            $tabla .= "<tr>";
+            $tabla .= "<td>" . $row['nombre'] . "  <span class=\"badge bg-success\">" . $row['cantidad'] . "</span></td>";
+            $tabla .= "<td align=\"center\"><a href=\"#\" style=\"color:black\" onclick=\"  getDetails('" . $row['id_ubicacion'] . "','" . $row['fecha'] . "');horario_colacion()\"><small class=\"badge badge-info\"> " . $row['estado'] . "</small></a></td>";
+            $tabla .= "</tr>";
+        } else {
+            $tabla .= "<tr>";
+            $tabla .= "<td>" . $row['nombre'] . "  <span class=\"badge bg-success\">" . $row['cantidad'] . "</span></td>";
+            $tabla .= "<td align=\"center\"><a href=\"#\" style=\"color:black\" onclick=\"  getDetails('" . $row['id_ubicacion'] . "','" . $row['fecha'] . "');horario_colacion()\"><small class=\"badge badge-danger\"> " . $row['estado'] . "</small></a></td>";
+            $tabla .= "</tr>";
+        }
     }
     $tabla .= "</table>";
     echo $tabla;

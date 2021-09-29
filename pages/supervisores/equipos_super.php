@@ -125,7 +125,7 @@ include "../../conexion.php";
                                         </div>
                                         <div class="row">
                                             <div class="col-sm-12">
-                                                <div id="tabla_equipos_diaria" style="padding-top:10px;"></div>
+                                                <div id="tabla_equipos_diaria" style="text-align:center;"></div>
                                             </div>
                                         </div>
                                     </form>

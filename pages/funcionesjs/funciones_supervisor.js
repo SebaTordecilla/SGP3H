@@ -46,10 +46,7 @@ function getDetails(id_ubicacion, fecha) {
 
 };
 
-/*function horario_colacion() {
-    $('#modal_colacion_diaria').modal('show');
-}
-*/
+
 function Ingresar_colacion() {
     var col_ubicacion = document.getElementById('col_ubicacion').value;
     var col_fecha = document.getElementById('col_fecha').value;
@@ -101,6 +98,39 @@ function Ingresar_colacion() {
 /* funciones fecha y ubicacion dinamico */
 $(document).ready(function() {
     $('#fecha_equipo').val(1);
+    recargarListaEquipos();
+
+    $('#id_ub_equipo').val(0);
+    recargarListaEquipos();
+
+    $('#id_ub_equipo').change(function() {
+        recargarListaEquipos();
+    });
+
+});
+
+function recargarListaEquipos() {
+    var url = "tabla_equipos_diaria.php";
+    var fecha = $('#fecha_equipo').val();
+    var id_ubicacion = $('#id_ub_equipo').val();
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: {
+            fecha: fecha,
+            id_ubicacion: id_ubicacion
+        },
+        success: function(datos) {
+            $('#tabla_equipos_diaria').html(datos);
+
+        }
+    });
+};
+
+
+/* funciones fecha y ubicacion dinamico reparaciones */
+$(document).ready(function() {
+    $('#fecha_repa').val(1);
     recargarListaEquipos();
 
     $('#id_ub_equipo').val(0);
