@@ -6,7 +6,7 @@
     $db = $database->open();
 
     try {
-        $sql = "SELECT DATE_FORMAT(me.fecha,'%d-%m-%Y') AS fecha,le.sigla as cod,le.nombre as modelo, te.nombre as tipo, ee.nombre as estado, me.check_list, UPPER(me.observaciones) as observaciones  FROM mant_equipos me INNER JOIN  lista_equipos le on le.id_equipo = me.id_equipo INNER JOIN tipos_equipos te on le.id_tequipo= te.id_tequipo INNER JOIN estado_equipos ee on me.id_est_equipo = ee.id_est_equipo ORDER BY me.fecha DESC;";
+        $sql = "SELECT DATE_FORMAT(me.fecha,'%d-%m-%Y') AS fecha,le.sigla as cod,le.nombre as modelo, te.nombre as tipo, ee.nombre as estado, me.check_list, UPPER(me.observaciones) as observaciones  FROM mant_equipos me INNER JOIN  lista_equipos le on le.id_equipo = me.id_equipo INNER JOIN tipos_equipos te on le.id_tequipo= te.id_tequipo INNER JOIN estado_equipos ee on me.id_est_equipo = ee.id_est_equipo  WHERE me.observaciones <> 'EQUIPO INGRESADO RECIENTEMENTE' ORDER BY me.fecha DESC;";
         foreach ($db->query($sql) as $row) {
     ?>
             <tr>

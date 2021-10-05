@@ -394,26 +394,31 @@ function equipo_nuevo() {
                                     } else {
                                         if (confirm('Desea Ingresar Equipo?')) {
 
-                                            var url = 'nuevo_equipo.php';
-                                            var method = 'POST';
-                                            var params = 'sigla=' + document.getElementById('sigla').value;
-                                            params += '&nombre=' + document.getElementById('nombre').value;
-                                            params += '&id_tequipo=' + document.getElementById('id_tequipo').value;
-                                            params += '&marca=' + document.getElementById('marca').value;
-                                            params += '&num_serie=' + document.getElementById('num_serie').value;
-                                            params += '&anio=' + document.getElementById('anio').value;
-                                            params += '&fecha_ingreso=' + document.getElementById('fecha_ingreso').value;
-                                            params += '&frecuencia=' + document.getElementById('frecuencia').value;
-                                            params += '&observaciones=' + document.getElementById('observaciones').value;
+                                            $.ajax({
+                                                url: 'nuevo_equipo.php',
+                                                type: 'post',
+                                                data: {
+                                                    sigla: sigla,
+                                                    nombre: nombre,
+                                                    id_tequipo: id_tequipo,
+                                                    marca: marca,
+                                                    num_serie: num_serie,
+                                                    anio: anio,
+                                                    fecha_ingreso: fecha_ingreso,
+                                                    frecuencia: frecuencia,
+                                                    observaciones: observaciones
+                                                },
+                                                success: function(response) {
+                                                    if (response == 1) {
+                                                        window.alert("Codigo de equipo ya se encuentra ingresado, cambiar codigo de equipo");
+                                                        return;
+                                                    } else if (response == 2) {
+                                                        window.alert("Equipo Ingresado");
+                                                        location.reload();
 
-                                            var container_id = 'list_container';
-
-                                            ajax(url, method, params, container_id);
-                                            //window.alert(params);
-                                            Swal.fire('Ingresado', "", "success");
-
-                                            location.reload();
-
+                                                    }
+                                                }
+                                            });
                                         }
                                     }
                                 }
@@ -1100,7 +1105,7 @@ function mant_cam_nuevo() {
     var observaciones = document.getElementById('observaciones_man_cam').value;
     var kilometraje = document.getElementById('km_mant_cam').value;
 
-    window.alert('prueba: ' + selected2 + ',' + fecha + ',' + id_camioneta + ',' + observaciones + ',' + kilometraje);
+    //window.alert('prueba: ' + selected2 + ',' + fecha + ',' + id_camioneta + ',' + observaciones + ',' + kilometraje);
 
     if (fecha == "") {
         alert('Debe ingresar Fecha');

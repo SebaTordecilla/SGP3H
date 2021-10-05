@@ -112,7 +112,7 @@ include "../../conexion.php";
                                             </div>
                                             <div class="col-sm-6">
                                                 <label>Ubicación</label>
-                                                <select class="form-control" id="id_ub_equipo" name="id_repa_ubicacion">
+                                                <select class="form-control" id="id_repa_ubicacion" name="id_repa_ubicacion">
                                                     <option value=""> </option>
                                                     <?php
                                                     $query = $con->query("SELECT id_ubicacion,nombre FROM ubicaciones_minas");

@@ -61,117 +61,109 @@ include "../../conexion.php";
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
       <!-- Brand Logo -->
-      <a class="brand-link">
+      <a href="#" class="brand-link">
 
         <img src="../../dist/img/logo3H.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3">
 
         <span class="brand-text font-weight-light">SGP3H</span>
       </a>
 
-      <!-- SidebarSearch Form -->
-      <div class="form-inline">
-        <div class="input-group" data-widget="sidebar-search">
-          <input class="form-control form-control-sidebar" type="search" placeholder="Buscar" aria-label="Buscar">
-          <div class="input-group-append">
-            <button class="btn btn-sidebar">
-              <i class="fas fa-search fa-fw"></i>
-            </button>
+      <!-- Sidebar -->
+      <?php include("lateral_mecanico.php") ?>
+      <!-- /.sidebar -->
+    </aside>
+
+    <!-- Contenido tablas-->
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+              <h1><img src="../../dist/img/llaveinglesa.png" width="40" height="40"> Mecanico </h1>
+            </div>
           </div>
-        </div>
-      </div>
+        </div><!-- /.container-fluid -->
+      </section>
+      <!-- contenido form -->
 
-      <!-- Sidebar Menu -->
-      <?php include("lateral_taller.php") ?>
-      <!-- /.sidebar-menu -->
-  </div>
-  <!-- /.sidebar -->
-  </aside>
-
-  <!-- Contenido tablas-->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1><img src="../../dist/img/camioneta.png" width="60" height="50"> Taller Mecánico | Camionetas </h1>
-          </div>
-        </div>
-      </div><!-- /.container-fluid -->
-    </section>
-
-    <!-- Main content -->
-    <section class="content">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-12">
-            <div class="card">
-              <div class="card-header">
-                <!--<h3 class="card-title">Programación de Mantenciones</h3>
-                  <br>-->
-                <div class="btn-group">
-                  <button type="button" class="btn naranjo">Acción</button>
-                  <button type="button" class="btn naranjo dropdown-toggle dropdown-icon" data-toggle="dropdown">
-                    <span class="sr-only">Toggle Dropdown</span>
-                  </button>
-                  <div class="dropdown-menu" role="menu">
-                    <a class="dropdown-item" data-toggle="modal" data-target="#modal_nueva_camioneta">Nueva Camioneta</a>
-                    <a class="dropdown-item" data-toggle="modal" data-target="#modal_seguro_camioneta">Seguro</a>
-                    <a class="dropdown-item" data-toggle="modal" data-target="#modal_permiso_circulacion">Permiso de Circulación</a>
-                    <a class="dropdown-item" data-toggle="modal" data-target="#modal_revision_tecnica">Revisión Técnica</a>
-                  </div>
+      <section class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-12">
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title">
+                    <!--subtitulo de pagina-->
+                  </h3>
+                  <br>
+                </div>
+                <div class="card-body">
+                  <form>
+                    <div class="row">
+                      <div class="col-sm-4">
+                        <label for="state_id" class="control-label">Fecha Ingreso</label>
+                        <input type="date" class="form-control" id="fecha_man_prog" name="fecha_man_prog">
+                      </div>
+                      <div class="col-sm-4">
+                        <div class="form-group"><label for="state_id" class="control-label">Tipo</label>
+                          <select class="form-control" id="disp_id_material" name="disp_id_material">
+                            <option value=""></option>
+                            <?php
+                            $query = $con->query("SELECT * FROM minerales");
+                            while ($valores = mysqli_fetch_array($query)) {
+                              echo '<option value="' . $valores[id_mineral] . '">' . $valores[nombre] . '</option>';
+                            }
+                            ?>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-sm-4">
+                        <div class="form-group"><label for="state_id" class="control-label">Tipo</label>
+                          <select class="form-control" id="disp_id_material" name="disp_id_material">
+                            <option value=""></option>
+                            <?php
+                            $query = $con->query("SELECT * FROM minerales");
+                            while ($valores = mysqli_fetch_array($query)) {
+                              echo '<option value="' . $valores[id_mineral] . '">' . $valores[nombre] . '</option>';
+                            }
+                            ?>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-sm-4">
+                        <div class="form-group"><label for="state_id" class="control-label">Tipo</label>
+                          <select class="form-control" id="disp_id_material" name="disp_id_material">
+                            <option value=""></option>
+                            <?php
+                            $query = $con->query("SELECT * FROM minerales");
+                            while ($valores = mysqli_fetch_array($query)) {
+                              echo '<option value="' . $valores[id_mineral] . '">' . $valores[nombre] . '</option>';
+                            }
+                            ?>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
                 </div>
               </div>
-
-              <!-- /.card-header -->
-              <div class="card-body">
-                <table id="example1" class="table table-bordered table-striped">
-                  <thead>
-                    <tr>
-                      <th>Patente</th>
-                      <th>Modelo</th>
-                      <th>Calidad</th>
-                      <th>Chofer</th>
-                      <th>Estado</th>
-                      <th>Km.Actual</th>
-                      <th>Prox.Mant</th>
-                      <th>P.Circulación</th>
-                      <th>Seguro</th>
-                      <th>Rev.Tec</th>
-                    </tr>
-                  </thead>
-                  <?php
-                  include('tabla_camionetas.php')
-                  ?>
-
-                </table>
-              </div>
-              <!-- /.card-body -->
             </div>
-            <!-- /.card -->
           </div>
-          <!-- /.col -->
         </div>
-        <!-- /.row -->
-      </div>
-      <!-- /.container-fluid -->
+      </section>
 
-      <!--Se debe incluir modales-->
-      <?php include('modal_taller.php'); ?>
+    </div>
+    <!-- /.content-wrapper -->
+    <footer class="main-footer">
+      <!--Footer sin nada-->
+    </footer>
 
-    </section>
-
-  </div>
-  <!-- /.content-wrapper -->
-  <footer class="main-footer">
-    <!--Footer sin nada-->
-  </footer>
-
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+      <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
   </div>
   <!-- ./wrapper -->
 
@@ -192,7 +184,6 @@ include "../../conexion.php";
       </div>
     </div>
   </div>
-
 
 
   <!-- jQuery -->
@@ -218,41 +209,9 @@ include "../../conexion.php";
   <script src="../../dist/js/demo.js"></script>
   <!-- Page specific script -->
   <script src="../funcionesjs/funciones_taller.js"></script>
+  <script src="../funcionesjs/funciones_supervisor.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-  <script>
-    $(function() {
-      $("#example1").DataTable({
-        "fnRowCallback": function(nRow, aData, iDisplayIndex, iDisplayIndexFull) {
-          var d = aData[5];
-          var parts = d.split(':');
-          var total = parseInt(parts[0]) * 60 + parseInt(parts[1]);
-          if ((aData[6] - aData[5]) < 0) {
 
-            $('td:eq(6)', nRow).css('color', 'RED');
-
-
-          } else if (total == 15000) //
-          {
-            $('td:eq(5)', nRow).css('color', 'red');
-
-          }
-        },
-        "responsive": true,
-        "lengthChange": false,
-        "autoWidth": false,
-        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-      }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-      $('#example2').DataTable({
-        "paging": true,
-        "lengthChange": false,
-        "searching": false,
-        "ordering": true,
-        "info": true,
-        "autoWidth": false,
-        "responsive": true,
-      });
-    });
-  </script>
 </body>
 
 </html>

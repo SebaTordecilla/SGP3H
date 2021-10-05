@@ -238,7 +238,7 @@
                                 <select class="form-control" id="id_tequipo" name="id_tequipo">
                                     <option value=""></option>
                                     <?php
-                                    $query = $con->query("SELECT * FROM tipos_equipos");
+                                    $query = $con->query("SELECT * FROM tipos_equipos WHERE id_tequipo <>7");
                                     while ($valores = mysqli_fetch_array($query)) {
                                         echo '<option value="' . $valores[id_tequipo] . '">' . $valores[nombre] . '</option>';
                                     }

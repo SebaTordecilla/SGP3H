@@ -130,19 +130,19 @@ include "../../conexion.php";
                   $nombre = $row['nombre'];
                   $color = $row['color'];
 
-                  $sql_query2 = "SELECT id_tequipo, COUNT(id_equipo) total,SUM(IF(id_est_equipo=1,1,0)) as activos FROM lista_equipos WHERE id_tequipo =".$i." GROUP by id_tequipo;";
+                  $sql_query2 = "SELECT id_tequipo, COUNT(id_equipo) total,SUM(IF(id_est_equipo=1,1,0)) as activos FROM lista_equipos WHERE id_tequipo =" . $i . " GROUP by id_tequipo;";
                   $result2 = mysqli_query($con, $sql_query2);
                   $row2 = mysqli_fetch_array($result2);
-                  $total = $row2['total']; 
+                  $total = $row2['total'];
                   $activos = $row2['activos'];
-                  $porcentaje= ($activos/$total)*100;
-                  ?>
+                  $porcentaje = ($activos / $total) * 100;
+                ?>
 
                   <div class="progress-group">
                     <?php echo $nombre ?>
-                    <span class="float-right"><b><?php echo $activos?></b>/<?php echo $total ?></span>
+                    <span class="float-right"><b><?php echo $activos ?></b>/<?php echo $total ?></span>
                     <div class="progress progress-sm">
-                      <div class="progress-bar bg-<?php echo $color?>" style="width: <?php echo $porcentaje ?>%"></div>
+                      <div class="progress-bar bg-<?php echo $color ?>" style="width: <?php echo $porcentaje ?>%"></div>
                     </div>
                   </div>
                 <?php
@@ -150,78 +150,100 @@ include "../../conexion.php";
                 ?>
               </div>
               <div class="col-md-4">
-                <img src="../../dist/img/topo3H.png" style="max-width:60%;width:auto;height:auto;" >
+                <img src="../../dist/img/topo3H.png" style="max-width:60%;width:auto;height:auto;">
               </div>
             </div>
+          </div>
+          <!--dashboard-->
+          <div class="col-lg-6">
+
+            <div class="card card-success">
+              <div class="card-header">
+                <h3 class="card-title">Bar Chart</h3>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="chart">
+                  <canvas id="barChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                </div>
+              </div>
+              <!-- /.card-body -->
+            </div>
+          </div>
+        </div>
+        <!-- Main content -->
+        <section class="content">
+          <div class="container-fluid">
+
+          </div>
+        </section>
+
+      </div>
+      <!-- /.content-wrapper -->
+      <footer class="main-footer">
+        <!--Footer sin nada-->
+      </footer>
+
+      <!-- Control Sidebar -->
+      <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+      </aside>
+      <!-- /.control-sidebar -->
+    </div>
+    <!-- ./wrapper -->
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Seguro quieres Salir?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-footer justify-content-between">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            <a class="btn btn-primary naranjo" href="../logout.php">Salir</a>
           </div>
         </div>
       </div>
     </div>
-    <!-- Main content -->
-    <section class="content">
-      <div class="container-fluid">
-
-      </div>
-    </section>
-
-  </div>
-  <!-- /.content-wrapper -->
-  <footer class="main-footer">
-    <!--Footer sin nada-->
-  </footer>
-
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
-  </div>
-  <!-- ./wrapper -->
-
-  <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Seguro quieres Salir?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-footer justify-content-between">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-          <a class="btn btn-primary naranjo" href="../logout.php">Salir</a>
-        </div>
-      </div>
-    </div>
-  </div>
 
 
 
-  <!-- jQuery -->
-  <script src="../../plugins/jquery/jquery.min.js"></script>
-  <!-- Bootstrap 4 -->
-  <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <!-- DataTables  & Plugins -->
-  <script src="../../plugins/datatables/jquery.dataTables.min.js"></script>
-  <script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-  <script src="../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-  <script src="../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-  <script src="../../plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
-  <script src="../../plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
-  <script src="../../plugins/jszip/jszip.min.js"></script>
-  <script src="../../plugins/pdfmake/pdfmake.min.js"></script>
-  <script src="../../plugins/pdfmake/vfs_fonts.js"></script>
-  <script src="../../plugins/datatables-buttons/js/buttons.html5.min.js"></script>
-  <script src="../../plugins/datatables-buttons/js/buttons.print.min.js"></script>
-  <script src="../../plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
-  <!-- AdminLTE App -->
-  <script src="../../dist/js/adminlte.min.js"></script>
-  <!-- AdminLTE for demo purposes -->
-  <script src="../../dist/js/demo.js"></script>
-  <!-- Page specific script -->
-  <script src="../funcionesjs/funciones_taller.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <!-- jQuery -->
+    <script src="../../plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- DataTables  & Plugins -->
+    <script src="../../plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="../../plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="../../plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="../../plugins/jszip/jszip.min.js"></script>
+    <script src="../../plugins/pdfmake/pdfmake.min.js"></script>
+    <script src="../../plugins/pdfmake/vfs_fonts.js"></script>
+    <script src="../../plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="../../plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="../../plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="../../dist/js/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="../../dist/js/demo.js"></script>
+    <!-- Page specific script -->
+    <script src="../funcionesjs/funciones_taller.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
 </body>
 
