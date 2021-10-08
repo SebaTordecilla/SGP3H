@@ -122,7 +122,7 @@ include "../../conexion.php";
                       <div class="col-sm-6">
                         <center>
                           <div class="form-group">
-                            <button type="button" class="btn btn-block btn-danger btn-lg"><img src="../../dist/img/llave.png" width="30" height="30"><a style="color:white" href="colacion_diaria.php">Reparación</button>
+                            <button type="button" class="btn btn-block btn-danger btn-lg"><img src="../../dist/img/llave.png" width="30" height="30"><a style="color:white" href="reparacion_terreno.php">Reparación</button>
                           </div>
                         </center>
                       </div>

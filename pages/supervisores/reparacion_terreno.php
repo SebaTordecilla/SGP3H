@@ -110,22 +110,11 @@ include "../../conexion.php";
                                                     </div>
                                                 </center>
                                             </div>
-                                            <div class="col-sm-6">
-                                                <label>Ubicación</label>
-                                                <select class="form-control" id="id_repa_ubicacion" name="id_repa_ubicacion">
-                                                    <option value=""> </option>
-                                                    <?php
-                                                    $query = $con->query("SELECT id_ubicacion,nombre FROM ubicaciones_minas");
-                                                    while ($valores = mysqli_fetch_array($query)) {
-                                                        echo '<option value="' . $valores[id_ubicacion] . '">' . $valores[nombre] . '</option>';
-                                                    }
-                                                    ?>
-                                                </select>
-                                            </div>
+
                                         </div>
                                         <div class="row">
                                             <div class="col-sm-12">
-                                                <div id="tabla_equipos_diaria" style="text-align:center;"></div>
+                                                <div id="tabla_reparacion_diaria" style="text-align:center;"></div>
                                             </div>
                                         </div>
                                     </form>

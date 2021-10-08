@@ -80,7 +80,7 @@ include "../../conexion.php";
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1><img src="../../dist/img/llaveinglesa.png" width="40" height="40"> Mecanico </h1>
+              <h1><img src="../../dist/img/llaveinglesa.png" width="40" height="40"> Mecánico </h1>
             </div>
           </div>
         </div><!-- /.container-fluid -->
@@ -101,48 +101,22 @@ include "../../conexion.php";
                 <div class="card-body">
                   <form>
                     <div class="row">
-                      <div class="col-sm-4">
-                        <label for="state_id" class="control-label">Fecha Ingreso</label>
-                        <input type="date" class="form-control" id="fecha_man_prog" name="fecha_man_prog">
-                      </div>
-                      <div class="col-sm-4">
-                        <div class="form-group"><label for="state_id" class="control-label">Tipo</label>
-                          <select class="form-control" id="disp_id_material" name="disp_id_material">
-                            <option value=""></option>
-                            <?php
-                            $query = $con->query("SELECT * FROM minerales");
-                            while ($valores = mysqli_fetch_array($query)) {
-                              echo '<option value="' . $valores[id_mineral] . '">' . $valores[nombre] . '</option>';
-                            }
-                            ?>
-                          </select>
-                        </div>
-                      </div>
-                      <div class="col-sm-4">
-                        <div class="form-group"><label for="state_id" class="control-label">Tipo</label>
-                          <select class="form-control" id="disp_id_material" name="disp_id_material">
-                            <option value=""></option>
-                            <?php
-                            $query = $con->query("SELECT * FROM minerales");
-                            while ($valores = mysqli_fetch_array($query)) {
-                              echo '<option value="' . $valores[id_mineral] . '">' . $valores[nombre] . '</option>';
-                            }
-                            ?>
-                          </select>
-                        </div>
-                      </div>
-                      <div class="col-sm-4">
-                        <div class="form-group"><label for="state_id" class="control-label">Tipo</label>
-                          <select class="form-control" id="disp_id_material" name="disp_id_material">
-                            <option value=""></option>
-                            <?php
-                            $query = $con->query("SELECT * FROM minerales");
-                            while ($valores = mysqli_fetch_array($query)) {
-                              echo '<option value="' . $valores[id_mineral] . '">' . $valores[nombre] . '</option>';
-                            }
-                            ?>
-                          </select>
-                        </div>
+                      <div class="card-body">
+
+                        <table id="example1" class="table table-sm">
+                          <thead>
+                            <tr>
+                              <th>Codigo</th>
+                              <th>Modelo</th>
+                              <th>Hora</th>
+                              <th> </th>
+                            </tr>
+                          </thead>
+                          <?php
+                          include('tabla_reparaciones.php')
+                          ?>
+
+                        </table>
                       </div>
                     </div>
                   </form>
@@ -151,6 +125,10 @@ include "../../conexion.php";
             </div>
           </div>
         </div>
+        <?php
+        include('modal_mecanico.php')
+        ?>
+
       </section>
 
     </div>
@@ -209,7 +187,7 @@ include "../../conexion.php";
   <script src="../../dist/js/demo.js"></script>
   <!-- Page specific script -->
   <script src="../funcionesjs/funciones_taller.js"></script>
-  <script src="../funcionesjs/funciones_supervisor.js"></script>
+  <script src="../funcionesjs/funciones_mecanico.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
 </body>

@@ -128,34 +128,80 @@ function recargarListaEquipos() {
 };
 
 
-/* funciones fecha y ubicacion dinamico reparaciones */
+/* funcion reparacion en terreno */
 $(document).ready(function() {
     $('#fecha_repa').val(1);
-    recargarListaEquipos();
+    recargarListaEquiposRep();
 
-    $('#id_ub_equipo').val(0);
-    recargarListaEquipos();
-
-    $('#id_ub_equipo').change(function() {
-        recargarListaEquipos();
+    $('#fecha_repa').change(function() {
+        recargarListaEquiposRep();
     });
 
 });
 
-function recargarListaEquipos() {
-    var url = "tabla_equipos_diaria.php";
-    var fecha = $('#fecha_equipo').val();
-    var id_ubicacion = $('#id_ub_equipo').val();
+function recargarListaEquiposRep() {
+    var url = "tabla_reparacion_diaria.php";
+    var fecha = $('#fecha_repa').val();
     $.ajax({
         type: "POST",
         url: url,
         data: {
             fecha: fecha,
-            id_ubicacion: id_ubicacion
         },
         success: function(datos) {
-            $('#tabla_equipos_diaria').html(datos);
+            $('#tabla_reparacion_diaria').html(datos);
 
         }
     });
+};
+/* fin*/
+
+function getDetails2(id) {
+    $('.id_salida').val(id);
+};
+
+function sol_mecanico() {
+    $('#solicitud_mecanico').modal('show');
+};
+
+
+function solicitud_mecanico() {
+    var id_ubicacion = document.getElementById('rep_id_mina').value;
+    var hora_ini = document.getElementById('hora_ini').value;
+    var id_salida = document.getElementById('id_salida').value;
+
+    if (id_ubicacion == "") {
+        alert('Debe ingresar Mina');
+        return;
+    } else if (hora_ini == "") {
+        alert('Debe ingresar Hora');
+        return;
+    } else {
+        if (confirm('Desea Solicitar Mecánico?')) {
+            $.ajax({
+                url: 'nuevo_mecanico.php',
+                type: 'post',
+                data: {
+                    id_ubicacion: id_ubicacion,
+                    hora_ini: hora_ini,
+                    id_salida: id_salida,
+                },
+                success: function(response) {
+                    if (response == 1) {
+                        window.alert("Mecánico ya fue solicitado");
+                        return;
+                    } else if (response == 2) {
+                        window.alert("Solicitud de Mecánico Ingresada");
+                        location.reload();
+                    } else if (response == 3) {
+                        window.alert("Error");
+                        return;
+                    } else if (response == 4) {
+                        window.alert("Equipo ya finalizo su Jornada");
+                        return;
+                    }
+                }
+            });
+        }
+    }
 };

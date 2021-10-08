@@ -127,9 +127,10 @@ include "../../conexion.php";
                         <th>Tipo</th>
                         <th>Ubicación</th>
                         <th>Hr.Sol.Mec</th>
-                        <th>Hr.Sal.Mec</th>
-                        <th>Hr.Ter.Mec </th>
-                        <th>Observaciones </th>
+                        <th>Hr.lleg.Mec</th>
+                        <th>Duración</th>
+                        <th>Hr.Inactivo </th>
+                        <th>Tip.Falla </th>
                       </tr>
                     </thead>
                     <?php
