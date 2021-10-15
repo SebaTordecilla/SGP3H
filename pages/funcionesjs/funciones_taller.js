@@ -1154,3 +1154,68 @@ function mant_cam_nuevo() {
         }
     }
 };
+
+
+
+///// funcion informe disponibilidad
+
+function Informe_disponibilidad() {
+    var desde = document.getElementById('desde').value;
+    var hasta = document.getElementById('hasta').value;
+
+    if (desde == "") {
+        alert('Debe ingresar Fecha Desde');
+        return;
+    } else {
+        if (hasta == "") {
+            alert('Debe ingresar Fecha Hasta');
+            return;
+        } else {
+            if (confirm('Desea crear Informe?')) {
+                $.ajax({
+                    url: 'tabla_informe_disponibilidad.php',
+                    type: 'post',
+                    data: {
+                        desde: desde,
+                        hasta: hasta
+
+                    },
+                    success: function(datos) {
+                        $('#tabla_informe_disponibilidad').html(datos);
+                    }
+                });
+
+            }
+        }
+    }
+};
+
+////
+function detalles_informe(num, desde, hasta, ID, modelo, tipo) {
+    $('.cod_equipo_informe').html(num);
+    $('.fecha_desde').val(desde);
+    $('.fecha_hasta').val(hasta);
+    $('.cod_ID').html(ID + ' - ' + modelo + ' - ' + tipo);
+
+    var url = "detalle_informe_disp.php";
+    var num = num;
+    var desde = desde;
+    var hasta = hasta;
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: {
+            num: num,
+            desde: desde,
+            hasta: hasta
+        },
+        success: function(datos) {
+            $('#tabla_detalle_informe').html(datos);
+            $('#modal_informe_disp').modal('show');
+        }
+    });
+};
+
+function modal_informe() {
+    $('#modal_informe_disp').modal('show');
+}

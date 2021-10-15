@@ -1,13 +1,13 @@
 <!--./menu lateral taller-->
 <?php
-$user =$_SESSION['uname'];
+$user = $_SESSION['uname'];
 
-$sql_query = "SELECT id_nivel,permiso FROM usuarios WHERE nombre ='".$user."'";
+$sql_query = "SELECT id_nivel,permiso FROM usuarios WHERE nombre ='" . $user . "'";
 $result = mysqli_query($con, $sql_query);
 $row = mysqli_fetch_array($result);
 $id_nivel = $row['id_nivel'];
 
-if($id_nivel!=2){
+if ($id_nivel != 2) {
     header("Location: ../../login.php");
 }
 
@@ -33,29 +33,7 @@ if($id_nivel!=2){
                         <p>Lista Equipos</p>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>
-                            Reparación
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="reparacion_terreno.php" class="nav-link">
-                                <i class="far fa-dot-circle nav-icon"></i>
-                                <p>Terreno</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="historial_rep_terreno.php" class="nav-link">
-                                <i class="far fa-dot-circle nav-icon"></i>
-                                <p>Hist. Reparaciones</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+
         </li>
         <li class="nav-item">
             <a href="historial_mantenciones.php" class="nav-link">
@@ -64,6 +42,30 @@ if($id_nivel!=2){
             </a>
         </li>
     </ul>
+    </li>
+    <li class="nav-item">
+        <a href="#" class="nav-link">
+            <i class="nav-icon far fa-bookmark"></i>
+            <!--<i class="nav-icon far fa-edit"></i>-->
+            <p>
+                Reparaciones
+                <i class="fas fa-angle-left right"></i>
+            </p>
+        </a>
+        <ul class="nav nav-treeview">
+            <li class="nav-item">
+                <a href="reparacion_terreno.php" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Terreno</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="historial_rep_terreno.php" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Hist. Reparaciones</p>
+                </a>
+            </li>
+        </ul>
     </li>
     <li class="nav-item">
         <a href="#" class="nav-link">
@@ -79,6 +81,30 @@ if($id_nivel!=2){
                 <a href="planificacion.php" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Salidas Diarias</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="historial_salida_equipos.php" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Hist. Salidas</p>
+                </a>
+            </li>
+        </ul>
+    </li>
+    <li class="nav-item">
+        <a href="#" class="nav-link">
+            <i class="nav-icon far fa-bookmark"></i>
+            <!--<i class="nav-icon far fa-edit"></i>-->
+            <p>
+                Informes
+                <i class="fas fa-angle-left right"></i>
+            </p>
+        </a>
+        <ul class="nav nav-treeview">
+            <li class="nav-item">
+                <a href="disponibilidad.php" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Disponibilidad</p>
                 </a>
             </li>
             <li class="nav-item">

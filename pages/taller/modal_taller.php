@@ -1085,3 +1085,29 @@
 
     </div>
 </div>
+
+
+
+<!-- /.modal historial-->
+<div class="modal fade" id="modal_informe_disp">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Detalles</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <center>
+                    <h4 class="text-center cod_ID" id="cod_ID" name="cod_ID"></h4>
+                </center>
+                <div id="tabla_detalle_informe" style="padding-top:10px;"></div>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-default" data-dismiss="modal">cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.modal fin historial-->
