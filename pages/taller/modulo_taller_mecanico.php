@@ -246,9 +246,10 @@ include "../../conexion.php";
                 </div>
               </div>
               <!--cuerpo etiqueta-->
-
-              <div class="table table-striped table-valign-middle">
-                <table class="table m-0">
+              <div class="card-body table-responsive p-0" style="height: 300px;">
+                <table class="table table-head-fixed text-nowrap">
+                  <!--<div class="table table-striped table-valign-middle">
+                <table class="table m-0">-->
                   <thead>
                     <tr>
                       <th style="font-size:65%;">Equipo</th>
@@ -273,8 +274,25 @@ include "../../conexion.php";
                       foreach ($db->query($sql) as $row) {
                     ?>
                         <tr>
+                          <?php
+                          $id0 = $row['id_equipo'];
+                          $sql0 = "SELECT YEAR(CURDATE()) AS ano,MONTH(CURDATE()) as mes ,DAY(CURDATE()) AS dia";
+                          $result0 = mysqli_query($con, $sql0);
+                          $row0 = mysqli_fetch_array($result0);
+                          $dia0 = $row0['dia'] - 1;
+                          $mes0 = $row0['mes'];
+                          $ano0 = $row0['ano'];
+
+                          $sql1 = "SELECT DISTINCT (SELECT (SUM(TIME_TO_SEC(hora_total))) FROM salida_equipos where id_equipo = " . $id0 . " AND fecha BETWEEN '" . $ano0 . "-" . $mes0 . "-01' AND '" . $ano0 . "-" . $mes0 . "-" . $dia0 . "') as segundos FROM lista_equipos le LEFT JOIN tipos_equipos te on le.id_tequipo = te.id_tequipo LEFT JOIN mant_equipos me on le.id_equipo = me.id_equipo INNER JOIN estado_equipos ee on ee.id_est_equipo = le.id_est_equipo WHERE le.id_equipo = " . $id0 . ";";
+                          $result1 = mysqli_query($con, $sql1);
+                          $row1 = mysqli_fetch_array($result1);
+                          $segundos = $row1['segundos'];
+                          $totalmes = $dia0 * 36000;
+                          $porcentajemes = number_format(($segundos / $totalmes) * 100, 0, ',', ' ');
+                          /*poner color de texto*/
+                          ?>
                           <td style="font-size:65%;"><b><?php echo $row['sigla']; ?></b></td>
-                          <td style="font-size:65%;"><b></b>80%</td>
+                          <td style="font-size:65%;"><b></b><?php echo $porcentajemes ?>%</td>
                           <?php
                           $id = $row['id_equipo'];
                           $sql = "SELECT YEAR(CURDATE()) AS ano,MONTH(CURDATE()) as mes ,DAY(CURDATE()) AS dia";
@@ -283,6 +301,10 @@ include "../../conexion.php";
                           $dia1 = $row['dia'] - 1;
                           $mes = $row['mes'];
                           $ano = $row['ano'];
+
+                          ?>
+
+                          <?php
                           for ($j = 1; $j <= $dia1; $j++) {
                             $sql = "SELECT TIME_TO_SEC(IF(SEC_TO_TIME(SUM(TIME_TO_SEC(TIMEDIFF(rt.hora_mec, rt.hora_ini)+rt.duraccion))) is NULL,SEC_TO_TIME(TIMESTAMPDIFF(SECOND, SEC_TO_TIME(TIMESTAMPDIFF(SECOND, hora_ini_col, hora_fin_col)),SEC_TO_TIME(TIMESTAMPDIFF(SECOND, hora_inicio, hora_fin)))), SEC_TO_TIME(TIMESTAMPDIFF(SECOND, SEC_TO_TIME(SUM(TIME_TO_SEC(TIMEDIFF(rt.hora_mec, rt.hora_ini)+rt.duraccion))),SEC_TO_TIME(TIMESTAMPDIFF(SECOND, SEC_TO_TIME(TIMESTAMPDIFF(SECOND, hora_ini_col, hora_fin_col)),SEC_TO_TIME(TIMESTAMPDIFF(SECOND, hora_inicio, hora_fin)))))))) as final 
                             FROM salida_equipos se INNER JOIN lista_equipos le on se.id_equipo = le.id_equipo INNER JOIN tipos_equipos te on le.id_tequipo = te.id_tequipo INNER JOIN reparacion_terreno rt on rt.id_sal_equipo = se.id_sal_equipo WHERE se.id_estado_diario = 5 and rt.id_sal_equipo = (SELECT id_sal_equipo FROM salida_equipos WHERE id_equipo = " . $id . " and fecha = '" . $ano . "-" . $mes . "-" . $j . "') ORDER by se.fecha DESC;";
@@ -292,9 +314,17 @@ include "../../conexion.php";
                             $r = ($final / 36000) * 100;
                             $re = number_format($r, 0, ',', ' ');
 
+                            if ($re > 80) {
                           ?>
-                            <td style="font-size:65%;"><?php echo $re ?>%</td>
+                              <td style="color: green;font-size:65%;"><?php echo $re ?>%</td>
+                            <?php
+
+                            } else {
+
+                            ?>
+                              <td style="color: red;font-size:65%;"><?php echo $re ?>%</td>
                           <?php
+                            }
                           }
                           ?>
                         </tr>

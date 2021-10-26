@@ -389,7 +389,8 @@ include "../../conexion.php";
           // Get context with jQuery - using jQuery's .get() method.
           var areaChartCanvas = $('#areaChart').get(0).getContext('2d')
           var areaChartData = {
-            labels: [list2[0],list2[1],list2[2],list2[3],list2[4],list2[5]],
+            //labels: [list2[0],list2[1],list2[2],list2[3],list2[4],list2[5]],
+            labels:[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30],
             datasets: [{
               label: 'Penosa',
               backgroundColor: 'rgba(60,141,188,0.9)',
@@ -399,8 +400,8 @@ include "../../conexion.php";
               pointStrokeColor: 'rgba(60,141,188,1)',
               pointHighlightFill: '#fff',
               pointHighlightStroke: 'rgba(60,141,188,1)',
-              data: [28, 48, 40, 19, 86, 27]
-            }, {
+              data: [7, 8, 6, 4, 9, 9.5,8,7,5,4,2.5,10,7,9,8,5,8,7,9,6,5,8,7,9,8,5,4,6,7,9,5]
+            }/*, {
               label: 'Patricia',
               backgroundColor: 'rgba(210, 214, 222, 1)',
               borderColor: 'rgba(210, 214, 222, 1)',
@@ -410,7 +411,7 @@ include "../../conexion.php";
               pointHighlightFill: '#fff',
               pointHighlightStroke: 'rgba(220,220,220,1)',
               data: [65, 59, 80, 81, 56, 55]
-            }, ]
+            }, */]
           }
 
           var areaChartOptions = {
@@ -447,7 +448,7 @@ include "../../conexion.php";
           var lineChartOptions = $.extend(true, {}, areaChartOptions)
           var lineChartData = $.extend(true, {}, areaChartData)
           lineChartData.datasets[0].fill = false;
-          lineChartData.datasets[1].fill = false;
+          //lineChartData.datasets[1].fill = false;
           lineChartOptions.datasetFill = false
 
           var lineChart = new Chart(lineChartCanvas, {
@@ -506,7 +507,7 @@ include "../../conexion.php";
           var barChartCanvas = $('#barChart').get(0).getContext('2d')
           var barChartData = $.extend(true, {}, areaChartData)
           var temp0 = areaChartData.datasets[0]
-          var temp1 = areaChartData.datasets[1]
+          //var temp1 = areaChartData.datasets[1]
           barChartData.datasets[0] = temp1
           barChartData.datasets[1] = temp0
 

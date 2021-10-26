@@ -1219,3 +1219,92 @@ function detalles_informe(num, desde, hasta, ID, modelo, tipo) {
 function modal_informe() {
     $('#modal_informe_disp').modal('show');
 }
+
+/////////////////
+
+$(document).ready(function() {
+    $('#tequipo_informe').val(1);
+    recargarLista_informe();
+
+    $('#tequipo_informe').change(function() {
+        recargarLista_informe();
+    });
+});
+
+function recargarLista_informe() {
+    $.ajax({
+        type: "POST",
+        url: "select_equipo_informe.php",
+        data: "tipo=" + $('#tequipo_informe').val(),
+        success: function(r) {
+            $('#selectlistainforme').html(r);
+        }
+    });
+};
+
+//////////////////////
+
+
+function Informe_Equipo() {
+    var tequipo = document.getElementById('tequipo').value;
+    var id_equipo = document.getElementById('id_equipo_informe').value;
+    var mes_equipo = document.getElementById('mes_equipo').value;
+    var ano_equipo = document.getElementById('ano_equipo').value;
+
+    if (tequipo == "") {
+        alert('Debe ingresar Tipo');
+        return;
+    } else {
+        if (id_equipo == "") {
+            alert('Debe ingresar Codigo');
+            return;
+        } else {
+            if (mes_equipo == "") {
+                alert('Debe ingresar Mes');
+                return;
+            } else {
+                if (ano_equipo == "") {
+                    alert('Debe ingresar Año');
+                    return;
+                } else {
+                    if (confirm('Desea crear Informe?')) {
+                        $.ajax({
+                            url: 'tabla_informe_equipo_.php',
+                            type: 'post',
+                            data: {
+                                id_equipo: id_equipo,
+                                mes_equipo: mes_equipo,
+                                ano_equipo: ano_equipo
+                            },
+                            success: function(datos) {
+                                $('#tabla_informe_equipo_').html(datos);
+                            }
+                        });
+
+                    }
+                }
+
+            }
+
+        }
+    }
+};
+
+function Cajas_Equipo() {
+    var id_equipo = document.getElementById('id_equipo_informe').value;
+    var mes_equipo = document.getElementById('mes_equipo').value;
+    var ano_equipo = document.getElementById('ano_equipo').value;
+    window.alert(id_equipo);
+    $.ajax({
+        url: 'cajas_informe_equipo.php',
+        type: 'post',
+        data: {
+            id_equipo: id_equipo,
+            mes_equipo: mes_equipo,
+            ano_equipo: ano_equipo
+        },
+        success: function(datos) {
+            $('#cajas_informe_equipo').html(datos);
+        }
+    });
+};

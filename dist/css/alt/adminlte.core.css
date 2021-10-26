@@ -2922,14 +2922,14 @@ fieldset:disabled a.btn {
 
 .btn-primary:hover {
     color: #fff;
-    background-color: #0069d9;
+    background-color: #FF1F00;
     border-color: #0062cc;
 }
 
 .btn-primary:focus,
 .btn-primary.focus {
     color: #fff;
-    background-color: #0069d9;
+    background-color: #FF1F00;
     border-color: #0062cc;
     box-shadow: 0 0 0 0 rgba(38, 143, 255, 0.5);
 }
@@ -24612,7 +24612,7 @@ blockquote.quote-gray-dark h6 {
 }
 
 .bg-gradient-primary.btn:hover {
-    background: #FC6325 linear-gradient(180deg, #267fde, #0069d9) repeat-x !important;
+    background: #FC6325 linear-gradient(180deg, #267fde, #FF1F00) repeat-x !important;
     border-color: #0062cc;
     color: #ececec;
 }
@@ -25004,7 +25004,7 @@ blockquote.quote-gray-dark h6 {
 }
 
 .bg-gradient-blue.btn:hover {
-    background: #FC6325 linear-gradient(180deg, #267fde, #0069d9) repeat-x !important;
+    background: #FC6325 linear-gradient(180deg, #267fde, #FF1F00) repeat-x !important;
     border-color: #0062cc;
     color: #ececec;
 }

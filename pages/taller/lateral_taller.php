@@ -108,9 +108,9 @@ if ($id_nivel != 2) {
                 </a>
             </li>
             <li class="nav-item">
-                <a href="historial_salida_equipos.php" class="nav-link">
+                <a href="informe_equipo.php" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Hist. Salidas</p>
+                    <p>Equipos</p>
                 </a>
             </li>
         </ul>
