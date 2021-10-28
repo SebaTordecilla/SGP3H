@@ -41,31 +41,31 @@ $segundos = $row2['segundos'];
 
 */
 ?>
-
-<div class="info-box mb-3 bg-warning">
-    <div class="info-box-content">
-        <span class="info-box-text">Estado de Equipo</span>
-        <span class="info-box-number"><?php echo $estado ?></span>
+<div class="card card">
+    <div class="card-header">
+        <h3 class="card-title">KPI</h3>
     </div>
-</div>
-<!-- /.info-box -->
-<div class="info-box mb-3 bg-success">
-    <div class="info-box-content">
-        <span class="info-box-text">Horas Totales</span>
-        <span class="info-box-number"><?php echo $horas?> </span>
-    </div>
-</div>
-<!-- /.info-box -->
-<div class="info-box mb-3 bg-danger">
-    <div class="info-box-content">
-        <span class="info-box-text">Dias Trabajados</span>
-        <span class="info-box-number"><?php echo $salidas ?></span>
-    </div>
-</div>
-<!-- /.info-box -->
-<div class="info-box mb-3 bg-info">
-    <div class="info-box-content">
-        <span class="info-box-text">Reparaciones</span>
-        <span class="info-box-number"><?php echo $repa ?></span>
+    <div class="card-body">
+        <!-- /.info-box -->
+        <div class="info-box mb-3 bg-success">
+            <div class="info-box-content">
+                <span class="info-box-text">Horas Totales</span>
+                <span class="info-box-number"><?php echo $horas ?> </span>
+            </div>
+        </div>
+        <!-- /.info-box -->
+        <div class="info-box mb-3 bg-info">
+            <div class="info-box-content">
+                <span class="info-box-text">Dias Trabajados</span>
+                <span class="info-box-number"><?php echo $salidas ?></span>
+            </div>
+        </div>
+        <!-- /.info-box -->
+        <div class="info-box mb-3 bg-danger">
+            <div class="info-box-content">
+                <span class="info-box-text">Reparaciones</span>
+                <span class="info-box-number"><?php echo $repa ?></span>
+            </div>
+        </div>
     </div>
 </div>

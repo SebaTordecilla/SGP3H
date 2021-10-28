@@ -1294,7 +1294,7 @@ function Cajas_Equipo() {
     var id_equipo = document.getElementById('id_equipo_informe').value;
     var mes_equipo = document.getElementById('mes_equipo').value;
     var ano_equipo = document.getElementById('ano_equipo').value;
-    window.alert(id_equipo);
+    //window.alert(id_equipo);
     $.ajax({
         url: 'cajas_informe_equipo.php',
         type: 'post',
@@ -1305,6 +1305,44 @@ function Cajas_Equipo() {
         },
         success: function(datos) {
             $('#cajas_informe_equipo').html(datos);
+        }
+    });
+};
+
+function Grafico_Equipo() {
+    var id_equipo = document.getElementById('id_equipo_informe').value;
+    var mes_equipo = document.getElementById('mes_equipo').value;
+    var ano_equipo = document.getElementById('ano_equipo').value;
+    //window.alert(id_equipo);
+    $.ajax({
+        url: 'grafico_equipo.php',
+        type: 'post',
+        data: {
+            id_equipo: id_equipo,
+            mes_equipo: mes_equipo,
+            ano_equipo: ano_equipo
+        },
+        success: function(datos) {
+            $('#grafico_equipo').html(datos);
+        }
+    });
+};
+
+
+function Grafico_Reparaciones() {
+    var id_equipo = document.getElementById('id_equipo_informe').value;
+    var mes_equipo = document.getElementById('mes_equipo').value;
+    var ano_equipo = document.getElementById('ano_equipo').value;
+    $.ajax({
+        url: 'grafico_reparaciones.php',
+        type: 'post',
+        data: {
+            id_equipo: id_equipo,
+            mes_equipo: mes_equipo,
+            ano_equipo: ano_equipo
+        },
+        success: function(datos) {
+            $('#grafico_reparaciones').html(datos);
         }
     });
 };

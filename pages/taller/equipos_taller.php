@@ -220,14 +220,14 @@ if(!isset($_SESSION['uname'])){
           var parts = d.split(':');
           var total = parseInt(parts[0]) * 60 + parseInt(parts[1]);
           if (aData[4] == "FUERA DE SERVICIO") {
-            $('td:eq(4)', nRow).css('background-color', '#FFCBCB');
-            $('td:eq(0)', nRow).css('background-color', '#FFCBCB');
-            $('td:eq(1)', nRow).css('background-color', '#FFCBCB');
-            $('td:eq(2)', nRow).css('background-color', '#FFCBCB');
-            $('td:eq(3)', nRow).css('background-color', '#FFCBCB');
-            $('td:eq(5)', nRow).css('background-color', '#FFCBCB');
-            $('td:eq(6)', nRow).css('background-color', '#FFCBCB');
-            $('td:eq(7)', nRow).css('background-color', '#FFCBCB');
+            $('td:eq(4)', nRow).css('color', '#D50606');
+            $('td:eq(0)', nRow).css('color', '#D50606');
+            $('td:eq(1)', nRow).css('color', '#D50606');
+            $('td:eq(2)', nRow).css('color', '#D50606');
+            $('td:eq(3)', nRow).css('color', '#D50606');
+            $('td:eq(5)', nRow).css('color', '#D50606');
+            $('td:eq(6)', nRow).css('color', '#D50606');
+            $('td:eq(7)', nRow).css('color', '#D50606');
 
           } else if (total == 15000) //
           {
@@ -238,7 +238,7 @@ if(!isset($_SESSION['uname'])){
         "responsive": true,
         "lengthChange": false,
         "autoWidth": false,
-        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        "buttons": ["excel", "pdf", "colvis"]
       }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
       $('#example2').DataTable({
         "paging": true,

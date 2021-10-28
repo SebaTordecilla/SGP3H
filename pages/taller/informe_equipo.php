@@ -132,13 +132,13 @@ include "../../conexion.php";
                         </select>
                       </div>
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-2">
                       <div class="form-group">
                         <div id="selectlistainforme">
                         </div>
                       </div>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-3">
                       <div class="form-group">
                         <label for="state_id" class="control-label">Mes</label>
                         <select class="form-control" id="mes_equipo" name="mes_equipo">
@@ -176,24 +176,31 @@ include "../../conexion.php";
                     </div>
                     <div class="col-md-2">
                       <div class="form-group">
-                        <label for="state_id"  style="color:white" class="control-label">_</label>
-                        <input type="button" class="btn btn-block bg-gradient naranjo" value="Informe" onclick="Informe_Equipo(),Cajas_Equipo()">
+                        <label for="state_id" style="color:white" class="control-label">_</label>
+                        <input type="button" class="btn btn-block bg-gradient naranjo" value="Informe" onclick="Informe_Equipo(),Cajas_Equipo(),Grafico_Equipo(),Grafico_Reparaciones()">
                       </div>
                     </div>
-
                   </div>
-
-
                 </form>
                 <br>
                 <form>
                   <div class="row">
-                    <div class="col-9">
-                      <div id="tabla_informe_equipo_" style="padding-top:10px;"></div>
+                    <div class="col-7">
+                      <div id="grafico_equipo" style="padding-top:10px;"></div>
                     </div>
-                    <!--Info cajas colores-->
+
                     <div class="col-md-3">
+                      <?php //include("grafico_reparaciones.php")
+                      ?>
+                      <div id="grafico_reparaciones" style="padding-top:10px;"></div>
+                    </div>
+                    <div class="col-md-2">
                       <div id="cajas_informe_equipo" style="padding-top:10px;"></div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-12">
+                      <div id="tabla_informe_equipo_" style="padding-top:10px;"></div>
                     </div>
                   </div>
                 </form>

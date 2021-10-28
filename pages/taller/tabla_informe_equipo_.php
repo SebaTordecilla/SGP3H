@@ -11,7 +11,8 @@ $ano_informe = mysqli_real_escape_string($con, $_POST['ano_equipo']);
 if ($ano_informe == "") {
     echo "Sin Información ";
 } else {
-    $tabla = "<table id=\"example1\" class=\"table table-head-fixed text-nowrap\">";
+    $tabla = "<div class=\"col-12\"><div class=\"card card\"><div class=\"card-header\"><h3 class=\"card-title\">Tabla Mensual</h3></div><div class=\"card-body\">";
+    $tabla .= "<table id=\"example1\" class=\"table table-head-fixed text-nowrap\">";
     $tabla .= "<thead><tr><th>Fecha</th><th>Ini.Jor</th><th>Fin.Jor</th><th>Hrs.Total</th><th>Hrs.Col</th><th>Hrs.Mec</th><th>Final</th></tr></thead>";
     $maxsql = "SELECT id_sal_equipo FROM salida_equipos WHERE id_equipo = " . $id_equipo . " and MONTH(fecha) = " . $mes_informe . " AND YEAR(fecha) = " . $ano_informe . " and id_estado_diario= 5;";
     foreach ($db->query($maxsql) as $row) {
@@ -33,6 +34,7 @@ if ($ano_informe == "") {
     }
 
     $tabla .= "</table>";
+    $tabla .= "</div></div>";
     echo $tabla;
 }
 

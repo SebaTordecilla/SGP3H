@@ -376,7 +376,7 @@ include "../../conexion.php";
       <script>
         $(function() {
           var lista = document.getElementById("lista_equipos").value;
-          var list2 = lista.split(',')
+          var list2=lista.split(',')
           /* ChartJS
            * -------
            * Here we will create a few charts using ChartJS
