@@ -1346,3 +1346,131 @@ function Grafico_Reparaciones() {
         }
     });
 };
+
+//// fecha dinamico reparacion terreno
+
+$(document).ready(function() {
+    $('#fecha_repar').val(1);
+    recargarhistorialrepa();
+
+    $('#fecha_repar').change(function() {
+        recargarhistorialrepa();
+    });
+});
+
+
+function recargarhistorialrepa() {
+    //window.alert('prueba');
+    $.ajax({
+        type: "POST",
+        url: "tabla_reparacion_terreno.php",
+        data: "fecha=" + $('#fecha_repar').val(),
+        success: function(r) {
+            $('#lista_tabla_repa').html(r);
+
+        }
+    });
+};
+
+////
+//funcion 
+function getRepa(id_sal_equipo) {
+    $('.id_equipo_tabla_repa').val(id_sal_equipo);
+    var url = "detalle_repa_diario.php";
+    var id_sal_equipo = id_sal_equipo;
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: {
+            id_sal_equipo: id_sal_equipo,
+
+        },
+        success: function(datos) {
+            $('#tabla_repa_diario_list').html(datos);
+            $('#modal_repa_diario').modal('show');
+        }
+    });
+};
+
+function getRepa_ingreso(id_sal_equipo) {
+    //$('.nombre_equipo_tabla_repa').html(num + ' - ' + modelo + ' - ' + tipo);
+    $('.id_equipo_tabla_repa').val(id_sal_equipo);
+    $('#modal_ingreso_repa_diario').modal('show');
+
+};
+
+///////////////////////////////////////////////
+function Nuevo_ingreso_reparacion() {
+    var id_sal_equipo = document.getElementById('id_equipo_tabla_repa').value;
+    var hora_ini = document.getElementById('hora_nuevarep').value;
+    var hora_mec = document.getElementById('hora_nevamec').value;
+    var id_falla = document.getElementById('idfalla_nuevarep').value;
+    var duraccion = document.getElementById('nuevarepduracion').value;
+    var id_ubicacion = document.getElementById('nueva_ubicacion').value;
+    var observaciones = document.getElementById('nuevarepobservaciones').value;
+    //window.alert(duraccion + '-' + id_ubicacion + '-' + observaciones);
+    if (hora_ini == "") {
+        alert('Debe ingresar Hora de Inicio');
+        return;
+    } else {
+        if (hora_mec == "") {
+            alert('Debe ingresar Hora de Llegada de Mecanico');
+            return;
+        } else {
+            if (id_falla == "") {
+                alert('Debe ingresar Tipo de Falla');
+                return;
+            } else {
+                if (duraccion == "") {
+                    alert('Debe ingresar Duración');
+                    return;
+                } else {
+                    if (id_ubicacion = "") {
+                        alert('Debe ingresar Mina');
+                        return;
+                    } else {
+                        if (confirm('Desea crear Informe?')) {
+                            $.ajax({
+                                url: 'ingresar_nueva_rep.php',
+                                type: 'post',
+                                data: {
+                                    id_sal_equipo: id_sal_equipo,
+                                    hora_ini: hora_ini,
+                                    hora_mec: hora_mec,
+                                    id_falla: id_falla,
+                                    duraccion: duraccion,
+                                    id_ubicacion: id_ubicacion,
+                                    observaciones: observaciones
+                                },
+                                success: function(response) {
+                                    if (response == 1) {
+                                        window.alert("hora de inicio de mecanico no puede ser mayor a hora de inicio de jornada");
+                                        return;
+                                    } else if (response == 2) {
+                                        window.alert("hora de mecanico no puede ser mayor a la hora de termino de la jornada");
+                                        return;
+                                    } else if (response == 3) {
+                                        window.alert("hora de solicitud de mecanico no puede ser mayor a hora de llegada de mecanico");
+                                        return;
+                                    } else if (response == 4) {
+                                        window.alert("Reparación Ingresada");
+                                        location.reload();
+                                    } else if (response == 5) {
+                                        window.alert("Error");
+                                        return;
+                                    } else if (response == 6) {
+                                        window.alert("No inserta la CTM");
+                                        return;
+                                    } else {
+                                        window.alert("Error en Ingreso");
+                                        return;
+                                    }
+                                }
+                            });
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

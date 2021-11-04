@@ -1111,3 +1111,113 @@
     </div>
 </div>
 <!-- /.modal fin historial-->
+
+
+<!-- /.modal detalle repa diario-->
+<div class="modal fade" id="modal_repa_diario">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Detalles</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <center>
+                    <h4 class="text-center cod_ID" id="cod_ID" name="cod_ID"></h4>
+                </center>
+                <div id="tabla_repa_diario_list" style="padding-top:10px;"></div>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-default" data-dismiss="modal">cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.modal fin detalle repa diario-->
+
+<!-- /.modal ingreso nuevo repa diario-->
+<div class="modal fade" id="modal_ingreso_repa_diario">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Ingreso Nueva Reparación</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <input type="hidden" class="form-control id_equipo_tabla_repa" id="id_equipo_tabla_repa">
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label for="state_id" class="control-label">Hora Solicitud</label>
+                                <input type="time" class="form-control" id="hora_nuevarep" name="hora_nuevarep">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label for="state_id" class="control-label">Hr. Lleg. Mec.</label>
+                                <input type="time" class="form-control" id="hora_nevamec" name="hora_nevamec">
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label>Tipo de Falla</label>
+                                <select class="form-control" id="idfalla_nuevarep" name="idfalla_nuevarep">
+                                    <option value=""></option>
+                                    <?php
+                                    $query = $con->query("SELECT * from fallas_mecanicas");
+                                    while ($valores = mysqli_fetch_array($query)) {
+                                        echo '<option value="' . $valores[id_falla] . '">' . $valores[nombre] . '</option>';
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label for="state_id" class="control-label">Duracción</label>
+                                <select class="form-control" id="nuevarepduracion" name="nuevarepduracion">
+                                    <option value=""></option>
+                                    <option value="00:30">00:30</option>
+                                    <option value="01:00">01:00</option>
+                                    <option value="01:30">01:30</option>
+                                    <option value="02:00">02:00</option>
+                                    <option value="03:00">03:00</option>
+                                    <option value="04:00">04:00</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <label for="state_id" class="control-label">Ubicación</label>
+                            <select class="form-control" id="nueva_ubicacion" name="nueva_ubicacion">
+                                <option value=""></option>
+                                <option value="1">PENOSA</option>
+                                <option value="3">PATRICIA</option>
+                                <option value="5">CAJON</option>
+                                <option value="7">+40</option>
+                                <option value="8">CHORREADA</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label for="state_id" class="control-label">Observaciones</label>
+                                <textarea class="form-control" rows="2" id="nuevarepobservaciones" name="nuevarepobservaciones" placeholder="Escriba aquí..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-default" data-dismiss="modal">cerrar</button>
+                <input type="button" class="btn naranjo" value="Ingresar" onclick="Nuevo_ingreso_reparacion()">
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.modal fin ingreso nuevo repa diario-->

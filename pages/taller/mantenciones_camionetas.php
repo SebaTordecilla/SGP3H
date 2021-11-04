@@ -123,7 +123,7 @@ include "../../conexion.php";
                       <th>Marca</th>
                       <th>kilometraje</th>
                       <th>Acciones</th>
-                      <th>observaciones</th>
+                      <th>Observaciones</th>
                     </tr>
                   </thead>
                   <?php
@@ -211,7 +211,7 @@ include "../../conexion.php";
         "responsive": true,
         "lengthChange": false,
         "autoWidth": false,
-        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        "buttons": ["excel", "pdf", "colvis"]
       }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
       $('#example2').DataTable({
         "paging": true,

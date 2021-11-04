@@ -112,27 +112,20 @@ include "../../conexion.php";
                 </h3>
                 <br>
               </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>Fecha</label>
+                  <input type="date" class="form-control float-right" id="fecha_repar">
 
-              <!-- /.card-header -->
-              <div class="card-body p-0">
-                <div class="table-responsive">
-                  <table class="table m-0">
-                    <thead>
-                      <tr>
-                        <th>Codigo</th>
-                        <th>Fecha</th>
-                        <th>Ubicación</th>
-                        <th>Hr.Sol.Mec</th>
-                        <th>Hr.Vis.Mec</th>
-                        <th>Hr.Termino</th>
-                        <th>Estado</th>
-                      </tr>
-                    </thead>
-                    <?php
-                    include('tabla_reparacion_terreno.php')
-                    ?>
+                  <!-- /.input group -->
                 </div>
               </div>
+              <div class="row">
+                <div class="col-12">
+                  <div id="lista_tabla_repa" style="padding-top:10px;"></div>
+                </div>
+              </div>
+              <br>
 
             </div>
 
