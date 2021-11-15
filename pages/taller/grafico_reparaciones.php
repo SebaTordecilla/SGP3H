@@ -40,7 +40,7 @@ for ($i = 1; $i <= $totaldias; $i++) {
     <div class="card-header">
         <h3 class="card-title">Gráfico Reparaciones</h3>
     </div>
-    <div class="card-body">
+    <div class="card-body" style="height: 300px;">
         <div class="chart">
             <canvas id="areaPie" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
         </div>
@@ -56,17 +56,12 @@ for ($i = 1; $i <= $totaldias; $i++) {
 
 <script>
     $(function() {
-        /*var lista = document.getElementById("lista_equipos").value;
-        var list2 = lista.split(',');
 
-        var lista3 = document.getElementById("lista_equipos3").value;
-        var list3 = lista3.split(',');
-*/
         var areaChartCanvas = $('#areaPie').get(0).getContext('2d')
         var areaChartData = {
 
             labels: [
-                'Neumaticos', 'Electricas', 'Motor', 'Carroceria', 'Frenos', 'Cables'
+                'Neumáticos', 'Electricas', 'Motor', 'Carroceria', 'Frenos', 'Cables'
             ],
             datasets: [{
                 data: [5, 3, 4, 6, 1, 7],
@@ -79,7 +74,7 @@ for ($i = 1; $i <= $totaldias; $i++) {
             maintainAspectRatio: false,
             responsive: false,
             legend: {
-                display: false
+                display: true
             }
         }
 

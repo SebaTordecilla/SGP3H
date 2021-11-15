@@ -1171,17 +1171,82 @@ function Informe_disponibilidad() {
             alert('Debe ingresar Fecha Hasta');
             return;
         } else {
+
+            $.ajax({
+                url: 'tabla_informe_disponibilidad.php',
+                type: 'post',
+                data: {
+                    desde: desde,
+                    hasta: hasta
+
+                },
+                success: function(datos) {
+                    $('#tabla_informe_disponibilidad').html(datos);
+                }
+            });
+
+
+        }
+    }
+};
+
+
+function Informe_disponibilidad_Mensual() {
+    var mes = document.getElementById('mes_equipo_informe').value;
+    var ano = document.getElementById('ano_equipo_informe').value;
+
+    if (mes == "") {
+        alert('Debe ingresar Mes');
+        return;
+    } else {
+        if (ano == "") {
+            alert('Debe ingresar Año');
+            return;
+        } else {
             if (confirm('Desea crear Informe?')) {
                 $.ajax({
                     url: 'tabla_informe_disponibilidad.php',
                     type: 'post',
                     data: {
-                        desde: desde,
-                        hasta: hasta
-
+                        mes: mes,
+                        ano: ano
                     },
                     success: function(datos) {
                         $('#tabla_informe_disponibilidad').html(datos);
+                    }
+                });
+                $.ajax({
+                    url: 'tablas_porcentaje_informe.php',
+                    type: 'post',
+                    data: {
+                        mes: mes,
+                        ano: ano
+                    },
+                    success: function(datos) {
+                        $('#tabla_porcentaje_mensual').html(datos);
+                    }
+                });
+
+                $.ajax({
+                    url: 'tablas_porcentaje_informe_cargador.php',
+                    type: 'post',
+                    data: {
+                        mes: mes,
+                        ano: ano
+                    },
+                    success: function(datos) {
+                        $('#tabla_porcentaje_mensual_cargador').html(datos);
+                    }
+                });
+                $.ajax({
+                    url: 'tablas_porcentaje_informe_dumper.php',
+                    type: 'post',
+                    data: {
+                        mes: mes,
+                        ano: ano
+                    },
+                    success: function(datos) {
+                        $('#tabla_porcentaje_mensual_dumper').html(datos);
                     }
                 });
 
@@ -1190,6 +1255,40 @@ function Informe_disponibilidad() {
     }
 };
 
+function Grafico_disponibilidad_Mensual() {
+    var mes = document.getElementById('mes_equipo_informe').value;
+    var ano = document.getElementById('ano_equipo_informe').value;
+    $.ajax({
+        url: 'grafico_mes_filtro.php',
+        type: 'post',
+        data: {
+            mes: mes,
+            ano: ano
+        },
+        success: function(datos) {
+            $('#grafico_informe_disponibilidad').html(datos);
+        }
+    });
+};
+
+
+/*
+function tabla_porcentaje_mensual() {
+    var mes = document.getElementById('mes_equipo_informe').value;
+    var ano = document.getElementById('ano_equipo_informe').value;
+    $.ajax({
+        url: 'tablas_porcentaje_informe.php',
+        type: 'post',
+        data: {
+            mes: mes,
+            ano: ano
+        },
+        success: function(datos) {
+            $('#tabla_porcentaje_mensual').html(datos);
+        }
+    });
+};
+*/
 ////
 function detalles_informe(num, desde, hasta, ID, modelo, tipo) {
     $('.cod_equipo_informe').html(num);

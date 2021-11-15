@@ -64,16 +64,11 @@ for ($i = 1; $i <= $totaldias; $i++) {
         var lista3 = document.getElementById("lista_equipos3").value;
         var list3 = lista3.split(',');
 
-        //--------------
-        //- AREA CHART -
-        //--------------
 
-        // Get context with jQuery - using jQuery's .get() method.
         var areaChartCanvas = $('#areaChart').get(0).getContext('2d')
         var areaChartData = {
             labels: [list2[0], list2[1], list2[2], list2[3], list2[4], list2[5], list2[6], list2[7], list2[8], list2[9], list2[10], list2[11], list2[12], list2[13], list2[14], list2[15], list2[16], list2[17], list2[18], list2[19], list2[20], list2[21], list2[22], list2[23], list2[24], list2[25], list2[26], list2[27], list2[28], list2[29], list2[30]],
 
-            //labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30],
             datasets: [{
                 label: 'Activo',
                 backgroundColor: 'rgba(60,141,188,0.9)',
@@ -84,7 +79,6 @@ for ($i = 1; $i <= $totaldias; $i++) {
                 pointHighlightFill: '#fff',
                 pointHighlightStroke: 'rgba(60,141,188,1)',
                 data: [list3[0], list3[1], list3[2], list3[3], list3[4], list3[5], list3[6], list3[7], list3[8], list3[9], list3[10], list3[11], list3[12], list3[13], list3[14], list3[15], list3[16], list3[17], list3[18], list3[19], list3[20], list3[21], list3[22], list3[23], list3[24], list3[25], list3[26], list3[27], list3[28], list3[29], list3[30]]
-                //data: [7, 8, 6, 4, 9, 9.5, 8, 7, 5, 4, 2.5, 10, 7, 9, 8, 5, 8, 7, 9, 6, 5, 8, 7, 9, 8, 5, 4, 6, 7, 9, 5]
             }, {
                 label: '',
                 backgroundColor: 'rgba(210, 214, 222, 1)',
@@ -94,7 +88,6 @@ for ($i = 1; $i <= $totaldias; $i++) {
                 pointStrokeColor: '#c1c7d1',
                 pointHighlightFill: '#fff',
                 pointHighlightStroke: 'rgba(220,220,220,1)',
-                //data: [65, 59, 80, 81, 56, 55]
             }, ]
         }
 
@@ -125,23 +118,6 @@ for ($i = 1; $i <= $totaldias; $i++) {
             options: areaChartOptions
         })
 
-        //-------------
-        //- LINE CHART -
-        //--------------
-        var lineChartCanvas = $('#lineChart').get(0).getContext('2d')
-        var lineChartOptions = $.extend(true, {}, areaChartOptions)
-        var lineChartData = $.extend(true, {}, areaChartData)
-        lineChartData.datasets[0].fill = false;
-        //lineChartData.datasets[1].fill = false;
-        lineChartOptions.datasetFill = false
-
-        var lineChart = new Chart(lineChartCanvas, {
-            type: 'bar',
-            data: lineChartData,
-            options: lineChartOptions
-
-
-        })
 
 
 

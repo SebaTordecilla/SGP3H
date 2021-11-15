@@ -108,25 +108,16 @@ include "../../conexion.php";
     <section class="content">
       <div class="container-fluid">
         <div class="row">
-          <div class="col-md-4">
+          <div class="col-md-2">
             <div class="card">
               <div class="card-header">
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
-                  </button>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove">
-                    <i class="fas fa-times"></i>
-                  </button>
-                </div>
+                <h3 class="card-title">Equipos Operativos</h3>
+
               </div>
               <!-- -->
               <div class="card-body">
                 <div class="row">
                   <div class="col-md-12">
-                    <p class="text-center">
-                      <strong>Equipos Operativos</strong>
-                    </p>
                     <?php
                     for ($i = 1; $i < 7; $i++) {
                       $sql_query = "SELECT te.id_tequipo as id, te.nombre, COUNT(le.id_tequipo) as total, CASE te.id_tequipo when 1 then 'danger' when 2 then 'success' when 3 then 'warning' when 4 then 'info' when 5 then 'primary' when 6 then 'secondary'end as color FROM lista_equipos le INNER JOIN tipos_equipos te on le.id_tequipo = te.id_tequipo WHERE te.id_tequipo = " . $i . " GROUP BY le.id_tequipo";
@@ -158,188 +149,800 @@ include "../../conexion.php";
               </div>
             </div>
           </div>
-          <div class="col-md-4">
+
+
+          <div class="col-md-7">
             <div class="card">
+              <?php
+              $sql_query0 = "SET lc_time_names = 'es_ES'";
+              $result0 = mysqli_query($con, $sql_query0);
+              $sql_query = "SELECT MONTHNAME(curdate()) AS mes";
+              $result = mysqli_query($con, $sql_query);
+              $row = mysqli_fetch_array($result);
+              $mes = $row['mes'];
+
+              ?>
               <div class="card-header">
-                <!--<h5 class="card-title">Monthly Recap Report</h5>-->
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
-                  </button>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove">
-                    <i class="fas fa-times"></i>
-                  </button>
-                </div>
+                <h3 class="card-title">Gráfico Mensual Equipos Faena - <?php echo ucwords($mes) ?></h3>
               </div>
-              <img src="../../dist/img/topo3H.png" style="max-width:60%;width:auto;height:auto;">
+              <?php include "grafico_mes_actual.php" ?>
             </div>
           </div>
 
-          <div class="col-md-4">
-            <div class="card">
-              <div class="card-header">
-                <!--<h5 class="card-title">Monthly Recap Report</h5>-->
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
-                  </button>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove">
-                    <i class="fas fa-times"></i>
-                  </button>
-                </div>
-              </div>
-
-              <!--cuerpo de etiqueta-->
-              <div class="table table-striped table-valign-middle">
-                <table class="table m-0">
-                  <thead>
-                    <tr>
-                      <th>Tipo</th>
-                      <th>Penosa</th>
-                      <th>Patricia</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <?php
-                    try {
-                      $database = new Connection();
-                      $db = $database->open();
-
-                      for ($i = 1; $i < 7; $i++) {
-
-                        $sql = "SELECT nombre,(SELECT COUNT(id_sal_equipo) FROM salida_equipos se INNER JOIN lista_equipos le on se.id_equipo = le.id_equipo WHERE le.id_tequipo = " . $i . " AND se.fecha= CURDATE() AND id_ubicacion = 1) AS PENOSA,(SELECT COUNT(id_sal_equipo) FROM salida_equipos se INNER JOIN lista_equipos le on se.id_equipo = le.id_equipo WHERE le.id_tequipo = " . $i . " AND se.fecha= CURDATE() AND id_ubicacion = 3) as PATRICIA FROM tipos_equipos WHERE id_tequipo = " . $i . ";";
-                        foreach ($db->query($sql) as $row) {
-                    ?>
-                          <tr>
-                            <td><b><?php echo $row['nombre']; ?></b></td>
-                            <td><small class="text-success mr-1"><i class="fas fa-arrow-up"></i></small><?php echo $row['PENOSA']; ?></td>
-                            <td><small class="text-success mr-1"><i class="fas fa-arrow-up"></i></small><?php echo $row['PATRICIA']; ?></td>
-                          </tr>
-
-                    <?php }
-                      }
-                    } catch (PDOException $e) {
-                      echo "Existen problemas con la conexión: " . $e->getMessage();
-                    } ?>
-                  </tbody>
-                </table>
-              </div>
-
-            </div>
+          <div class="col-md-3">
+            <?php include "grafico_reparaciones.php" ?>
           </div>
-          <!-- div row-->
         </div>
+      </div>
 
-        <!--  nueva columna-->
-        <div class="row">
-          <div class="col-md-12">
-            <div class="card">
-              <div class="card-header">
-                <!--<h5 class="card-title">Monthly Recap Report</h5>-->
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
-                  </button>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove">
-                    <i class="fas fa-times"></i>
-                  </button>
-                </div>
-              </div>
-              <!--cuerpo etiqueta-->
-              <div class="card-body table-responsive p-0" style="height: 300px;">
-                <table class="table table-head-fixed text-nowrap">
-                  <!--<div class="table table-striped table-valign-middle">
-                <table class="table m-0">-->
-                  <thead>
-                    <tr>
-                      <th style="font-size:65%;">Equipo</th>
-                      <th style="font-size:65%;">%Mes</th>
-                      <?php
-                      $sql = "SELECT DAY(CURDATE()) AS dia;";
-                      $result = mysqli_query($con, $sql);
-                      $row = mysqli_fetch_array($result);
-                      $dia = $row['dia'] - 1;
-                      for ($i = 1; $i <= $dia; $i++) { ?>
-                        <th style="font-size:65%;"><?php echo $i ?></th>
-                      <?php
-                      }
-                      ?>
-                    </tr>
-                  </thead>
-                  <tbody>
+      <!--  nueva columna tabla scoop-->
+      <div class="row">
+        <div class="col-md-10">
+          <div class="card">
+            <div class="card-header">
+              <h5 class="card-title">Tabla SCOOPS</h5>
+            </div>
+            <!--cuerpo etiqueta-->
+            <div class="card-body table-responsive p-0" style="height: 300px;">
+              <table id="" class="table table-head-fixed text-nowrap">
+                <!-- <table id="example2" class="table table-head-fixed text-nowrap"> -->
+
+                <thead>
+                  <tr>
+                    <th>Equipo</th>
+                    <th>%Mes</th>
                     <?php
-                    try {
-                      $sql = "SELECT id_equipo,sigla FROM lista_equipos WHERE id_tequipo = 1;";
-
-                      foreach ($db->query($sql) as $row) {
+                    $sql = "SELECT DAY(CURDATE()) AS dia;";
+                    $result = mysqli_query($con, $sql);
+                    $row = mysqli_fetch_array($result);
+                    $dia = $row['dia'] - 1;
+                    for ($i = 1; $i <= $dia; $i++) { ?>
+                      <th><?php echo $i ?></th>
+                    <?php
+                    }
                     ?>
-                        <tr>
-                          <?php
-                          $id0 = $row['id_equipo'];
-                          $sql0 = "SELECT YEAR(CURDATE()) AS ano,MONTH(CURDATE()) as mes ,DAY(CURDATE()) AS dia";
-                          $result0 = mysqli_query($con, $sql0);
-                          $row0 = mysqli_fetch_array($result0);
-                          $dia0 = $row0['dia'] - 1;
-                          $mes0 = $row0['mes'];
-                          $ano0 = $row0['ano'];
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php
+                  try {
+                    $sql = "SELECT id_equipo,sigla FROM lista_equipos WHERE id_tequipo = 1 and id_est_equipo=1;";
 
-                          $sql1 = "SELECT DISTINCT (SELECT (SUM(TIME_TO_SEC(hora_total))) FROM salida_equipos where id_equipo = " . $id0 . " AND fecha BETWEEN '" . $ano0 . "-" . $mes0 . "-01' AND '" . $ano0 . "-" . $mes0 . "-" . $dia0 . "') as segundos FROM lista_equipos le LEFT JOIN tipos_equipos te on le.id_tequipo = te.id_tequipo LEFT JOIN mant_equipos me on le.id_equipo = me.id_equipo INNER JOIN estado_equipos ee on ee.id_est_equipo = le.id_est_equipo WHERE le.id_equipo = " . $id0 . ";";
-                          $result1 = mysqli_query($con, $sql1);
-                          $row1 = mysqli_fetch_array($result1);
-                          $segundos = $row1['segundos'];
-                          $totalmes = $dia0 * 36000;
-                          $porcentajemes = number_format(($segundos / $totalmes) * 100, 0, ',', ' ');
-                          /*poner color de texto*/
-                          ?>
-                          <td style="font-size:65%;"><b><?php echo $row['sigla']; ?></b></td>
-                          <td style="font-size:65%;"><b></b><?php echo $porcentajemes ?>%</td>
-                          <?php
-                          $id = $row['id_equipo'];
-                          $sql = "SELECT YEAR(CURDATE()) AS ano,MONTH(CURDATE()) as mes ,DAY(CURDATE()) AS dia";
+                    foreach ($db->query($sql) as $row) {
+                  ?>
+                      <tr>
+                        <?php
+                        $id0 = $row['id_equipo'];
+                        $sql0 = "SELECT YEAR(CURDATE()) AS ano,MONTH(CURDATE()) as mes ,DAY(CURDATE()) AS dia";
+                        $result0 = mysqli_query($con, $sql0);
+                        $row0 = mysqli_fetch_array($result0);
+                        $dia0 = $row0['dia'] - 1;
+                        $mes0 = $row0['mes'];
+                        $ano0 = $row0['ano'];
+
+                        $sql1 = "SELECT DISTINCT (SELECT (SUM(TIME_TO_SEC(hora_total))) FROM salida_equipos where id_equipo = " . $id0 . " AND fecha BETWEEN '" . $ano0 . "-" . $mes0 . "-01' AND '" . $ano0 . "-" . $mes0 . "-" . $dia0 . "') as segundos FROM lista_equipos le LEFT JOIN tipos_equipos te on le.id_tequipo = te.id_tequipo LEFT JOIN mant_equipos me on le.id_equipo = me.id_equipo INNER JOIN estado_equipos ee on ee.id_est_equipo = le.id_est_equipo WHERE le.id_equipo = " . $id0 . ";";
+                        $result1 = mysqli_query($con, $sql1);
+                        $row1 = mysqli_fetch_array($result1);
+                        $segundos = $row1['segundos'];
+                        $totalmes = $dia0 * 36000;
+                        $porcentajemes = number_format(($segundos / $totalmes) * 100, 0, ',', ' ');
+                        /*poner color de texto*/
+                        ?>
+                        <td><b><?php echo $row['sigla']; ?></b></td>
+                        <td><b></b><?php echo $porcentajemes ?>%</td>
+                        <?php
+                        $id = $row['id_equipo'];
+                        $sql = "SELECT YEAR(CURDATE()) AS ano,MONTH(CURDATE()) as mes ,DAY(CURDATE()) AS dia";
+                        $result = mysqli_query($con, $sql);
+                        $row = mysqli_fetch_array($result);
+                        $dia1 = $row['dia'] - 1;
+                        $mes = $row['mes'];
+                        $ano = $row['ano'];
+
+                        ?>
+
+                        <?php
+                        for ($j = 1; $j <= $dia1; $j++) {
+                          // $sql = "SELECT TIME_TO_SEC(IF(SEC_TO_TIME(SUM(TIME_TO_SEC(TIMEDIFF(rt.hora_mec, rt.hora_ini)+rt.duraccion))) is NULL,SEC_TO_TIME(TIMESTAMPDIFF(SECOND, SEC_TO_TIME(TIMESTAMPDIFF(SECOND, hora_ini_col, hora_fin_col)),SEC_TO_TIME(TIMESTAMPDIFF(SECOND, hora_inicio, hora_fin)))), SEC_TO_TIME(TIMESTAMPDIFF(SECOND, SEC_TO_TIME(SUM(TIME_TO_SEC(TIMEDIFF(rt.hora_mec, rt.hora_ini)+rt.duraccion))),SEC_TO_TIME(TIMESTAMPDIFF(SECOND, SEC_TO_TIME(TIMESTAMPDIFF(SECOND, hora_ini_col, hora_fin_col)),SEC_TO_TIME(TIMESTAMPDIFF(SECOND, hora_inicio, hora_fin)))))))) as final 
+                          //   FROM salida_equipos se INNER JOIN lista_equipos le on se.id_equipo = le.id_equipo INNER JOIN tipos_equipos te on le.id_tequipo = te.id_tequipo INNER JOIN reparacion_terreno rt on rt.id_sal_equipo = se.id_sal_equipo WHERE se.id_estado_diario = 5 and rt.id_sal_equipo = (SELECT id_sal_equipo FROM salida_equipos WHERE id_equipo = " . $id . " and fecha = '" . $ano . "-" . $mes . "-" . $j . "') ORDER by se.fecha DESC;";
+                          $sql = "SELECT time_to_sec(hora_total) as final FROM salida_equipos where id_equipo = " . $id . " and fecha = '" . $ano . "-" . $mes . "-" . $j . "'";
                           $result = mysqli_query($con, $sql);
                           $row = mysqli_fetch_array($result);
-                          $dia1 = $row['dia'] - 1;
-                          $mes = $row['mes'];
-                          $ano = $row['ano'];
+                          $final = $row['final'];
+                          $r = ($final / 36000) * 100;
+                          $re = number_format($r, 0, ',', ' ');
+
+                          if ($re > 80) {
+                        ?>
+                            <td style="color: green"><?php echo $re ?>%</td>
+                          <?php
+
+                          } else {
 
                           ?>
-
-                          <?php
-                          for ($j = 1; $j <= $dia1; $j++) {
-                            $sql = "SELECT TIME_TO_SEC(IF(SEC_TO_TIME(SUM(TIME_TO_SEC(TIMEDIFF(rt.hora_mec, rt.hora_ini)+rt.duraccion))) is NULL,SEC_TO_TIME(TIMESTAMPDIFF(SECOND, SEC_TO_TIME(TIMESTAMPDIFF(SECOND, hora_ini_col, hora_fin_col)),SEC_TO_TIME(TIMESTAMPDIFF(SECOND, hora_inicio, hora_fin)))), SEC_TO_TIME(TIMESTAMPDIFF(SECOND, SEC_TO_TIME(SUM(TIME_TO_SEC(TIMEDIFF(rt.hora_mec, rt.hora_ini)+rt.duraccion))),SEC_TO_TIME(TIMESTAMPDIFF(SECOND, SEC_TO_TIME(TIMESTAMPDIFF(SECOND, hora_ini_col, hora_fin_col)),SEC_TO_TIME(TIMESTAMPDIFF(SECOND, hora_inicio, hora_fin)))))))) as final 
-                            FROM salida_equipos se INNER JOIN lista_equipos le on se.id_equipo = le.id_equipo INNER JOIN tipos_equipos te on le.id_tequipo = te.id_tequipo INNER JOIN reparacion_terreno rt on rt.id_sal_equipo = se.id_sal_equipo WHERE se.id_estado_diario = 5 and rt.id_sal_equipo = (SELECT id_sal_equipo FROM salida_equipos WHERE id_equipo = " . $id . " and fecha = '" . $ano . "-" . $mes . "-" . $j . "') ORDER by se.fecha DESC;";
-                            $result = mysqli_query($con, $sql);
-                            $row = mysqli_fetch_array($result);
-                            $final = $row['final'];
-                            $r = ($final / 36000) * 100;
-                            $re = number_format($r, 0, ',', ' ');
-
-                            if ($re > 80) {
-                          ?>
-                              <td style="color: green;font-size:65%;"><?php echo $re ?>%</td>
-                            <?php
-
-                            } else {
-
-                            ?>
-                              <td style="color: red;font-size:65%;"><?php echo $re ?>%</td>
-                          <?php
-                            }
+                            <td style="color: red"><?php echo $re ?>%</td>
+                        <?php
                           }
-                          ?>
-                        </tr>
-                    <?php }
-                    } catch (PDOException $e) {
-                      echo "Existen problemas con la conexión: " . $e->getMessage();
-                    } ?>
-                  </tbody>
-                </table>
+                        }
+                        ?>
+                      </tr>
+                  <?php }
+                  } catch (PDOException $e) {
+                    echo "Existen problemas con la conexión: " . $e->getMessage();
+                  } ?>
+                </tbody>
+
+                <tfoot>
+                  <tr>
+                    <th>Scoop Operativos</th>
+                    <?php
+                    $sql0 = "SELECT YEAR(CURDATE()) AS ano,MONTH(CURDATE()) as mes ,DAY(CURDATE()) AS dia";
+                    $result0 = mysqli_query($con, $sql0);
+                    $row0 = mysqli_fetch_array($result0);
+                    $dia0 = $row0['dia'] - 1;
+                    $mes0 = $row0['mes'];
+                    $ano0 = $row0['ano'];
+                    $sql11 = "SELECT count(se.id_sal_equipo) as cantidad FROM salida_equipos se inner join lista_equipos le on se.id_equipo = le.id_equipo where le.id_tequipo = 1 and se.fecha between '" . $ano0 . "-" . $mes0 . "-01' and '" . $ano0 . "-" . $mes0 . "-" . $dia0 . "'";
+                    $result11 = mysqli_query($con, $sql11);
+                    $row11 = mysqli_fetch_array($result11);
+                    $cantidad = $row11['cantidad'];
+                    $promedioflota = number_format(($cantidad / $dia0), 1, ',', '');
+
+                    ?>
+                    <td><b><?php echo $promedioflota ?></b></td>
+                    <?php
+                    $sql0 = "SELECT YEAR(CURDATE()) AS ano,MONTH(CURDATE()) as mes ,DAY(CURDATE()) AS dia";
+                    $result0 = mysqli_query($con, $sql0);
+                    $row0 = mysqli_fetch_array($result0);
+                    $dia0 = $row0['dia'] - 1;
+                    $mes0 = $row0['mes'];
+                    $ano0 = $row0['ano'];
+
+                    for ($i = 1; $i <= $dia0; $i++) {
+                      $sql1 = "SELECT count(se.id_sal_equipo) as cantidad FROM salida_equipos se inner join lista_equipos le on se.id_equipo = le.id_equipo where le.id_tequipo = 1 and se.fecha = '" . $ano0 . "-" . $mes0 . "-" . $i . "'";
+                      $result1 = mysqli_query($con, $sql1);
+                      $row1 = mysqli_fetch_array($result1);
+                      $cantidad = $row1['cantidad'];
+
+                    ?>
+                      <td><b><?php echo $cantidad ?></b></td>
+                    <?php
+                    }
+                    ?>
+                  </tr>
+                </tfoot>
+                <tfoot>
+                  <tr>
+                    <th>Promedio FLota</th>
+                    <?php
+                    $sql0 = "SELECT YEAR(CURDATE()) AS ano,MONTH(CURDATE()) as mes ,DAY(CURDATE()) AS dia";
+                    $result0 = mysqli_query($con, $sql0);
+                    $row0 = mysqli_fetch_array($result0);
+                    $dia0 = $row0['dia'] - 1;
+                    $mes0 = $row0['mes'];
+                    $ano0 = $row0['ano'];
+
+                    $sql22 = "SELECT DISTINCT (SELECT (SUM(TIME_TO_SEC(se.hora_total))) FROM salida_equipos se inner join lista_equipos le on se.id_equipo = le.id_equipo where le.id_tequipo = 1 and le.id_est_equipo = 1 
+                      AND se.fecha BETWEEN '" . $ano0 . "-" . $mes0 . "-01' AND '" . $ano0 . "-" . $mes0 . "-" . $dia0 . "') as segundos, count(le.id_tequipo) as total FROM lista_equipos le LEFT JOIN tipos_equipos te on le.id_tequipo = te.id_tequipo LEFT JOIN mant_equipos me on le.id_equipo = me.id_equipo 
+                      INNER JOIN estado_equipos ee on ee.id_est_equipo = le.id_est_equipo WHERE le.id_tequipo = 1 and le.id_est_equipo = 1";
+                    $result22 = mysqli_query($con, $sql22);
+                    $row22 = mysqli_fetch_array($result22);
+                    $segtotalmes = $row22['segundos'];
+                    $cantidadtotal = $row22['total'];
+
+                    $segmestotal = 10 * 3600 * $dia0 * $cantidadtotal;
+
+                    $porcentajeflota = number_format(($segtotalmes / $segmestotal) * 100, 0, ',', '');
+
+                    ?>
+
+                    <td><b><?php echo $porcentajeflota ?>%</b></td>
+                    <?php
+                    $sql0 = "SELECT YEAR(CURDATE()) AS ano,MONTH(CURDATE()) as mes ,DAY(CURDATE()) AS dia";
+                    $result0 = mysqli_query($con, $sql0);
+                    $row0 = mysqli_fetch_array($result0);
+                    $dia0 = $row0['dia'] - 1;
+                    $mes0 = $row0['mes'];
+                    $ano0 = $row0['ano'];
+
+                    for ($i = 1; $i <= $dia0; $i++) {
+                      $sql33 = "SELECT DISTINCT (SELECT (SUM(TIME_TO_SEC(se.hora_total))) FROM salida_equipos se inner join lista_equipos le on se.id_equipo = le.id_equipo where le.id_tequipo = 1 and le.id_est_equipo = 1 AND se.fecha = '" . $ano0 . "-" . $mes0 . "-" . $i . "') as segundos, count(le.id_tequipo) as total FROM lista_equipos le LEFT JOIN tipos_equipos te on le.id_tequipo = te.id_tequipo LEFT JOIN mant_equipos me on le.id_equipo = me.id_equipo 
+                        INNER JOIN estado_equipos ee on ee.id_est_equipo = le.id_est_equipo WHERE le.id_tequipo = 1 and le.id_est_equipo = 1 ";
+                      $result33 = mysqli_query($con, $sql33);
+                      $row33 = mysqli_fetch_array($result33);
+                      $cantequipos = $row33['total'];
+                      $segdiarios = $row33['segundos'];
+                      $segmestotal2 = 10 * 3600 * $cantequipos;
+
+                      $porcentajediarioflota = number_format(($segdiarios / $segmestotal2) * 100, 0, ',', '');
+
+                    ?>
+                      <td><b><?php echo $porcentajediarioflota ?>%</b></td>
+                    <?php
+                    }
+                    ?>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="col-md-2">
+          <div class="card card">
+            <div class="card-header">
+              <h3 class="card-title">SCOOPS</h3>
+            </div>
+            <div class="card-body">
+              <!-- /.info-box -->
+              <div class="info-box mb-3 bg-success">
+                <div class="info-box-content">
+                  <span class="info-box-text">Promedio Flota</span>
+                  <?php
+                  $sql0 = "SELECT YEAR(CURDATE()) AS ano,MONTH(CURDATE()) as mes ,DAY(CURDATE()) AS dia";
+                  $result0 = mysqli_query($con, $sql0);
+                  $row0 = mysqli_fetch_array($result0);
+                  $dia0 = $row0['dia'] - 1;
+                  $mes0 = $row0['mes'];
+                  $ano0 = $row0['ano'];
+
+                  $sql22 = "SELECT DISTINCT (SELECT (SUM(TIME_TO_SEC(se.hora_total))) FROM salida_equipos se inner join lista_equipos le on se.id_equipo = le.id_equipo where le.id_tequipo = 1 and le.id_est_equipo = 1 
+                      AND se.fecha BETWEEN '" . $ano0 . "-" . $mes0 . "-01' AND '" . $ano0 . "-" . $mes0 . "-" . $dia0 . "') as segundos, count(le.id_tequipo) as total FROM lista_equipos le LEFT JOIN tipos_equipos te on le.id_tequipo = te.id_tequipo LEFT JOIN mant_equipos me on le.id_equipo = me.id_equipo 
+                      INNER JOIN estado_equipos ee on ee.id_est_equipo = le.id_est_equipo WHERE le.id_tequipo = 1 and le.id_est_equipo = 1";
+                  $result22 = mysqli_query($con, $sql22);
+                  $row22 = mysqli_fetch_array($result22);
+                  $segtotalmes = $row22['segundos'];
+                  $cantidadtotal = $row22['total'];
+
+                  $segmestotal = 10 * 3600 * $dia0 * $cantidadtotal;
+
+                  $porcentajeflota = number_format(($segtotalmes / $segmestotal) * 100, 0, ',', '');
+
+                  ?>
+                  <span class="info-box-number"><?php echo $porcentajeflota ?> %</span>
+                </div>
+              </div>
+              <!-- /.info-box -->
+              <div class="info-box mb-3 bg-info">
+                <div class="info-box-content">
+                  <span class="info-box-text">Scoops Operativos</span>
+                  <?php
+                  $sql0 = "SELECT YEAR(CURDATE()) AS ano,MONTH(CURDATE()) as mes ,DAY(CURDATE()) AS dia";
+                  $result0 = mysqli_query($con, $sql0);
+                  $row0 = mysqli_fetch_array($result0);
+                  $dia0 = $row0['dia'] - 1;
+                  $mes0 = $row0['mes'];
+                  $ano0 = $row0['ano'];
+                  $sql11 = "SELECT count(se.id_sal_equipo) as cantidad FROM salida_equipos se inner join lista_equipos le on se.id_equipo = le.id_equipo where le.id_tequipo = 1 and se.fecha between '" . $ano0 . "-" . $mes0 . "-01' and '" . $ano0 . "-" . $mes0 . "-" . $dia0 . "'";
+                  $result11 = mysqli_query($con, $sql11);
+                  $row11 = mysqli_fetch_array($result11);
+                  $cantidad = $row11['cantidad'];
+                  $promedioflota = number_format(($cantidad / $dia0), 1, ',', '');
+
+                  ?>
+                  <span class="info-box-number"><?php echo $promedioflota ?></span>
+                </div>
               </div>
             </div>
           </div>
-          <!--  fin nueva columna-->
-
         </div>
+        <!--  fin nueva columna-->
+      </div>
+
+
+      <!--  nueva columna tabla cargador-->
+      <div class="row">
+        <div class="col-md-10">
+          <div class="card">
+            <div class="card-header">
+              <h5 class="card-title">Tabla CARGADORES</h5>
+            </div>
+            <!--cuerpo etiqueta-->
+            <div class="card-body table-responsive p-0" style="height: 300px;">
+              <!-- <table id="example3" class="table table-head-fixed text-nowrap"> -->
+              <table id="" class="table table-head-fixed text-nowrap">
+
+                <thead>
+                  <tr>
+                    <th>Equipo</th>
+                    <th>%Mes</th>
+                    <?php
+                    $sql = "SELECT DAY(CURDATE()) AS dia;";
+                    $result = mysqli_query($con, $sql);
+                    $row = mysqli_fetch_array($result);
+                    $dia = $row['dia'] - 1;
+                    for ($i = 1; $i <= $dia; $i++) { ?>
+                      <th><?php echo $i ?></th>
+                    <?php
+                    }
+                    ?>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php
+                  try {
+                    $sql = "SELECT id_equipo,sigla FROM lista_equipos WHERE id_tequipo = 2 and id_est_equipo=1;";
+
+                    foreach ($db->query($sql) as $row) {
+                  ?>
+                      <tr>
+                        <?php
+                        $id0 = $row['id_equipo'];
+                        $sql0 = "SELECT YEAR(CURDATE()) AS ano,MONTH(CURDATE()) as mes ,DAY(CURDATE()) AS dia";
+                        $result0 = mysqli_query($con, $sql0);
+                        $row0 = mysqli_fetch_array($result0);
+                        $dia0 = $row0['dia'] - 1;
+                        $mes0 = $row0['mes'];
+                        $ano0 = $row0['ano'];
+
+                        $sql1 = "SELECT DISTINCT (SELECT (SUM(TIME_TO_SEC(hora_total))) FROM salida_equipos where id_equipo = " . $id0 . " AND fecha BETWEEN '" . $ano0 . "-" . $mes0 . "-01' AND '" . $ano0 . "-" . $mes0 . "-" . $dia0 . "') as segundos FROM lista_equipos le LEFT JOIN tipos_equipos te on le.id_tequipo = te.id_tequipo LEFT JOIN mant_equipos me on le.id_equipo = me.id_equipo INNER JOIN estado_equipos ee on ee.id_est_equipo = le.id_est_equipo WHERE le.id_equipo = " . $id0 . ";";
+                        $result1 = mysqli_query($con, $sql1);
+                        $row1 = mysqli_fetch_array($result1);
+                        $segundos = $row1['segundos'];
+                        $totalmes = $dia0 * 36000;
+                        $porcentajemes = number_format(($segundos / $totalmes) * 100, 0, ',', ' ');
+                        /*poner color de texto*/
+                        ?>
+                        <td><b><?php echo $row['sigla']; ?></b></td>
+                        <td><b></b><?php echo $porcentajemes ?>%</td>
+                        <?php
+                        $id = $row['id_equipo'];
+                        $sql = "SELECT YEAR(CURDATE()) AS ano,MONTH(CURDATE()) as mes ,DAY(CURDATE()) AS dia";
+                        $result = mysqli_query($con, $sql);
+                        $row = mysqli_fetch_array($result);
+                        $dia1 = $row['dia'] - 1;
+                        $mes = $row['mes'];
+                        $ano = $row['ano'];
+
+                        ?>
+
+                        <?php
+                        for ($j = 1; $j <= $dia1; $j++) {
+                          // $sql = "SELECT TIME_TO_SEC(IF(SEC_TO_TIME(SUM(TIME_TO_SEC(TIMEDIFF(rt.hora_mec, rt.hora_ini)+rt.duraccion))) is NULL,SEC_TO_TIME(TIMESTAMPDIFF(SECOND, SEC_TO_TIME(TIMESTAMPDIFF(SECOND, hora_ini_col, hora_fin_col)),SEC_TO_TIME(TIMESTAMPDIFF(SECOND, hora_inicio, hora_fin)))), SEC_TO_TIME(TIMESTAMPDIFF(SECOND, SEC_TO_TIME(SUM(TIME_TO_SEC(TIMEDIFF(rt.hora_mec, rt.hora_ini)+rt.duraccion))),SEC_TO_TIME(TIMESTAMPDIFF(SECOND, SEC_TO_TIME(TIMESTAMPDIFF(SECOND, hora_ini_col, hora_fin_col)),SEC_TO_TIME(TIMESTAMPDIFF(SECOND, hora_inicio, hora_fin)))))))) as final 
+                          //   FROM salida_equipos se INNER JOIN lista_equipos le on se.id_equipo = le.id_equipo INNER JOIN tipos_equipos te on le.id_tequipo = te.id_tequipo INNER JOIN reparacion_terreno rt on rt.id_sal_equipo = se.id_sal_equipo WHERE se.id_estado_diario = 5 and rt.id_sal_equipo = (SELECT id_sal_equipo FROM salida_equipos WHERE id_equipo = " . $id . " and fecha = '" . $ano . "-" . $mes . "-" . $j . "') ORDER by se.fecha DESC;";
+                          $sql = "SELECT time_to_sec(hora_total) as final FROM salida_equipos where id_equipo = " . $id . " and fecha = '" . $ano . "-" . $mes . "-" . $j . "'";
+
+                          $result = mysqli_query($con, $sql);
+                          $row = mysqli_fetch_array($result);
+                          $final = $row['final'];
+                          $r = ($final / 36000) * 100;
+                          $re = number_format($r, 0, ',', ' ');
+
+                          if ($re > 80) {
+                        ?>
+                            <td style="color: green"><?php echo $re ?>%</td>
+                          <?php
+
+                          } else {
+
+                          ?>
+                            <td style="color: red"><?php echo $re ?>%</td>
+                        <?php
+                          }
+                        }
+                        ?>
+                      </tr>
+                  <?php }
+                  } catch (PDOException $e) {
+                    echo "Existen problemas con la conexión: " . $e->getMessage();
+                  } ?>
+                </tbody>
+
+                <tfoot>
+                  <tr>
+                    <th>Cargadores Operativos</th>
+                    <?php
+                    $sql0 = "SELECT YEAR(CURDATE()) AS ano,MONTH(CURDATE()) as mes ,DAY(CURDATE()) AS dia";
+                    $result0 = mysqli_query($con, $sql0);
+                    $row0 = mysqli_fetch_array($result0);
+                    $dia0 = $row0['dia'] - 1;
+                    $mes0 = $row0['mes'];
+                    $ano0 = $row0['ano'];
+                    $sql11 = "SELECT count(se.id_sal_equipo) as cantidad FROM salida_equipos se inner join lista_equipos le on se.id_equipo = le.id_equipo where le.id_tequipo = 2 and se.fecha between '" . $ano0 . "-" . $mes0 . "-01' and '" . $ano0 . "-" . $mes0 . "-" . $dia0 . "'";
+                    $result11 = mysqli_query($con, $sql11);
+                    $row11 = mysqli_fetch_array($result11);
+                    $cantidad = $row11['cantidad'];
+                    $promedioflota = number_format(($cantidad / $dia0), 1, ',', '');
+
+                    ?>
+                    <td><b><?php echo $promedioflota ?></b></td>
+                    <?php
+                    $sql0 = "SELECT YEAR(CURDATE()) AS ano,MONTH(CURDATE()) as mes ,DAY(CURDATE()) AS dia";
+                    $result0 = mysqli_query($con, $sql0);
+                    $row0 = mysqli_fetch_array($result0);
+                    $dia0 = $row0['dia'] - 1;
+                    $mes0 = $row0['mes'];
+                    $ano0 = $row0['ano'];
+
+                    for ($i = 1; $i <= $dia0; $i++) {
+                      $sql1 = "SELECT count(se.id_sal_equipo) as cantidad FROM salida_equipos se inner join lista_equipos le on se.id_equipo = le.id_equipo where le.id_tequipo = 2 and le.id_est_equipo = 1 and se.fecha = '" . $ano0 . "-" . $mes0 . "-" . $i . "'";
+                      $result1 = mysqli_query($con, $sql1);
+                      $row1 = mysqli_fetch_array($result1);
+                      $cantidad = $row1['cantidad'];
+
+                    ?>
+                      <td><b><?php echo $cantidad ?></b></td>
+                    <?php
+                    }
+                    ?>
+                  </tr>
+                </tfoot>
+                <tfoot>
+                  <tr>
+                    <th>Promedio FLota</th>
+                    <?php
+                    $sql0 = "SELECT YEAR(CURDATE()) AS ano,MONTH(CURDATE()) as mes ,DAY(CURDATE()) AS dia";
+                    $result0 = mysqli_query($con, $sql0);
+                    $row0 = mysqli_fetch_array($result0);
+                    $dia0 = $row0['dia'] - 1;
+                    $mes0 = $row0['mes'];
+                    $ano0 = $row0['ano'];
+
+                    $sql22 = "SELECT DISTINCT (SELECT (SUM(TIME_TO_SEC(se.hora_total))) FROM salida_equipos se inner join lista_equipos le on se.id_equipo = le.id_equipo where le.id_tequipo = 2 and le.id_est_equipo = 1 
+                      AND se.fecha BETWEEN '" . $ano0 . "-" . $mes0 . "-01' AND '" . $ano0 . "-" . $mes0 . "-" . $dia0 . "') as segundos, count(le.id_tequipo) as total FROM lista_equipos le LEFT JOIN tipos_equipos te on le.id_tequipo = te.id_tequipo LEFT JOIN mant_equipos me on le.id_equipo = me.id_equipo 
+                      INNER JOIN estado_equipos ee on ee.id_est_equipo = le.id_est_equipo WHERE le.id_tequipo = 2 and le.id_est_equipo = 1";
+                    $result22 = mysqli_query($con, $sql22);
+                    $row22 = mysqli_fetch_array($result22);
+                    $segtotalmes = $row22['segundos'];
+                    $cantidadtotal = $row22['total'];
+
+                    $segmestotal = 10 * 3600 * $dia0 * $cantidadtotal;
+
+                    $porcentajeflota = number_format(($segtotalmes / $segmestotal) * 100, 0, ',', '');
+
+                    ?>
+
+                    <td><b><?php echo $porcentajeflota ?>%</b></td>
+                    <?php
+                    $sql0 = "SELECT YEAR(CURDATE()) AS ano,MONTH(CURDATE()) as mes ,DAY(CURDATE()) AS dia";
+                    $result0 = mysqli_query($con, $sql0);
+                    $row0 = mysqli_fetch_array($result0);
+                    $dia0 = $row0['dia'] - 1;
+                    $mes0 = $row0['mes'];
+                    $ano0 = $row0['ano'];
+
+                    for ($i = 1; $i <= $dia0; $i++) {
+                      $sql33 = "SELECT DISTINCT (SELECT (SUM(TIME_TO_SEC(se.hora_total))) FROM salida_equipos se inner join lista_equipos le on se.id_equipo = le.id_equipo where le.id_tequipo = 2 and le.id_est_equipo = 1 AND se.fecha = '" . $ano0 . "-" . $mes0 . "-" . $i . "') as segundos, count(le.id_tequipo) as total FROM lista_equipos le LEFT JOIN tipos_equipos te on le.id_tequipo = te.id_tequipo LEFT JOIN mant_equipos me on le.id_equipo = me.id_equipo 
+                        INNER JOIN estado_equipos ee on ee.id_est_equipo = le.id_est_equipo WHERE le.id_tequipo = 2 and le.id_est_equipo = 1 ";
+                      $result33 = mysqli_query($con, $sql33);
+                      $row33 = mysqli_fetch_array($result33);
+                      $cantequipos = $row33['total'] - 2;
+                      $segdiarios = $row33['segundos'];
+                      $segmestotal2 = 10 * 3600 * $cantequipos;
+
+                      $porcentajediarioflota = number_format(($segdiarios / $segmestotal2) * 100, 0, ',', '');
+
+                    ?>
+                      <td><b><?php echo $porcentajediarioflota ?>%</b></td>
+                    <?php
+                    }
+                    ?>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-2">
+          <div class="card card">
+            <div class="card-header">
+              <h3 class="card-title">CARGADORES</h3>
+            </div>
+            <div class="card-body">
+              <!-- /.info-box -->
+              <div class="info-box mb-3 bg-success">
+                <div class="info-box-content">
+                  <span class="info-box-text">Promedio Flota</span>
+                  <?php
+                  $sql0 = "SELECT YEAR(CURDATE()) AS ano,MONTH(CURDATE()) as mes ,DAY(CURDATE()) AS dia";
+                  $result0 = mysqli_query($con, $sql0);
+                  $row0 = mysqli_fetch_array($result0);
+                  $dia0 = $row0['dia'] - 1;
+                  $mes0 = $row0['mes'];
+                  $ano0 = $row0['ano'];
+
+                  $sql22 = "SELECT DISTINCT (SELECT (SUM(TIME_TO_SEC(se.hora_total))) FROM salida_equipos se inner join lista_equipos le on se.id_equipo = le.id_equipo where le.id_tequipo = 2 and le.id_est_equipo = 1 
+                      AND se.fecha BETWEEN '" . $ano0 . "-" . $mes0 . "-01' AND '" . $ano0 . "-" . $mes0 . "-" . $dia0 . "') as segundos, count(le.id_tequipo) as total FROM lista_equipos le LEFT JOIN tipos_equipos te on le.id_tequipo = te.id_tequipo LEFT JOIN mant_equipos me on le.id_equipo = me.id_equipo 
+                      INNER JOIN estado_equipos ee on ee.id_est_equipo = le.id_est_equipo WHERE le.id_tequipo = 2 and le.id_est_equipo = 1";
+                  $result22 = mysqli_query($con, $sql22);
+                  $row22 = mysqli_fetch_array($result22);
+                  $segtotalmes = $row22['segundos'];
+                  $cantidadtotal = $row22['total'];
+
+                  $segmestotal = 10 * 3600 * $dia0 * $cantidadtotal;
+
+                  $porcentajeflota = number_format(($segtotalmes / $segmestotal) * 100, 0, ',', '');
+
+                  ?>
+                  <span class="info-box-number"><?php echo $porcentajeflota ?> %</span>
+                </div>
+              </div>
+              <!-- /.info-box -->
+              <div class="info-box mb-3 bg-info">
+                <div class="info-box-content">
+                  <span class="info-box-text">Carg. Operativos</span>
+                  <?php
+                  $sql0 = "SELECT YEAR(CURDATE()) AS ano,MONTH(CURDATE()) as mes ,DAY(CURDATE()) AS dia";
+                  $result0 = mysqli_query($con, $sql0);
+                  $row0 = mysqli_fetch_array($result0);
+                  $dia0 = $row0['dia'] - 1;
+                  $mes0 = $row0['mes'];
+                  $ano0 = $row0['ano'];
+                  $sql11 = "SELECT count(se.id_sal_equipo) as cantidad FROM salida_equipos se inner join lista_equipos le on se.id_equipo = le.id_equipo where le.id_tequipo = 2 and se.fecha between '" . $ano0 . "-" . $mes0 . "-01' and '" . $ano0 . "-" . $mes0 . "-" . $dia0 . "'";
+                  $result11 = mysqli_query($con, $sql11);
+                  $row11 = mysqli_fetch_array($result11);
+                  $cantidad = $row11['cantidad'];
+                  $promedioflota = number_format(($cantidad / $dia0), 1, ',', '');
+
+                  ?>
+                  <span class="info-box-number"><?php echo $promedioflota ?></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--  fin nueva columna-->
+
+
+
+      <!--  nueva columna tabla dumper-->
+      <div class="row">
+        <div class="col-md-10">
+          <div class="card">
+            <div class="card-header">
+              <h5 class="card-title">Tabla DUMPERS</h5>
+            </div>
+            <!--cuerpo etiqueta-->
+            <div class="card-body table-responsive p-0" style="height: 300px;">
+              <!-- <table id="example4" class="table table-head-fixed text-nowrap"> -->
+              <table id="" class="table table-head-fixed text-nowrap">
+
+                <thead>
+                  <tr>
+                    <th>Equipo</th>
+                    <th>%Mes</th>
+                    <?php
+                    $sql = "SELECT DAY(CURDATE()) AS dia;";
+                    $result = mysqli_query($con, $sql);
+                    $row = mysqli_fetch_array($result);
+                    $dia = $row['dia'] - 1;
+                    for ($i = 1; $i <= $dia; $i++) { ?>
+                      <th><?php echo $i ?></th>
+                    <?php
+                    }
+                    ?>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php
+                  try {
+                    $sql = "SELECT id_equipo,sigla FROM lista_equipos WHERE id_tequipo = 5 and id_est_equipo=1;";
+
+                    foreach ($db->query($sql) as $row) {
+                  ?>
+                      <tr>
+                        <?php
+                        $id0 = $row['id_equipo'];
+                        $sql0 = "SELECT YEAR(CURDATE()) AS ano,MONTH(CURDATE()) as mes ,DAY(CURDATE()) AS dia";
+                        $result0 = mysqli_query($con, $sql0);
+                        $row0 = mysqli_fetch_array($result0);
+                        $dia0 = $row0['dia'] - 1;
+                        $mes0 = $row0['mes'];
+                        $ano0 = $row0['ano'];
+
+                        $sql1 = "SELECT DISTINCT (SELECT (SUM(TIME_TO_SEC(hora_total))) FROM salida_equipos where id_equipo = " . $id0 . " AND fecha BETWEEN '" . $ano0 . "-" . $mes0 . "-01' AND '" . $ano0 . "-" . $mes0 . "-" . $dia0 . "') as segundos FROM lista_equipos le LEFT JOIN tipos_equipos te on le.id_tequipo = te.id_tequipo LEFT JOIN mant_equipos me on le.id_equipo = me.id_equipo INNER JOIN estado_equipos ee on ee.id_est_equipo = le.id_est_equipo WHERE le.id_equipo = " . $id0 . ";";
+                        $result1 = mysqli_query($con, $sql1);
+                        $row1 = mysqli_fetch_array($result1);
+                        $segundos = $row1['segundos'];
+                        $totalmes = $dia0 * 36000;
+                        $porcentajemes = number_format(($segundos / $totalmes) * 100, 0, ',', ' ');
+                        /*poner color de texto*/
+                        ?>
+                        <td><b><?php echo $row['sigla']; ?></b></td>
+                        <td><b></b><?php echo $porcentajemes ?>%</td>
+                        <?php
+                        $id = $row['id_equipo'];
+                        $sql = "SELECT YEAR(CURDATE()) AS ano,MONTH(CURDATE()) as mes ,DAY(CURDATE()) AS dia";
+                        $result = mysqli_query($con, $sql);
+                        $row = mysqli_fetch_array($result);
+                        $dia1 = $row['dia'] - 1;
+                        $mes = $row['mes'];
+                        $ano = $row['ano'];
+
+                        ?>
+
+                        <?php
+                        for ($j = 1; $j <= $dia1; $j++) {
+                          // $sql = "SELECT TIME_TO_SEC(IF(SEC_TO_TIME(SUM(TIME_TO_SEC(TIMEDIFF(rt.hora_mec, rt.hora_ini)+rt.duraccion))) is NULL,SEC_TO_TIME(TIMESTAMPDIFF(SECOND, SEC_TO_TIME(TIMESTAMPDIFF(SECOND, hora_ini_col, hora_fin_col)),SEC_TO_TIME(TIMESTAMPDIFF(SECOND, hora_inicio, hora_fin)))), SEC_TO_TIME(TIMESTAMPDIFF(SECOND, SEC_TO_TIME(SUM(TIME_TO_SEC(TIMEDIFF(rt.hora_mec, rt.hora_ini)+rt.duraccion))),SEC_TO_TIME(TIMESTAMPDIFF(SECOND, SEC_TO_TIME(TIMESTAMPDIFF(SECOND, hora_ini_col, hora_fin_col)),SEC_TO_TIME(TIMESTAMPDIFF(SECOND, hora_inicio, hora_fin)))))))) as final 
+                          //   FROM salida_equipos se INNER JOIN lista_equipos le on se.id_equipo = le.id_equipo INNER JOIN tipos_equipos te on le.id_tequipo = te.id_tequipo INNER JOIN reparacion_terreno rt on rt.id_sal_equipo = se.id_sal_equipo WHERE se.id_estado_diario = 5 and rt.id_sal_equipo = (SELECT id_sal_equipo FROM salida_equipos WHERE id_equipo = " . $id . " and fecha = '" . $ano . "-" . $mes . "-" . $j . "') ORDER by se.fecha DESC;";
+                          $sql = "SELECT time_to_sec(hora_total) as final FROM salida_equipos where id_equipo = " . $id . " and fecha = '" . $ano . "-" . $mes . "-" . $j . "'";
+
+                          $result = mysqli_query($con, $sql);
+                          $row = mysqli_fetch_array($result);
+                          $final = $row['final'];
+                          $r = ($final / 36000) * 100;
+                          $re = number_format($r, 0, ',', ' ');
+
+                          if ($re > 80) {
+                        ?>
+                            <td style="color: green"><?php echo $re ?>%</td>
+                          <?php
+
+                          } else {
+
+                          ?>
+                            <td style="color: red"><?php echo $re ?>%</td>
+                        <?php
+                          }
+                        }
+                        ?>
+                      </tr>
+                  <?php }
+                  } catch (PDOException $e) {
+                    echo "Existen problemas con la conexión: " . $e->getMessage();
+                  } ?>
+                </tbody>
+
+                <tfoot>
+                  <tr>
+                    <th>Dumpers Operativos</th>
+                    <?php
+                    $sql0 = "SELECT YEAR(CURDATE()) AS ano,MONTH(CURDATE()) as mes ,DAY(CURDATE()) AS dia";
+                    $result0 = mysqli_query($con, $sql0);
+                    $row0 = mysqli_fetch_array($result0);
+                    $dia0 = $row0['dia'] - 1;
+                    $mes0 = $row0['mes'];
+                    $ano0 = $row0['ano'];
+                    $sql11 = "SELECT count(se.id_sal_equipo) as cantidad FROM salida_equipos se inner join lista_equipos le on se.id_equipo = le.id_equipo where le.id_tequipo = 5 and se.fecha between '" . $ano0 . "-" . $mes0 . "-01' and '" . $ano0 . "-" . $mes0 . "-" . $dia0 . "'";
+                    $result11 = mysqli_query($con, $sql11);
+                    $row11 = mysqli_fetch_array($result11);
+                    $cantidad = $row11['cantidad'];
+                    $promedioflota = number_format(($cantidad / $dia0), 1, ',', '');
+
+                    ?>
+                    <td><b><?php echo $promedioflota ?></b></td>
+                    <?php
+                    $sql0 = "SELECT YEAR(CURDATE()) AS ano,MONTH(CURDATE()) as mes ,DAY(CURDATE()) AS dia";
+                    $result0 = mysqli_query($con, $sql0);
+                    $row0 = mysqli_fetch_array($result0);
+                    $dia0 = $row0['dia'] - 1;
+                    $mes0 = $row0['mes'];
+                    $ano0 = $row0['ano'];
+
+                    for ($i = 1; $i <= $dia0; $i++) {
+                      $sql1 = "SELECT count(se.id_sal_equipo) as cantidad FROM salida_equipos se inner join lista_equipos le on se.id_equipo = le.id_equipo where le.id_tequipo = 5 and le.id_est_equipo = 1 and se.fecha = '" . $ano0 . "-" . $mes0 . "-" . $i . "'";
+                      $result1 = mysqli_query($con, $sql1);
+                      $row1 = mysqli_fetch_array($result1);
+                      $cantidad = $row1['cantidad'];
+
+                    ?>
+                      <td><b><?php echo $cantidad ?></b></td>
+                    <?php
+                    }
+                    ?>
+                  </tr>
+                </tfoot>
+                <tfoot>
+                  <tr>
+                    <th>Promedio FLota</th>
+                    <?php
+                    $sql0 = "SELECT YEAR(CURDATE()) AS ano,MONTH(CURDATE()) as mes ,DAY(CURDATE()) AS dia";
+                    $result0 = mysqli_query($con, $sql0);
+                    $row0 = mysqli_fetch_array($result0);
+                    $dia0 = $row0['dia'] - 1;
+                    $mes0 = $row0['mes'];
+                    $ano0 = $row0['ano'];
+
+                    $sql22 = "SELECT DISTINCT (SELECT (SUM(TIME_TO_SEC(se.hora_total))) FROM salida_equipos se inner join lista_equipos le on se.id_equipo = le.id_equipo where le.id_tequipo = 5 and le.id_est_equipo = 1 
+                      AND se.fecha BETWEEN '" . $ano0 . "-" . $mes0 . "-01' AND '" . $ano0 . "-" . $mes0 . "-" . $dia0 . "') as segundos, count(le.id_tequipo) as total FROM lista_equipos le LEFT JOIN tipos_equipos te on le.id_tequipo = te.id_tequipo LEFT JOIN mant_equipos me on le.id_equipo = me.id_equipo 
+                      INNER JOIN estado_equipos ee on ee.id_est_equipo = le.id_est_equipo WHERE le.id_tequipo = 5 and le.id_est_equipo = 1";
+                    $result22 = mysqli_query($con, $sql22);
+                    $row22 = mysqli_fetch_array($result22);
+                    $segtotalmes = $row22['segundos'];
+                    $cantidadtotal = $row22['total'];
+
+                    $segmestotal = 10 * 3600 * $dia0 * $cantidadtotal;
+
+                    $porcentajeflota = number_format(($segtotalmes / $segmestotal) * 100, 0, ',', '');
+
+                    ?>
+
+                    <td><b><?php echo $porcentajeflota ?>%</b></td>
+                    <?php
+                    $sql0 = "SELECT YEAR(CURDATE()) AS ano,MONTH(CURDATE()) as mes ,DAY(CURDATE()) AS dia";
+                    $result0 = mysqli_query($con, $sql0);
+                    $row0 = mysqli_fetch_array($result0);
+                    $dia0 = $row0['dia'] - 1;
+                    $mes0 = $row0['mes'];
+                    $ano0 = $row0['ano'];
+
+                    for ($i = 1; $i <= $dia0; $i++) {
+                      $sql33 = "SELECT DISTINCT (SELECT (SUM(TIME_TO_SEC(se.hora_total))) FROM salida_equipos se inner join lista_equipos le on se.id_equipo = le.id_equipo where le.id_tequipo = 5 and le.id_est_equipo = 1 AND se.fecha = '" . $ano0 . "-" . $mes0 . "-" . $i . "') as segundos, count(le.id_tequipo) as total FROM lista_equipos le LEFT JOIN tipos_equipos te on le.id_tequipo = te.id_tequipo LEFT JOIN mant_equipos me on le.id_equipo = me.id_equipo 
+                        INNER JOIN estado_equipos ee on ee.id_est_equipo = le.id_est_equipo WHERE le.id_tequipo = 5 and le.id_est_equipo = 1 ";
+                      $result33 = mysqli_query($con, $sql33);
+                      $row33 = mysqli_fetch_array($result33);
+                      $cantequipos = $row33['total'] - 2;
+                      $segdiarios = $row33['segundos'];
+                      $segmestotal2 = 10 * 3600 * $cantequipos;
+
+                      $porcentajediarioflota = number_format(($segdiarios / $segmestotal2) * 100, 0, ',', '');
+
+                    ?>
+                      <td><b><?php echo $porcentajediarioflota ?>%</b></td>
+                    <?php
+                    }
+                    ?>
+                  </tr>
+                </tfoot>
+
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-2">
+          <div class="card card">
+            <div class="card-header">
+              <h3 class="card-title">DUMPERS</h3>
+            </div>
+            <div class="card-body">
+              <!-- /.info-box -->
+              <div class="info-box mb-3 bg-success">
+                <div class="info-box-content">
+                  <span class="info-box-text">Promedio Flota</span>
+                  <?php
+                  $sql0 = "SELECT YEAR(CURDATE()) AS ano,MONTH(CURDATE()) as mes ,DAY(CURDATE()) AS dia";
+                  $result0 = mysqli_query($con, $sql0);
+                  $row0 = mysqli_fetch_array($result0);
+                  $dia0 = $row0['dia'] - 1;
+                  $mes0 = $row0['mes'];
+                  $ano0 = $row0['ano'];
+
+                  $sql22 = "SELECT DISTINCT (SELECT (SUM(TIME_TO_SEC(se.hora_total))) FROM salida_equipos se inner join lista_equipos le on se.id_equipo = le.id_equipo where le.id_tequipo = 5 and le.id_est_equipo = 1 
+                      AND se.fecha BETWEEN '" . $ano0 . "-" . $mes0 . "-01' AND '" . $ano0 . "-" . $mes0 . "-" . $dia0 . "') as segundos, count(le.id_tequipo) as total FROM lista_equipos le LEFT JOIN tipos_equipos te on le.id_tequipo = te.id_tequipo LEFT JOIN mant_equipos me on le.id_equipo = me.id_equipo 
+                      INNER JOIN estado_equipos ee on ee.id_est_equipo = le.id_est_equipo WHERE le.id_tequipo = 5 and le.id_est_equipo = 1";
+                  $result22 = mysqli_query($con, $sql22);
+                  $row22 = mysqli_fetch_array($result22);
+                  $segtotalmes = $row22['segundos'];
+                  $cantidadtotal = $row22['total'];
+
+                  $segmestotal = 10 * 3600 * $dia0 * $cantidadtotal;
+
+                  $porcentajeflota = number_format(($segtotalmes / $segmestotal) * 100, 0, ',', '');
+
+                  ?>
+                  <span class="info-box-number"><?php echo $porcentajeflota ?> %</span>
+                </div>
+              </div>
+              <!-- /.info-box -->
+              <div class="info-box mb-3 bg-info">
+                <div class="info-box-content">
+                  <span class="info-box-text">Dumpers Operativos</span>
+                  <?php
+                  $sql0 = "SELECT YEAR(CURDATE()) AS ano,MONTH(CURDATE()) as mes ,DAY(CURDATE()) AS dia";
+                  $result0 = mysqli_query($con, $sql0);
+                  $row0 = mysqli_fetch_array($result0);
+                  $dia0 = $row0['dia'] - 1;
+                  $mes0 = $row0['mes'];
+                  $ano0 = $row0['ano'];
+                  $sql11 = "SELECT count(se.id_sal_equipo) as cantidad FROM salida_equipos se inner join lista_equipos le on se.id_equipo = le.id_equipo where le.id_tequipo = 5 and se.fecha between '" . $ano0 . "-" . $mes0 . "-01' and '" . $ano0 . "-" . $mes0 . "-" . $dia0 . "'";
+                  $result11 = mysqli_query($con, $sql11);
+                  $row11 = mysqli_fetch_array($result11);
+                  $cantidad = $row11['cantidad'];
+                  $promedioflota = number_format(($cantidad / $dia0), 1, ',', '');
+
+                  ?>
+                  <span class="info-box-number"><?php echo $promedioflota ?></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--  fin nueva columna-->
     </section>
 
   </div>
@@ -404,3 +1007,41 @@ include "../../conexion.php";
 </body>
 
 </html>
+
+<script>
+  $(function() {
+    $("#example1").DataTable({
+      "responsive": true,
+      "lengthChange": false, //cambiar cantidad de datos visibles
+      "autoWidth": true,
+      "buttons": ["excel", "colvis"]
+    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": true,
+      "responsive": true,
+    });
+    $('#example3').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": true,
+      "responsive": true,
+    });
+    $('#example4').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": true,
+      "responsive": true,
+    });
+  });
+</script>

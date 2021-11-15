@@ -35,7 +35,12 @@ if ($id_sal_equipo > 0) {
                 $sql_query = "INSERT INTO reparacion_terreno(id_sal_equipo, hora_ini, hora_mec, id_falla, duraccion, id_ubicacion, id_mecanico, observaciones, id_est_equipo) VALUES ('" . $id_sal_equipo . "','" . $hora_ini . "','" . $hora_mec . "','" . $id_falla . "','" . $duraccion . "','" . $id_ubicacion . "','1','" . $observaciones . "','10')";
                 $result = mysqli_query($con, $sql_query);
 
-                $sql_query4 = "UPDATE salida_equipos SET hora_total=(SELECT IF(SEC_TO_TIME(SUM(TIME_TO_SEC(TIMEDIFF(rt.hora_mec, rt.hora_ini)+rt.duraccion))) is NULL,SEC_TO_TIME(TIMESTAMPDIFF(SECOND, SEC_TO_TIME(TIMESTAMPDIFF(SECOND, hora_ini_col, hora_fin_col)),SEC_TO_TIME(TIMESTAMPDIFF(SECOND, hora_inicio, hora_fin)))), SEC_TO_TIME(TIMESTAMPDIFF(SECOND, SEC_TO_TIME(SUM(TIME_TO_SEC(TIMEDIFF(rt.hora_mec, rt.hora_ini)+rt.duraccion))),SEC_TO_TIME(TIMESTAMPDIFF(SECOND, SEC_TO_TIME(TIMESTAMPDIFF(SECOND, hora_ini_col, hora_fin_col)),SEC_TO_TIME(TIMESTAMPDIFF(SECOND, hora_inicio, hora_fin))))))) FROM salida_equipos se INNER JOIN lista_equipos le on se.id_equipo = le.id_equipo INNER JOIN tipos_equipos te on le.id_tequipo = te.id_tequipo INNER JOIN reparacion_terreno rt on rt.id_sal_equipo = se.id_sal_equipo WHERE se.id_estado_diario = 5 and rt.id_sal_equipo = " . $id_sal_equipo . " ORDER by se.fecha DESC) WHERE id_sal_equipo = " . $id_sal_equipo . ";";
+                $sql_query4 = "UPDATE salida_equipos SET hora_total=(SELECT IF(SEC_TO_TIME(SUM(TIME_TO_SEC(TIMEDIFF(rt.hora_mec, rt.hora_ini))+TIME_TO_SEC(rt.duraccion))) is NULL,
+                SEC_TO_TIME(TIMESTAMPDIFF(SECOND, SEC_TO_TIME(TIMESTAMPDIFF(SECOND, hora_ini_col, hora_fin_col)),SEC_TO_TIME(TIMESTAMPDIFF(SECOND, hora_inicio, hora_fin)))), 
+                SEC_TO_TIME(TIMESTAMPDIFF(SECOND, SEC_TO_TIME(SUM(TIME_TO_SEC(TIMEDIFF(rt.hora_mec, rt.hora_ini))+TIME_TO_SEC(rt.duraccion))),
+                SEC_TO_TIME(TIMESTAMPDIFF(SECOND, SEC_TO_TIME(TIMESTAMPDIFF(SECOND, hora_ini_col, hora_fin_col)),SEC_TO_TIME(TIMESTAMPDIFF(SECOND, hora_inicio, hora_fin))))))) FROM salida_equipos se 
+                INNER JOIN lista_equipos le on se.id_equipo = le.id_equipo INNER JOIN tipos_equipos te on le.id_tequipo = te.id_tequipo INNER JOIN reparacion_terreno rt on rt.id_sal_equipo = se.id_sal_equipo WHERE se.id_estado_diario = 5 
+                and rt.id_sal_equipo = " . $id_sal_equipo . " ORDER by se.fecha DESC) WHERE id_sal_equipo = " . $id_sal_equipo . ";";
                 $result4 = mysqli_query($con, $sql_query4);
                 echo 4;
                 // Reparación Ingresada

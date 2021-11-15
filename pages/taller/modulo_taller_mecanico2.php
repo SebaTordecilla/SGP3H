@@ -393,7 +393,7 @@ include "../../conexion.php";
             labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30],
 
             datasets: [{
-              label: 'Activo',
+              label: 'scoop y cargadores',
               backgroundColor: 'rgba(60,141,188,0.9)',
               borderColor: 'rgba(60,141,188,0.8)',
               pointRadius: false,
@@ -401,9 +401,9 @@ include "../../conexion.php";
               pointStrokeColor: 'rgba(60,141,188,1)',
               pointHighlightFill: '#fff',
               pointHighlightStroke: 'rgba(60,141,188,1)',
-              data: [28, 48, 40, 19, 86, 27]
+              data: [6, 7, 5, 7, 5, 6]
             }, {
-              label: '',
+              label: 'dumpers',
               backgroundColor: 'rgba(210, 214, 222, 1)',
               borderColor: 'rgba(210, 214, 222, 1)',
               pointRadius: false,
@@ -411,7 +411,7 @@ include "../../conexion.php";
               pointStrokeColor: '#c1c7d1',
               pointHighlightFill: '#fff',
               pointHighlightStroke: 'rgba(220,220,220,1)',
-              //data: [65, 59, 80, 81, 56, 55]
+              data: [7, 8, 9, 9, 8, 6]
             }, ]
           }
 
@@ -437,7 +437,7 @@ include "../../conexion.php";
 
           // This will get the first returned node in the jQuery collection.
           new Chart(areaChartCanvas, {
-            type: 'line',
+            type: 'bar',
             data: areaChartData,
             options: areaChartOptions
           })
@@ -514,7 +514,7 @@ include "../../conexion.php";
 
           var barChartOptions = {
             responsive: true,
-            maintainAspectRatio: false,
+            maintainAspectRatio: true,
             datasetFill: false
           }
 

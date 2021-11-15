@@ -120,147 +120,54 @@ include "../../conexion.php";
                   <div class="row">
                     <div class="col-md-3">
                       <div class="form-group">
-                        <select class="form-control" id="mes_equipo_informe" name="mes_equipo_informe">
-                          <option value=""></option>
-                          <option value="1">ENERO</option>
-                          <option value="2">FEBRERO</option>
-                          <option value="3">MARZO</option>
-                          <option value="4">ABRIL</option>
-                          <option value="5">MAYO</option>
-                          <option value="6">JUNIO</option>
-                          <option value="7">JULIO</option>
-                          <option value="8">AGOSTO</option>
-                          <option value="9">SEPTIEMBRE</option>
-                          <option value="10">OCTUBRE</option>
-                          <option value="11">NOVIEMBRE</option>
-                          <option value="12">DICIEMBRE</option>
-                        </select>
-                        <label>Mes:</label>
+
+                        <input type="date" class="form-control float-right" id="desde">
+                        <label>Desde:</label>
                         <!-- /.input group -->
                       </div>
                     </div>
                     <div class="col-md-3">
                       <div class="form-group">
-                        <select class="form-control" id="ano_equipo_informe" name="ano_equipo_informe">
-                          <option value=""></option>
-                          <option value="2021">2021</option>
-                          <option value="2022">2022</option>
-                          <option value="2023">2023</option>
-                          <option value="2024">2024</option>
-                          <option value="2024">2025</option>
-                          <option value="2024">2026</option>
-                          <option value="2024">2027</option>
-                        </select>
-                        <label>Año:</label>
+
+                        <input type="date" class="form-control float-right" id="hasta">
+                        <label>Hasta:</label>
                         <!-- /.input group -->
                       </div>
                     </div>
                     <div class="col-md-2">
                       <div class="form-group">
-                        <input type="button" class="btn btn-block btn-primary btn-lg naranjo" value="Informe" onclick="Informe_disponibilidad_Mensual(),Grafico_disponibilidad_Mensual()">
+                        <input type="button" class="btn btn-block btn-primary btn-lg naranjo" value="Informe" onclick="Informe_disponibilidad()">
                       </div>
                     </div>
+
                   </div>
+
+
+                </form>
+                <br>
+                <form>
+
+                  <div id="tabla_informe_disponibilidad" style="padding-top:10px;"></div>
+
                 </form>
               </div>
+
             </div>
+
+            <!-- /.card-body -->
           </div>
           <!-- /.card -->
         </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+  </div>
+  <!-- /.container-fluid -->
 
+  <!--Se debe incluir modales-->
+  <?php include('modal_taller.php'); ?>
 
-
-
-        <div class="row">
-          <div class="col-8">
-            <div class="card">
-              <div class="card-header">
-                <h5 class="card-title">Gráfico Cantidad Equipos Diarios</h5>
-              </div>
-              <div class="card-body" style="height: 300px;">
-                <div class="chart">
-                  <div id="grafico_informe_disponibilidad" style="padding-top:10px;"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-4">
-            <div class="card">
-              <div class="card-header">
-                <h5 class="card-title">Datos</h5>
-              </div>
-              <div class="card-body" style="height: 300px;">
-                <!-- <div id="tabla_informe_disponibilidad" style="padding-top:10px;"></div> -->
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Tabla Resumen mensual -->
-        <div class="row">
-          <div class="col-12">
-            <div class="card">
-              <div class="card-header">
-                <h5 class="card-title">Tabla Mensual</h5>
-              </div>
-              <div class="card-body table-responsive p-0" style="height: 400px;">
-                <div id="tabla_informe_disponibilidad" style="padding-top:10px;"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-
-
-        <div class="row">
-          <div class="col-md-12">
-            <div class="card">
-              <div class="card-header">
-                <h5 class="card-title">Tabla SCOOPS</h5>
-              </div>
-              <div class="card-body table-responsive p-0" style="height: 400px;">
-                <div id="tabla_porcentaje_mensual" style="padding-top:10px;"></div>
-              </div>
-
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-12">
-            <div class="card">
-              <div class="card-header">
-                <h5 class="card-title">Tabla CARGADORES</h5>
-              </div>
-              <div class="card-body table-responsive p-0" style="height: 350px;">
-                <div id="tabla_porcentaje_mensual_cargador" style="padding-top:10px;"></div>
-              </div>
-
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-12">
-            <div class="card">
-              <div class="card-header">
-                <h5 class="card-title">Tabla DUMPERS</h5>
-              </div>
-              <div class="card-body table-responsive p-0" style="height: 750px;">
-                <div id="tabla_porcentaje_mensual_dumper" style="padding-top:10px;"></div>
-              </div>
-
-            </div>
-          </div>
-        </div>
-
-
-        <!-- /.container-fluid -->
-
-        <!--Se debe incluir modales-->
-        <?php include('modal_taller.php'); ?>
-
-    </section>
+  </section>
 
   </div>
   <!-- /.content-wrapper -->
@@ -326,7 +233,7 @@ include "../../conexion.php";
         "responsive": true,
         "lengthChange": false,
         "autoWidth": false,
-        "buttons": ["excel", "colvis"]
+        "buttons": ["excel", "pdf", "colvis"]
       }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
       $('#example2').DataTable({
         "paging": true,
