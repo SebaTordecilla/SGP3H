@@ -1250,6 +1250,40 @@ function Informe_disponibilidad_Mensual() {
                     }
                 });
 
+                $.ajax({
+                    url: 'target_informe_mensual_scoops.php',
+                    type: 'post',
+                    data: {
+                        mes: mes,
+                        ano: ano
+                    },
+                    success: function(datos) {
+                        $('#target_informe_mensual_scoops').html(datos);
+                    }
+                });
+                $.ajax({
+                    url: 'target_informe_mensual_cargador.php',
+                    type: 'post',
+                    data: {
+                        mes: mes,
+                        ano: ano
+                    },
+                    success: function(datos) {
+                        $('#target_informe_mensual_cargador').html(datos);
+                    }
+                });
+                $.ajax({
+                    url: 'target_informe_mensual_dumpers.php',
+                    type: 'post',
+                    data: {
+                        mes: mes,
+                        ano: ano
+                    },
+                    success: function(datos) {
+                        $('#target_informe_mensual_dumpers').html(datos);
+                    }
+                });
+
             }
         }
     }
@@ -1267,6 +1301,17 @@ function Grafico_disponibilidad_Mensual() {
         },
         success: function(datos) {
             $('#grafico_informe_disponibilidad').html(datos);
+        }
+    });
+    $.ajax({
+        url: 'grafico_mes_filtro_lineal.php',
+        type: 'post',
+        data: {
+            mes: mes,
+            ano: ano
+        },
+        success: function(datos) {
+            $('#grafico_informe_disponibilidad_lineal').html(datos);
         }
     });
 };
@@ -1433,7 +1478,7 @@ function Grafico_Reparaciones() {
     var mes_equipo = document.getElementById('mes_equipo').value;
     var ano_equipo = document.getElementById('ano_equipo').value;
     $.ajax({
-        url: 'grafico_reparaciones.php',
+        url: 'grafico_reparaciones_filtro.php',
         type: 'post',
         data: {
             id_equipo: id_equipo,

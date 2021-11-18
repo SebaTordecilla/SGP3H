@@ -298,6 +298,58 @@ include "../../conexion.php";
         "autoWidth": false,
         "responsive": true,
       });
+
+      var lista = document.getElementById("cantidad_repa").value;
+      var list2 = lista.split(',');
+
+      var areaChartCanvas = $('#areaPie').get(0).getContext('2d')
+      var areaChartData = {
+
+        labels: [
+          'Neumáticos', 'Eléctricas', 'Motor', 'Carrocería', 'Otras'
+        ],
+        datasets: [{
+          data: [list2[0], list2[1], list2[2], list2[3], list2[4]],
+          // data: [5, 3, 4, 6, 1],
+          backgroundColor: ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'],
+        }]
+
+      }
+
+      var areaChartOptions = {
+        maintainAspectRatio: false,
+        responsive: false,
+        legend: {
+          display: true
+        }
+      }
+
+      // This will get the first returned node in the jQuery collection.
+      new Chart(areaChartCanvas, {
+        type: 'pie',
+        data: areaChartData,
+        options: areaChartOptions
+      })
+
+      //-------------
+      //- LINE CHART -
+      //--------------
+      var lineChartCanvas = $('#lineChart').get(0).getContext('2d')
+      var lineChartOptions = $.extend(true, {}, areaChartOptions)
+      var lineChartData = $.extend(true, {}, areaChartData)
+      lineChartData.datasets[0].fill = false;
+      //lineChartData.datasets[1].fill = false;
+      lineChartOptions.datasetFill = false
+
+
+      var lineChart = new Chart(lineChartCanvas, {
+        type: 'pie',
+        data: lineChartData,
+        options: lineChartOptions
+      })
+
+
+
     });
   </script>
 

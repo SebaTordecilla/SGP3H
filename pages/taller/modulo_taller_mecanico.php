@@ -256,9 +256,11 @@ include "../../conexion.php";
                         ?>
                             <td style="color: green"><?php echo $re ?>%</td>
                           <?php
-
+                          } else if ($re <= 80 && $re > 0) {
+                          ?>
+                            <td style="color: blue"><?php echo $re ?>%</td>
+                          <?php
                           } else {
-
                           ?>
                             <td style="color: red"><?php echo $re ?>%</td>
                         <?php
@@ -509,13 +511,16 @@ include "../../conexion.php";
                           $r = ($final / 36000) * 100;
                           $re = number_format($r, 0, ',', ' ');
 
+
                           if ($re > 80) {
                         ?>
                             <td style="color: green"><?php echo $re ?>%</td>
                           <?php
-
+                          } else if ($re <= 80 && $re > 0) {
+                          ?>
+                            <td style="color: blue"><?php echo $re ?>%</td>
+                          <?php
                           } else {
-
                           ?>
                             <td style="color: red"><?php echo $re ?>%</td>
                         <?php
@@ -585,7 +590,7 @@ include "../../conexion.php";
                     $result22 = mysqli_query($con, $sql22);
                     $row22 = mysqli_fetch_array($result22);
                     $segtotalmes = $row22['segundos'];
-                    $cantidadtotal = $row22['total'];
+                    $cantidadtotal = $row22['total'] - 2;
 
                     $segmestotal = 10 * 3600 * $dia0 * $cantidadtotal;
 
@@ -649,7 +654,7 @@ include "../../conexion.php";
                   $result22 = mysqli_query($con, $sql22);
                   $row22 = mysqli_fetch_array($result22);
                   $segtotalmes = $row22['segundos'];
-                  $cantidadtotal = $row22['total'];
+                  $cantidadtotal = $row22['total'] - 2;
 
                   $segmestotal = 10 * 3600 * $dia0 * $cantidadtotal;
 
@@ -770,9 +775,11 @@ include "../../conexion.php";
                         ?>
                             <td style="color: green"><?php echo $re ?>%</td>
                           <?php
-
+                          } else if ($re <= 80 && $re > 0) {
+                          ?>
+                            <td style="color: blue"><?php echo $re ?>%</td>
+                          <?php
                           } else {
-
                           ?>
                             <td style="color: red"><?php echo $re ?>%</td>
                         <?php
@@ -864,7 +871,7 @@ include "../../conexion.php";
                         INNER JOIN estado_equipos ee on ee.id_est_equipo = le.id_est_equipo WHERE le.id_tequipo = 5 and le.id_est_equipo = 1 ";
                       $result33 = mysqli_query($con, $sql33);
                       $row33 = mysqli_fetch_array($result33);
-                      $cantequipos = $row33['total'] - 2;
+                      $cantequipos = $row33['total'];
                       $segdiarios = $row33['segundos'];
                       $segmestotal2 = 10 * 3600 * $cantequipos;
 

@@ -10,7 +10,14 @@ $ano = mysqli_real_escape_string($con, $_POST['ano']);
 if ($mes == "") {
     echo "Sin Información ";
 } else {
-    $tabla = "<table id=\"example1\" class=\"table table-bordered table-striped\">";
+    $tabla = "
+    <div class=\"card\">
+    <div class=\"card-header\">
+      <h5 class=\"card-title\">Tabla Mensual</h5>
+    </div>
+    <div class=\"card-body table-responsive p-0\" style=\"height: 400px;\">
+    
+    <table id=\"example1\" class=\"table table-bordered table-striped\">";
     $tabla .= "<thead><tr><th>TiCod.po</th><th>Modelo</th><th>Tipo</th><th>Dias</th><th>Hrs.</th><th>D.trab</th><th>Rep</th><th>Hrs.Totales </th><th> % </th></tr></thead>";
     $maxsql = "SELECT DISTINCT(id_equipo) FROM salida_equipos where YEAR(fecha) = " . $ano . " AND MONTH(fecha) = " . $mes . ";";
     foreach ($db->query($maxsql) as $row) {
@@ -48,7 +55,8 @@ if ($mes == "") {
         }
     }
 
-    $tabla .= "</table>";
+    $tabla .= "</table>   </div>
+    </div>";
     echo $tabla;
 }
 

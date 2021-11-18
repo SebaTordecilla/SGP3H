@@ -10,7 +10,7 @@ $ano = mysqli_real_escape_string($con, $_POST['ano']);
 if ($mes == "") {
     echo "Sin Información ";
 } else {
-    $tabla = "<table id=\"\" class=\"table table-bordered table-striped\">";
+    $tabla = "<div class=\"card\"><div class=\"card-header\"><h5 class=\"card-title\">Tabla CARGADORES</h5></div><div class=\"card-body table-responsive p-0\" style=\"height: 350px;\"><table id=\"\" class=\"table table-bordered table-striped\">";
     $tabla .= "<thead><tr><th>Equipo</th><th>%Mes</th>";
     //$sql = "SELECT DAY(CURDATE()) AS dia;";
     $sql = "SELECT YEAR('" . $ano . "-" . $mes . "-01') AS ano,MONTH('" . $ano . "-" . $mes . "-01') as mes ,DAY('" . $ano . "-" . $mes . "-01') AS dia, DAYOFMONTH(LAST_DAY('" . $ano . "-" . $mes . "-01')) AS dias ";
@@ -159,7 +159,7 @@ if ($mes == "") {
     }
     $tabla .= "</tr>";
     $tabla .= "</tfoot>";
-    $tabla .= "</table>";
+    $tabla .= "</table></div></div>";
     echo $tabla;
 }
 

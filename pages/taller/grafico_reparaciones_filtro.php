@@ -4,16 +4,19 @@ include_once('../../conexion.php');
 $database = new Connection();
 $db = $database->open();
 
+$mes = mysqli_real_escape_string($con, $_POST['mes_equipo']);
+$ano = mysqli_real_escape_string($con, $_POST['ano_equipo']);
+$id = mysqli_real_escape_string($con, $_POST['id_equipo']);
+
 
 $cadena = "";
 for ($i = 1; $i <= 5; $i++) {
-
 
     $sql = "SELECT count(rt.id_falla) as cantidad from reparacion_terreno rt 
     inner join salida_equipos se on rt.id_sal_equipo = se.id_sal_equipo  
     left join fallas_mecanicas fm on fm.id_falla = rt.id_falla
     left join categorias_fallas cf on cf.id_categoria = fm.categoria
-    where month(se.fecha)= month(curdate()) and cf.id_categoria = " . $i . ";";
+    where month(se.fecha)= " . $mes . " and year(se.fecha)=" . $ano . " and cf.id_categoria= " . $i . " and se.id_equipo = " . $id . ";";
     $result = mysqli_query($con, $sql);
     $row = mysqli_fetch_array($result);
     $Prueba = $row['cantidad'];
@@ -21,24 +24,12 @@ for ($i = 1; $i <= 5; $i++) {
     $cadena = $cadena . $Prueba . ",";
 }
 
+$tabla = "<input type=\"hidden\" class=\"form-control\" id=\"cantidad_repa\" name=\"cantidad_repa\" value=" . substr($cadena, 0, -1) . ">";
+$tabla .= "<div class=\"card card\"><div class=\"card-header\">    <h3 class=\"card-title\">Gráfico Reparaciones</h3></div><div class=\"card-body\" style=\"height: 300px;\">    <div class=\"chart\">        <canvas id=\"areaPie\" style=\"min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;\"></canvas>    </div></div></div>";
+
+echo $tabla;
+
 ?>
-<input type="hidden" class="form-control" id="cantidad_repa" name="cantidad_repa" value="<?php echo substr($cadena, 0, -1) ?>">
-
-
-
-<div class="card card">
-    <div class="card-header">
-        <h3 class="card-title">Gráfico Reparaciones</h3>
-    </div>
-    <div class="card-body" style="height: 300px;">
-        <div class="chart">
-            <canvas id="areaPie" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-        </div>
-    </div>
-</div>
-
-
-
 
 
 <script src="../../plugins/chart.js/Chart.min.js"></script>

@@ -169,98 +169,71 @@ include "../../conexion.php";
         </div>
 
 
-
-
+        <!-- KPI -->
         <div class="row">
-          <div class="col-8">
-            <div class="card">
-              <div class="card-header">
-                <h5 class="card-title">Gráfico Cantidad Equipos Diarios</h5>
-              </div>
-              <div class="card-body" style="height: 300px;">
-                <div class="chart">
-                  <div id="grafico_informe_disponibilidad" style="padding-top:10px;"></div>
-                </div>
-              </div>
-            </div>
+          <div class="col-4">
+            <div id="target_informe_mensual_scoops" style="padding-top:10px;"></div>
           </div>
           <div class="col-4">
-            <div class="card">
-              <div class="card-header">
-                <h5 class="card-title">Datos</h5>
-              </div>
-              <div class="card-body" style="height: 300px;">
-                <!-- <div id="tabla_informe_disponibilidad" style="padding-top:10px;"></div> -->
-              </div>
-            </div>
+            <div id="target_informe_mensual_cargador" style="padding-top:10px;"></div>
+          </div>
+          <div class="col-4">
+            <div id="target_informe_mensual_dumpers" style="padding-top:10px;"></div>
           </div>
         </div>
+
+
+        <!-- graficos -->
+        <div class="row">
+          <!-- Grafico lineal -->
+          <div class="col-6">
+            <div id="grafico_informe_disponibilidad_lineal" style="padding-top:10px;"></div>
+          </div>
+          <!-- grafico barras -->
+          <div class="col-6">
+            <div id="grafico_informe_disponibilidad" style="padding-top:10px;"></div>
+          </div>
+        </div>
+
 
         <!-- Tabla Resumen mensual -->
         <div class="row">
           <div class="col-12">
-            <div class="card">
-              <div class="card-header">
-                <h5 class="card-title">Tabla Mensual</h5>
-              </div>
-              <div class="card-body table-responsive p-0" style="height: 400px;">
-                <div id="tabla_informe_disponibilidad" style="padding-top:10px;"></div>
-              </div>
-            </div>
+            <div id="tabla_informe_disponibilidad" style="padding-top:10px;"></div>
           </div>
         </div>
 
-
-
+        <!-- tabla scoops -->
         <div class="row">
           <div class="col-md-12">
-            <div class="card">
-              <div class="card-header">
-                <h5 class="card-title">Tabla SCOOPS</h5>
-              </div>
-              <div class="card-body table-responsive p-0" style="height: 400px;">
-                <div id="tabla_porcentaje_mensual" style="padding-top:10px;"></div>
-              </div>
-
-            </div>
+            <div id="tabla_porcentaje_mensual" style="padding-top:10px;"></div>
           </div>
         </div>
 
+        <!-- tabla cargadores -->
         <div class="row">
           <div class="col-md-12">
-            <div class="card">
-              <div class="card-header">
-                <h5 class="card-title">Tabla CARGADORES</h5>
-              </div>
-              <div class="card-body table-responsive p-0" style="height: 350px;">
-                <div id="tabla_porcentaje_mensual_cargador" style="padding-top:10px;"></div>
-              </div>
-
-            </div>
+            <div id="tabla_porcentaje_mensual_cargador" style="padding-top:10px;"></div>
           </div>
         </div>
 
+        <!-- tabla dumpers -->
         <div class="row">
           <div class="col-md-12">
-            <div class="card">
-              <div class="card-header">
-                <h5 class="card-title">Tabla DUMPERS</h5>
-              </div>
-              <div class="card-body table-responsive p-0" style="height: 750px;">
-                <div id="tabla_porcentaje_mensual_dumper" style="padding-top:10px;"></div>
-              </div>
-
-            </div>
+            <div id="tabla_porcentaje_mensual_dumper" style="padding-top:10px;"></div>
           </div>
         </div>
 
+      </div>
 
-        <!-- /.container-fluid -->
+  </div>
 
-        <!--Se debe incluir modales-->
-        <?php include('modal_taller.php'); ?>
+  <!-- /.container-fluid -->
 
-    </section>
+  <!--Se debe incluir modales-->
+  <?php include('modal_taller.php'); ?>
+
+  </section>
 
   </div>
   <!-- /.content-wrapper -->

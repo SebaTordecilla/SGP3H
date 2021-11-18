@@ -10,7 +10,8 @@ $ano = mysqli_real_escape_string($con, $_POST['ano']);
 if ($mes == "") {
     echo "Sin Información ";
 } else {
-    $tabla = "<table id=\"\" class=\"table table-bordered table-striped\">";
+    $tabla = "<div class=\"card\"><div class=\"card-header\"><h5 class=\"card-title\">Tabla DUMPERS</h5></div><div class=\"card-body table-responsive p-0\" style=\"height: 680px;\">   
+    <table id=\"\" class=\"table table-bordered table-striped\">";
     $tabla .= "<thead><tr><th>Equipo</th><th>%Mes</th>";
     //$sql = "SELECT DAY(CURDATE()) AS dia;";
     $sql = "SELECT YEAR('" . $ano . "-" . $mes . "-01') AS ano,MONTH('" . $ano . "-" . $mes . "-01') as mes ,DAY('" . $ano . "-" . $mes . "-01') AS dia, DAYOFMONTH(LAST_DAY('" . $ano . "-" . $mes . "-01')) AS dias ";
@@ -90,7 +91,7 @@ if ($mes == "") {
     $dia00 = $row00['dias'];
     $mes00 = $row00['mes'];
     $ano00 = $row00['ano'];
-    $sql11 = "SELECT count(se.id_sal_equipo) as cantidad FROM salida_equipos se inner join lista_equipos le on se.id_equipo = le.id_equipo where le.id_tequipo = 5 and se.fecha between '" . $ano00 . "-" . $mes00 . "-01' and '" . $ano00 . "-" . $mes00 . "-" . $dia00 . "'";
+    $sql11 = "SELECT count(se.id_sal_equipo) as cantidad FROM salida_equipos se inner join lista_equipos le on se.id_equipo = le.id_equipo where le.id_tequipo = 5 and le.id_est_equipo = 1 and se.fecha between '" . $ano00 . "-" . $mes00 . "-01' and '" . $ano00 . "-" . $mes00 . "-" . $dia00 . "'";
     $result11 = mysqli_query($con, $sql11);
     $row11 = mysqli_fetch_array($result11);
     $cantidad = $row11['cantidad'];
@@ -108,7 +109,7 @@ if ($mes == "") {
     $ano0 = $row0['ano'];
 
     for ($i = 1; $i <= $dia0; $i++) {
-        $sql1 = "SELECT count(se.id_sal_equipo) as cantidad FROM salida_equipos se inner join lista_equipos le on se.id_equipo = le.id_equipo where le.id_tequipo = 5 and se.fecha = '" . $ano0 . "-" . $mes0 . "-" . $i . "'";
+        $sql1 = "SELECT count(se.id_sal_equipo) as cantidad FROM salida_equipos se inner join lista_equipos le on se.id_equipo = le.id_equipo where le.id_tequipo = 5  and le.id_est_equipo = 1 and se.fecha = '" . $ano0 . "-" . $mes0 . "-" . $i . "'";
         $result1 = mysqli_query($con, $sql1);
         $row1 = mysqli_fetch_array($result1);
         $cantidad = $row1['cantidad'];
@@ -130,7 +131,7 @@ if ($mes == "") {
     $result22 = mysqli_query($con, $sql22);
     $row22 = mysqli_fetch_array($result22);
     $segtotalmes = $row22['segundos'];
-    $cantidadtotal = $row22['total'] - 2;
+    $cantidadtotal = $row22['total'];
 
     $segmestotal = 10 * 3600 * $dia0 * $cantidadtotal;
 
@@ -149,7 +150,7 @@ if ($mes == "") {
         INNER JOIN estado_equipos ee on ee.id_est_equipo = le.id_est_equipo WHERE le.id_tequipo = 5 and le.id_est_equipo = 1 ";
         $result33 = mysqli_query($con, $sql33);
         $row33 = mysqli_fetch_array($result33);
-        $cantequipos = $row33['total'] - 2;
+        $cantequipos = $row33['total'];
         $segdiarios = $row33['segundos'];
         $segmestotal2 = 10 * 3600 * $cantequipos;
 
@@ -159,7 +160,9 @@ if ($mes == "") {
     }
     $tabla .= "</tr>";
     $tabla .= "</tfoot>";
-    $tabla .= "</table>";
+    $tabla .= "</table>      </div>
+
+    </div>";
     echo $tabla;
 }
 
