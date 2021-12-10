@@ -1188,6 +1188,11 @@
                                     <option value="02:00">02:00</option>
                                     <option value="03:00">03:00</option>
                                     <option value="04:00">04:00</option>
+                                    <option value="05:00">05:00</option>
+                                    <option value="06:00">06:00</option>
+                                    <option value="07:00">07:00</option>
+                                    <option value="08:00">08:00</option>
+                                    <option value="09:00">09:00</option>
                                 </select>
                             </div>
                         </div>
