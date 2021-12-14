@@ -8,8 +8,8 @@ class PDF extends FPDF
 function Header()
 {
     // Logo
-	$this->Image('../../dist/img/topo3H.png',170,8,30);
-	$this->Image('../../dist/img/logo3h.png',12,8,35);
+	//$this->Image('../../dist/img/topo3H.png',170,8,30);
+	//$this->Image('../../dist/img/logo3h.png',12,8,35);
     // Arial bold 15
     $this->SetFont('Arial','U',25);
     // Movernos a la derecha
@@ -335,6 +335,7 @@ while ($fila = $resultado->fetch_array()) {
 
 }
 
+$pdf->Image('../../dist/img/logo3H.png', 15, 5, 25);
 //LOGO CAMIONETA
 //$pdf->Image('../../dist/img/Mazda.png',70,217,80);
 
