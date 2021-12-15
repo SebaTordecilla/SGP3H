@@ -94,7 +94,7 @@ include "../../conexion.php";
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1><img src="../../dist/img/equipos.png" width="60" height="50"> Taller Mecánico | Planificación Diaria  </h1>
+            <h1><img src="../../dist/img/equipos.png" width="60" height="50"> Taller Mecánico | Planificación Diaria </h1>
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -172,8 +172,12 @@ include "../../conexion.php";
                         <label>Operador</label>
                         <select class="form-control" id="id_operador" name="id_operador">
                           <option value=""></option>
-                          <option value="1">JUANITO PEREZ</option>
-                          <option value="2">PEDRO PIEDRA</option>
+                          <?php
+                          $query = $con->query("SELECT id_op, UPPER(nombre) as nombre FROM operadores where estado = 1 and rango =1 order by nombre asc");
+                          while ($valores = mysqli_fetch_array($query)) {
+                            echo '<option value="' . $valores[id_op] . '">' . $valores[nombre] . '</option>';
+                          }
+                          ?>
                         </select>
                       </div>
                     </div>
@@ -182,8 +186,12 @@ include "../../conexion.php";
                         <label>Supervisor</label>
                         <select class="form-control" id="id_supervisor" name="id_supervisor">
                           <option value=""></option>
-                          <option value="1">JUANITO PEREZ</option>
-                          <option value="2">PEDRO PIEDRA</option>
+                          <?php
+                          $query = $con->query("SELECT id_op, UPPER(nombre) as nombre FROM operadores where estado = 1 and rango = 2 order by nombre asc");
+                          while ($valores = mysqli_fetch_array($query)) {
+                            echo '<option value="' . $valores[id_op] . '">' . $valores[nombre] . '</option>';
+                          }
+                          ?>
                         </select>
                       </div>
                     </div>
@@ -227,7 +235,7 @@ include "../../conexion.php";
                         include('tabla_salidas_diarias.php')
                         ?>
                     </div>
-                  </div>  
+                  </div>
                 </form>
               </div>
 

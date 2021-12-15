@@ -23,8 +23,8 @@ $carga = "";
 //$tabla = "";
 
 for ($j = 1; $j <= $diasmes; $j++) {
-
-    $totaldias = $totaldias . $j . ",";
+    $totaldias = $totaldias . "" . $j . "/" . $mes . ",";
+    //$totaldias = $totaldias . $j . ",";
 }
 
 for ($i = 1; $i <= $dia; $i++) {

@@ -31,17 +31,18 @@ $programa = $row11['programa'];
 $promedioflota = number_format(($cantidad / $dias), 1, ',', '');
 
 $tabla = "
-<div class=\"small-box bg-\">
-<div class=\"inner\">
-<h3>CARGADORES</h3>
-<p>% Programa: " . $programa . "%</p>
-<p>% Mensual Flota: " . $porcentajeflota . "%</p>
-<p> Prom.Operativos: " . $promedioflota . "</p>
-</div>
-<div class=\"icon\">
-<i class=\"ion ion-bag\"></i>
-</div>
-</div>
+            <div class=\"card card\">
+              <div class=\"card-header\">
+                <h3 class=\"card-title\"><b>CARGADORES</b></h3>
+              </div>
+              <div class=\"card-body\">
+              <p>% Programa: <b>" . $programa . "%</b></p>
+              <p>% Mensual Flota: <b>" . $porcentajeflota . "%</b></p>
+              <p> Prom.Operativos: <b>" . $promedioflota . "</b></p>
+              </div>
+            </div>
+
 ";
+
 
 echo $tabla;

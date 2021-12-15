@@ -20,7 +20,7 @@ $carga = "";
 
 for ($j = 1; $j <= $diasmes; $j++) {
 
-    $totaldias = $totaldias . $j . ",";
+    $totaldias = $totaldias . "" . $j . "/" . $mes . ",";
 }
 
 for ($i = 1; $i <= $dia; $i++) {
@@ -91,6 +91,13 @@ for ($i = 1; $i <= $dia; $i++) {
         var areaChartCanvas = $('#areaChart').get(0).getContext('2d')
 
         if (diasmes == 30) {
+            j = 30;
+            lista_prueba="";
+            for (i = 1; i <= j; i++) {
+
+
+
+            }
             var areaChartData = {
                 labels: [list2[0], list2[1], list2[2], list2[3], list2[4], list2[5], list2[6], list2[7], list2[8], list2[9], list2[10], list2[11], list2[12], list2[13], list2[14], list2[15], list2[16], list2[17], list2[18], list2[19], list2[20], list2[21], list2[22], list2[23], list2[24], list2[25], list2[26], list2[27], list2[28], list2[29]],
                 datasets: [{
@@ -133,8 +140,9 @@ for ($i = 1; $i <= $dia; $i++) {
         } else if (diasmes == 31) {
             var areaChartData = {
                 labels: [list2[0], list2[1], list2[2], list2[3], list2[4], list2[5], list2[6], list2[7], list2[8], list2[9], list2[10], list2[11], list2[12], list2[13], list2[14], list2[15], list2[16], list2[17], list2[18], list2[19], list2[20], list2[21], list2[22], list2[23], list2[24], list2[25], list2[26], list2[27], list2[28], list2[29], list2[30]],
+
                 datasets: [{
-                    label: 'Scoop y Cargadores',
+                    label: 'Scoops',
                     backgroundColor: 'rgba(60,141,188,0.9)',
                     borderColor: 'rgba(60,141,188,0.8)',
                     pointRadius: false,
@@ -170,7 +178,7 @@ for ($i = 1; $i <= $dia; $i++) {
             var areaChartData = {
                 labels: [list2[0], list2[1], list2[2], list2[3], list2[4], list2[5], list2[6], list2[7], list2[8], list2[9], list2[10], list2[11], list2[12], list2[13], list2[14], list2[15], list2[16], list2[17], list2[18], list2[19], list2[20], list2[21], list2[22], list2[23], list2[24], list2[25], list2[26], list2[27]],
                 datasets: [{
-                    label: 'Scoop y Cargadores',
+                    label: 'Scoops',
                     backgroundColor: 'rgba(60,141,188,0.9)',
                     borderColor: 'rgba(60,141,188,0.8)',
                     pointRadius: false,
@@ -207,7 +215,7 @@ for ($i = 1; $i <= $dia; $i++) {
             var areaChartData = {
                 labels: [list2[0], list2[1], list2[2], list2[3], list2[4], list2[5], list2[6], list2[7], list2[8], list2[9], list2[10], list2[11], list2[12], list2[13], list2[14], list2[15], list2[16], list2[17], list2[18], list2[19], list2[20], list2[21], list2[22], list2[23], list2[24], list2[25], list2[26], list2[27], list2[28]],
                 datasets: [{
-                    label: 'Scoop y Cargadores',
+                    label: 'Scoops',
                     backgroundColor: 'rgba(60,141,188,0.9)',
                     borderColor: 'rgba(60,141,188,0.8)',
                     pointRadius: false,

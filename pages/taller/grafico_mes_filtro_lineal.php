@@ -24,8 +24,8 @@ $porce_mes_dia = "";
 //$tabla = "";
 
 for ($j = 1; $j <= $diasmes; $j++) {
-
-    $totaldias = $totaldias . $j . ",";
+    $totaldias = $totaldias . "" . $j . "/" . $mes . ",";
+    //$totaldias = $totaldias . $j . ",";
     $porce_mes_dia = $porce_mes_dia . $porcentaje . ",";
 }
 
