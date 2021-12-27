@@ -1,4 +1,4 @@
-<!--./ Modal Nueva Mantencion Camioneta-->
+<!--./ Modal Nueva -->
 <div class="modal fade" id="modal_nuevo_disparo">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
