@@ -94,7 +94,7 @@ include "../../conexion.php";
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1><img src="../../dist/img/operaciones.png" width="60" height="60"> Reporte Mensual Lotes Óxido</h1>
+              <h1><img src="../../dist/img/operaciones.png" width="60" height="60"> Viajes Sulfuro</h1>
 
             </div>
           </div>
@@ -107,91 +107,62 @@ include "../../conexion.php";
       <!-- Main content -->
       <section class="content">
         <div class="container-fluid">
+          <div class="row">
+            <div class="col-12">
+              <div class="card">
+                <div class="card-header">
+                  <input type="button" class="btn naranjo" value="Nuevo Guía" onclick="nueva_guia_sulfuro()">
+                </div>
 
-          <form>
-            <div class="row">
-              <div class="col-md-3">
-                <div class="form-group">
-                  <select class="form-control" id="mes_report_lote" name="mes_report_lote">
-                    <option value=""></option>
-                    <option value="1">ENERO</option>
-                    <option value="2">FEBRERO</option>
-                    <option value="3">MARZO</option>
-                    <option value="4">ABRIL</option>
-                    <option value="5">MAYO</option>
-                    <option value="6">JUNIO</option>
-                    <option value="7">JULIO</option>
-                    <option value="8">AGOSTO</option>
-                    <option value="9">SEPTIEMBRE</option>
-                    <option value="10">OCTUBRE</option>
-                    <option value="11">NOVIEMBRE</option>
-                    <option value="12">DICIEMBRE</option>
-                  </select>
-                  <label>Mes:</label>
-                  <!-- /.input group -->
+                <!-- /.card-header -->
+                <div class="card-body">
+                  <table id="example1" class="table table-bordered table-striped">
+                    <thead>
+                      <tr>
+                        <th>N°</th>
+                        <th>Fecha</th>
+                        <th>N°Guía</th>
+                        <th>Responsable</th>
+                        <th>Patente</th>
+                        <th>Chofer</th>
+                        <th>Sector</th>
+                        <th>Hora</th>
+                        <th>Tonelaje</th>
+                        <th></th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <?php
+                    include('tabla_guias_sulfuro.php')
+                    ?>
+                  </table>
                 </div>
+                <!-- /.card-body -->
               </div>
-              <div class="col-md-3">
-                <div class="form-group">
-                  <select class="form-control" id="ano_report_lote" name="ano_report_lote">
-                    <option value=""></option>
-                    <option value="2021">2021</option>
-                    <option value="2022">2022</option>
-                    <option value="2023">2023</option>
-                    <option value="2024">2024</option>
-                    <option value="2024">2025</option>
-                    <option value="2024">2026</option>
-                    <option value="2024">2027</option>
-                  </select>
-                  <label>Año:</label>
-                  <!-- /.input group -->
-                </div>
-              </div>
-              <div class="col-md-2">
-                <div class="form-group">
-                  <input type="button" class="btn btn-block btn-primary btn-lg naranjo" value="Reporte" onclick="reporte_mensual_lotes()">
-                </div>
-              </div>
+              <!-- /.card -->
             </div>
-          </form>
-
-
-
-          <!-- /.card-header -->
-          <div class="card-body">
-            
-              <div id="target_report_lotes_mensual" style="text-align:center;"></div>
-           
-            <div class="card card">
-              <div id="tabla_lotes_mensual" style="text-align:center;"></div>
-            </div>
+            <!-- /.col -->
           </div>
-          <!-- /.card-body -->
+
+
+          <!-- /.col -->
         </div>
-        <!-- /.card -->
+        <!-- /.row -->
+        <!--Se debe incluir modales-->
+        <?php include('modal_parrilla.php'); ?>
+      </section>
+
     </div>
-    <!-- /.col -->
-  </div>
+    <!-- /.content-wrapper -->
+    <footer class="main-footer">
+      <!--Footer sin nada-->
+    </footer>
 
-
-  <!-- /.col -->
-  </div>
-  <!-- /.row -->
-  <!--Se debe incluir modales-->
-  <?php include('modal_parrilla.php'); ?>
-  </section>
-
-  </div>
-  <!-- /.content-wrapper -->
-  <footer class="main-footer">
-    <!--Footer sin nada-->
-  </footer>
-
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+      <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
   </div>
   <!-- ./wrapper -->
 
@@ -247,7 +218,7 @@ include "../../conexion.php";
         "responsive": true,
         "lengthChange": false,
         "autoWidth": false,
-        //"buttons": ["excel", "colvis"]
+        "buttons": ["excel"]
       }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
       $('#example2').DataTable({
         "paging": true,

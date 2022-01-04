@@ -571,20 +571,272 @@ function guias_lote_mensual(id_lote) {
 function reporte_mensual_lotes() {
     var mes = document.getElementById('mes_report_lote').value;
     var ano = document.getElementById('ano_report_lote').value;
-    $.ajax({
-        url: 'tabla_lotes_mensual.php',
-        type: 'post',
-        data: {
-            mes: mes,
-            ano: ano
-        },
-        success: function(datos) {
-            $('#tabla_lotes_mensual').html(datos);
+    if (mes == "") {
+        alert('Debe ingresar Mes');
+        return;
+    } else {
+        if (ano == "") {
+            alert('Debe ingresar Año');
+            return;
+        } else {
+            $.ajax({
+                url: 'tabla_lotes_mensual.php',
+                type: 'post',
+                data: {
+                    mes: mes,
+                    ano: ano
+                },
+                success: function(datos) {
+                    $('#tabla_lotes_mensual').html(datos);
+                }
+            });
+            $.ajax({
+                url: 'target_report_lotes_mensual.php',
+                type: 'post',
+                data: {
+                    mes: mes,
+                    ano: ano
+                },
+                success: function(datos) {
+                    $('#target_report_lotes_mensual').html(datos);
+                }
+            });
         }
-    });
-
+    }
 }
 
 function nuevo_lote_modal() {
     $('#modal_nuevo_lote').modal('show');
+}
+
+function nueva_guia_sulfuro() {
+    $('#guias_sulfuro').modal('show');
+}
+
+function guia_sulfuro() {
+    var id_sulf = document.getElementById('id_sulf').value;
+    var fecha = document.getElementById('sulf_fecha').value;
+    var hora = document.getElementById('sulf_hora').value;
+    var num_guia = document.getElementById('sulf_guia').value;
+    var id_responsable = document.getElementById('sulf_responsable').value;
+    var id_patente = document.getElementById('sulf_patente').value;
+    var id_chofer = document.getElementById('sulf_chofer').value;
+    var sector = document.getElementById('sulf_sector').value;
+    var tonelaje = document.getElementById('sulf_tonelaje').value;
+    var usuario = document.getElementById('usuario').value;
+
+    if (fecha == "") {
+        alert('Debe ingresar Fecha');
+        return;
+    } else {
+        if (hora == "") {
+            alert('Debe ingresar Hora');
+            return;
+        } else {
+            if (num_guia == "") {
+                alert('Debe ingresar N° de Guía');
+                return;
+            } else {
+                if (id_responsable == "") {
+                    alert('Debe ingresar Responsable');
+                    return;
+                } else {
+                    if (id_patente == "") {
+                        alert('Debe ingresar Patente');
+                        return;
+                    } else {
+                        if (id_chofer == "") {
+                            alert('Debe ingresar Chofer');
+                            return;
+                        } else {
+                            if (sector == "") {
+                                alert('Debe ingresar Sector');
+                                return;
+                            } else {
+                                if (id_sulf == "") {
+                                    if (confirm('Desea Ingresar Guía?')) {
+                                        $.ajax({
+                                            url: 'nueva_guia_sulfuro.php',
+                                            type: 'post',
+                                            data: {
+                                                id_sulf: id_sulf,
+                                                fecha: fecha,
+                                                hora: hora,
+                                                num_guia: num_guia,
+                                                id_responsable: id_responsable,
+                                                id_patente: id_patente,
+                                                id_chofer: id_chofer,
+                                                sector: sector,
+                                                tonelaje: tonelaje,
+                                                usuario: usuario
+                                            },
+                                            success: function(response) {
+                                                if (response == 1) {
+                                                    window.alert("Guía Ingresada");
+                                                    location.reload();
+                                                } else {
+                                                    window.alert("Error");
+                                                    return;
+                                                }
+                                            }
+                                        });
+                                    }
+
+                                } else {
+                                    if (confirm('Desea Editar Guía?')) {
+                                        $.ajax({
+                                            url: 'edit_guia_sulfuro.php',
+                                            type: 'post',
+                                            data: {
+                                                id_sulf: id_sulf,
+                                                fecha: fecha,
+                                                hora: hora,
+                                                num_guia: num_guia,
+                                                id_responsable: id_responsable,
+                                                id_patente: id_patente,
+                                                id_chofer: id_chofer,
+                                                sector: sector,
+                                                tonelaje: tonelaje,
+                                                usuario: usuario
+                                            },
+                                            success: function(response) {
+                                                if (response == 1) {
+                                                    window.alert("Guía Editada");
+                                                    location.reload();
+                                                } else {
+                                                    window.alert("Error");
+                                                    return;
+                                                }
+                                            }
+                                        });
+                                    }
+
+                                }
+
+                            }
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+        }
+
+    }
+
+}
+
+function edit_sulfuro(id_sulf, num, fecha, num_guia, id_responsable, id_patente, id_chofer, sector, hora, tonelaje) {
+    $('#id_sulf').val(id_sulf);
+    $('#numero').val(num);
+    $('#sulf_fecha').val(fecha);
+    $('#sulf_hora').val(hora);
+    $('#sulf_guia').val(num_guia);
+    $('#sulf_responsable').val(id_responsable);
+    $('#sulf_patente').val(id_patente);
+    $('#sulf_chofer').val(id_chofer);
+    $('#sulf_sector').val(sector);
+    $('#sulf_tonelaje').val(tonelaje);
+
+    $('#guias_sulfuro').modal('show');
+}
+
+function cerrar_guia_sulfuro(id_sulf) {
+    var id_sulf = id_sulf;
+    if (confirm('Desea Cerrar Guía?')) {
+        $.ajax({
+            url: 'cerrar_guia_sulfuro.php',
+            type: 'post',
+            data: {
+                id_sulf: id_sulf
+            },
+            success: function(response) {
+                if (response == 1) {
+                    window.alert("Guía Cerrada");
+                    location.reload();
+                } else {
+                    window.alert("Error");
+                    return;
+                }
+            }
+        });
+    }
+
+}
+
+function reporte_mensual_sulf() {
+    var mes = document.getElementById('mes_report_sulf').value;
+    var ano = document.getElementById('ano_report_sulf').value;
+    if (mes == "") {
+        alert('Debe ingresar Mes');
+        return;
+    } else {
+        if (ano == "") {
+            alert('Debe ingresar Año');
+            return;
+        } else {
+            $.ajax({
+                url: 'tabla_sulf_mensual.php',
+                type: 'post',
+                data: {
+                    mes: mes,
+                    ano: ano
+                },
+                success: function(datos) {
+                    $('#tabla_sulf_mensual').html(datos);
+                }
+            });
+        }
+    }
+}
+
+function reporte_mensual_guias_ox() {
+    var mes = document.getElementById('mes_guias_oxido').value;
+    var ano = document.getElementById('ano_guias_oxido').value;
+    if (mes == "") {
+        alert('Debe ingresar Mes');
+        return;
+    } else {
+        if (ano == "") {
+            alert('Debe ingresar Año');
+            return;
+        } else {
+            $.ajax({
+                url: 'tabla_resumen_guias_oxido.php',
+                type: 'post',
+                data: {
+                    mes: mes,
+                    ano: ano
+                },
+                success: function(datos) {
+                    $('#tabla_resumen_guias_oxido').html(datos);
+                }
+            });
+            $.ajax({
+                url: 'grafico_mes_guias_tonelaje.php',
+                type: 'post',
+                data: {
+                    mes: mes,
+                    ano: ano
+                },
+                success: function(datos) {
+                    $('#grafico_mes_guias_tonelaje').html(datos);
+                }
+            });
+            $.ajax({
+                url: 'grafico_mes_guias_oxido.php',
+                type: 'post',
+                data: {
+                    mes: mes,
+                    ano: ano
+                },
+                success: function(datos) {
+                    $('#grafico_mes_guias_oxido').html(datos);
+                }
+            });
+        }
+    }
 }

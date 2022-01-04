@@ -422,8 +422,6 @@
                             </div>
                         </div>
                     </div>
-
-
                 </form>
             </div>
 
@@ -553,7 +551,7 @@
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Guias de Despacho</h4>
+                <h4 class="modal-title">Guias de Despacho Óxido</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -564,6 +562,110 @@
             <div class="modal-footer justify-content-between">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                 <input type="button" class="btn naranjo" value="Ingresar" onclick="guia_oxido()">
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+<!-- guias sulfuro -->
+
+<div class="modal fade" id="guias_sulfuro">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Guias de Despacho Sulfuro</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <input type="hidden" class="form-control" id="id_sulf" name="id_sulf">
+                    <input type="hidden" class="form-control" id="numero" name="numero">
+                    <input type="hidden" class="form-control" id="usuario" name="usuario" value="<?php echo $_SESSION['uname']; ?>">
+
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="state_id" class="control-label">Fecha</label>
+                                <input type="date" class="form-control" id="sulf_fecha" name="sulf_fecha">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label for="state_id" class="control-label">Hora</label>
+                                <input type="time" class="form-control" id="sulf_hora" name="sulf_hora">
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="state_id" class="control-label">N°Guía</label>
+                                <input type="num" class="form-control" id="sulf_guia" name="sulf_guia">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <div class="form-group"><label for="state_id" class="control-label">Responsable</label>
+                                    <select class="form-control" id="sulf_responsable" name="sulf_responsable">
+                                        <option value=""></option>
+                                        <?php
+                                        $query = $con->query("SELECT id_op, UPPER(nombre) as nombre FROM operadores where rango = 3");
+                                        while ($valores = mysqli_fetch_array($query)) {
+                                            echo '<option value="' . $valores[id_op] . '">' . $valores[nombre] . '</option>';
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="form-group"><label for="state_id" class="control-label">Patente</label>
+                                    <select class="form-control" id="sulf_patente" name="sulf_patente">
+                                        <option value=""></option>
+                                        <?php
+                                        $query = $con->query("SELECT * FROM camiones order by patente asc");
+                                        while ($valores = mysqli_fetch_array($query)) {
+                                            echo '<option value="' . $valores[id_camion] . '">' . $valores[patente] . '</option>';
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group"><label for="state_id" class="control-label">Chofer</label>
+                                    <select class="form-control" id="sulf_chofer" name="sulf_chofer">
+                                        <option value=""></option>
+                                        <?php
+                                        $query = $con->query("SELECT * FROM choferes order by nombre asc");
+                                        while ($valores = mysqli_fetch_array($query)) {
+                                            echo '<option value="' . $valores[id_chofer] . '">' . $valores[nombre] . '</option>';
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="form-group">
+                                    <label for="state_id" class="control-label">Sector</label>
+                                    <input type="number" class="form-control" id="sulf_sector" name="sulf_sector">
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label for="state_id" class="control-label">Tonelaje</label>
+                                    <input type="number" class="form-control" id="sulf_tonelaje" name="sulf_tonelaje">
+                                </div>
+                            </div>
+                        </div>
+                </form>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <input type="button" class="btn naranjo" value="Ingresar" onclick="guia_sulfuro()">
             </div>
 
         </div>

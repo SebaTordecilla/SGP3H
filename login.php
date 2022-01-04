@@ -116,12 +116,9 @@
                   window.location = "pages/operaciones/modulo_operaciones.php";
                 } else if (response == 7) {
                   window.location = "pages/mecanicos/modulo_mecanicos.php";
+                } else if (response == 8) {
+                  window.location = "pages/parrilla/modulo_parrilla.php";
                 } else {
-                  /*Swal.fire({
-                    icon: 'error',
-                    title: 'Error',
-                    text: 'Nombre o Contraseña Inválida!',
-                  })*/
                   window.alert("nombre o contraseña inválida");
                   return;
                 }

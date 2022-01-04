@@ -136,6 +136,7 @@ if(!isset($_SESSION['uname'])){
                         <th>L.Tiro</th>
                         <th>Observaciones</th>
                         <th></th>
+                        <th></th>
                       </tr>
                     </thead>
                     <?php

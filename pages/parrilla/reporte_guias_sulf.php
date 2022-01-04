@@ -94,7 +94,7 @@ include "../../conexion.php";
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1><img src="../../dist/img/operaciones.png" width="60" height="60"> Reporte Mensual Lotes Óxido</h1>
+              <h1><img src="../../dist/img/operaciones.png" width="60" height="60"> Reporte Mensual Guías Sulfuro</h1>
 
             </div>
           </div>
@@ -112,7 +112,7 @@ include "../../conexion.php";
             <div class="row">
               <div class="col-md-3">
                 <div class="form-group">
-                  <select class="form-control" id="mes_report_lote" name="mes_report_lote">
+                  <select class="form-control" id="mes_report_sulf" name="mes_report_sulf">
                     <option value=""></option>
                     <option value="1">ENERO</option>
                     <option value="2">FEBRERO</option>
@@ -133,7 +133,7 @@ include "../../conexion.php";
               </div>
               <div class="col-md-3">
                 <div class="form-group">
-                  <select class="form-control" id="ano_report_lote" name="ano_report_lote">
+                  <select class="form-control" id="ano_report_sulf" name="ano_report_sulf">
                     <option value=""></option>
                     <option value="2021">2021</option>
                     <option value="2022">2022</option>
@@ -149,7 +149,7 @@ include "../../conexion.php";
               </div>
               <div class="col-md-2">
                 <div class="form-group">
-                  <input type="button" class="btn btn-block btn-primary btn-lg naranjo" value="Reporte" onclick="reporte_mensual_lotes()">
+                  <input type="button" class="btn btn-block btn-primary btn-lg naranjo" value="Reporte" onclick="reporte_mensual_sulf()">
                 </div>
               </div>
             </div>
@@ -159,11 +159,8 @@ include "../../conexion.php";
 
           <!-- /.card-header -->
           <div class="card-body">
-            
-              <div id="target_report_lotes_mensual" style="text-align:center;"></div>
-           
             <div class="card card">
-              <div id="tabla_lotes_mensual" style="text-align:center;"></div>
+              <div id="tabla_sulf_mensual" style="text-align:center;"></div>
             </div>
           </div>
           <!-- /.card-body -->

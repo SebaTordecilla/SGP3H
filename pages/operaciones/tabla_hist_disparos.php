@@ -20,7 +20,9 @@
                 <td><?php echo $row['tiros']; ?></td>
                 <td><?php echo $row['longtiro']; ?></td>
                 <td><?php echo strtoupper($row['observaciones']); ?></td>
-                <td align="center"><a href="#" onclick="confirmar_disparo('<?php echo $row['id_disparo']; ?>')"><small class="badge badge-primary">Confirmar</small></a></td>
+                <td align="center"><a href="#" onclick="editar_disparo('<?php echo $row['id_disparo']; ?>')"><small class="badge badge-success">Edit</small></a></td>
+                <td align="center"><a href="#" onclick="confirmar_disparo('<?php echo $row['id_disparo']; ?>')"><small class="badge badge-primary">Conf</small></a></td>
+
             </tr>
     <?php
         }

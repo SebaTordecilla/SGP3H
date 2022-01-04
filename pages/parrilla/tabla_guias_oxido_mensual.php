@@ -26,7 +26,7 @@ if ($total > 0) {
 
     $sql_query = "SELECT sum(gc.tonelaje) as tonelaje, FORMAT(avg(gc.leyvis),2) as promedio FROM lotes lo 
     inner join empresas_lotes el on lo.id_emplot = el.id_emplot left join guias_camiones gc on
-    lo.id_lote = gc.id_lote where lo.id_lote = " . $id_lote . " and lo.estado = 1 group by lo.id_lote";
+    lo.id_lote = gc.id_lote where lo.id_lote = " . $id_lote . " and lo.estado in (1,2) group by lo.id_lote";
     $result = mysqli_query($con, $sql_query);
     $row0 = mysqli_fetch_array($result);
     $ton_total = number_format($row0['tonelaje'], 0, ",", ".");

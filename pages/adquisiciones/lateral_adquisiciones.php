@@ -16,9 +16,9 @@ if ($id_nivel != 8) {
     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <!--<li class="nav-header">TALLER</li>-->
         <a href="modulo_parrilla.php" class="nav-link">
-            <li class="nav-header">PARRILLA</li>
+            <li class="nav-header">ADQUISICIONES</li>
         </a>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
             <a href="" class="nav-link">
                 <i class="nav-icon far fa-bookmark"></i>
                 <p>
@@ -45,7 +45,7 @@ if ($id_nivel != 8) {
                         <i class="far fa-circle nav-icon"></i>
                         <p>Informe</p>
                     </a>
-                </li>
+                </li> 
 
             </ul>
         </li>
@@ -75,7 +75,6 @@ if ($id_nivel != 8) {
             </ul>
         </li>
 
-        <!-- dos -->
         <li class="nav-item">
             <a href="" class="nav-link">
                 <i class="nav-icon far fa-bookmark"></i>
@@ -104,7 +103,7 @@ if ($id_nivel != 8) {
                     </a>
                 </li>
             </ul>
-        </li>
+        </li>-->
 
     </ul>
 
