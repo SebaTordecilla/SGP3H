@@ -20,7 +20,7 @@ for ($i = 1; $i <= 2; $i++) {
 }
 
 $tabla = "<input type=\"hidden\" class=\"form-control\" id=\"cantidad_repa\" name=\"cantidad_repa\" value=" . substr($cadena, 0, -1) . ">";
-$tabla .= "<div class=\"card card\"><div class=\"card-header\">    <h3 class=\"card-title\"><b>Gráfico Óxido y Sulfuro</b></h3></div><div class=\"card-body\" style=\"height: 300px;\">    <div class=\"chart\">        <canvas id=\"areaPie\" style=\"min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;\"></canvas>    </div></div></div>";
+$tabla .= "<div class=\"card card\"><div class=\"card-header\">    <h3 class=\"card-title\"><b>Óxido y Sulfuro</b></h3></div><div class=\"card-body\" style=\"height: 300px;\">    <div class=\"chart\">        <canvas id=\"areaPie\" style=\"min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;\"></canvas>    </div></div></div>";
 
 echo $tabla;
 

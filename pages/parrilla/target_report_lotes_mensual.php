@@ -17,34 +17,36 @@ $lotes = $row['lotes'];
 
 $target = "
         <div class=\"row\">
-          <div class=\"col-4\">
-            <div class=\"card card\">
-              <div class=\"card-body\">
-            
-              <h3><p>TONELAJE: <b>" . $tonelaje . " Kg</b></p></h3>
- 
-              </div>
+        <div class=\"col-4\">
+          <div class=\"info-box mb-3 \">
+            <div class=\"info-box-content\">
+              <span class=\"info-box-text\">TONELAJE</span>
+              <span class=\"info-box-number\">" . $tonelaje . " Kg </span>
             </div>
           </div>
-          <div class=\"col-4\">
-          <div class=\"card card\">
-            <div class=\"card-body\">
-          
-            <h3><p>N° DE GUÍAS: <b>" . $guias . "</b></p></h3>
 
-            </div>
+        </div>
+      
+        <div class=\"col-4\">
+        <div class=\"info-box mb-3 \">
+        <div class=\"info-box-content\">
+            <span class=\"info-box-text\">N°DE GUÍAS</span>
+            <span class=\"info-box-number\">" . number_format($guias, 0, ",", ".") . " </span>
           </div>
         </div>
-        <div class=\"col-4\">
-        <div class=\"card card\">
-          <div class=\"card-body\">
-        
-          <h3><p>N° DE LOTES: <b>" . $lotes . "</b></p></h3>
 
-          </div>
+      </div>
+      
+      <div class=\"col-4\">
+      <div class=\"info-box mb-3 \">
+      <div class=\"info-box-content\">
+          <span class=\"info-box-text\">N°DE LOTES</span>
+          <span class=\"info-box-number\">" . number_format($lotes, 0, ",", ".") . " </span>
         </div>
       </div>
-        </div>
+
+      </div>
+      </div>
           
 
 ";

@@ -26,33 +26,47 @@ $sulfuro = $row['sulfuro'];
 $target = "
         <div class=\"row\">
           <div class=\"col-4\">
-            <div class=\"card card\">
-              <div class=\"card-body\">
-            
-              <h3><p>Penosa: <b>" . $penosa . "</b></p></h3>
-              <h3><p>Óxido: <b>" . $oxido . "</b></p></h3>
- 
+            <div class=\"info-box mb-3 \">
+              <div class=\"info-box-content\">
+                <span class=\"info-box-text\">PENOSA</span>
+                <span class=\"info-box-number\">" . number_format($penosa, 0, ",", ".") . " </span>
               </div>
             </div>
-          </div>
-          <div class=\"col-4\">
-          <div class=\"card card\">
-            <div class=\"card-body\">
-          
-            <h3><p>Patricia: <b>" . $patricia . "</b></p></h3>
-            <h3><p>Sulfuro: <b>" . $sulfuro . "</b></p></h3>
-
+            <div class=\"info-box mb-3 \">
+            <div class=\"info-box-content\">
+              <span class=\"info-box-text\">ÓXIDO</span>
+              <span class=\"info-box-number\">" . number_format($oxido, 0, ",", ".") . " </span>
+            </div>
             </div>
           </div>
-        </div>
-        <div class=\"col-4\">
-        <div class=\"card card\">
-          <div class=\"card-body\">
-        
-          <h3><p>Cajón: <b>" . $cajon . "</b></p></h3>
-          <h3><p>Total: <b>" . $total . "</b></p></h3>
 
+          <div class=\"col-4\">
+          <div class=\"info-box mb-3 \">
+          <div class=\"info-box-content\">
+              <span class=\"info-box-text\">PATRICIA</span>
+              <span class=\"info-box-number\">" . number_format($patricia, 0, ",", ".") . " </span>
+            </div>
           </div>
+          <div class=\"info-box mb-3 \">
+          <div class=\"info-box-content\">
+            <span class=\"info-box-text\">SULFURO</span>
+            <span class=\"info-box-number\">" . number_format($sulfuro, 0, ",", ".") . " </span>
+          </div>
+          </div>
+        </div>
+
+        <div class=\"col-4\">
+        <div class=\"info-box mb-3 \">
+        <div class=\"info-box-content\">
+            <span class=\"info-box-text\">CAJON</span>
+            <span class=\"info-box-number\">" . number_format($cajon, 0, ",", ".") . " </span>
+          </div>
+        </div>
+        <div class=\"info-box mb-3 \">
+        <div class=\"info-box-content\">
+          <span class=\"info-box-text\">TOTAL</span>
+          <span class=\"info-box-number\">" . number_format($total, 0, ",", ".") . " </span>
+        </div>
         </div>
       </div>
         </div>

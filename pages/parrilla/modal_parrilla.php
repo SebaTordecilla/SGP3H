@@ -1,6 +1,6 @@
 <!--./ Modal Nueva Extraccion-->
 <div class="modal fade" id="modal_nueva_extraccion">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">Registro Extracción Mineral</h4>

@@ -137,7 +137,7 @@ include "../../conexion.php";
                                             <div class="col-3">
                                             </div>
                                             <div class="col-6">
-                                                <a href="nuevo_hallazgo.php" target="_parent">
+                                                <a href="nueva_ingreso_sulfuro.php" target="_parent">
                                                     <button type="button" class="btn btn-block btn-outline-success btn-lg">Viajes Sulfuro</button>
                                                 </a>
                                             </div>
@@ -149,8 +149,8 @@ include "../../conexion.php";
                                             <div class="col-3">
                                             </div>
                                             <div class="col-6">
-                                                <a href="nuevo_hallazgo.php" target="_parent">
-                                                    <button type="button" class="btn btn-block btn-outline-danger btn-lg">Viajes Oxido</button>
+                                                <a href="nueva_ingreso_oxido.php" target="_parent">
+                                                    <button type="button" class="btn btn-block btn-outline-danger btn-lg">Viajes Óxido</button>
                                                 </a>
                                             </div>
                                             <div class="col-3">

@@ -94,7 +94,7 @@ include "../../conexion.php";
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1><img src="../../dist/img/operaciones.png" width="60" height="60"> Informe Mensual Extracción de Mineral</h1>
+              <h1><img src="../../dist/img/operaciones.png" width="60" height="60"> Informe Extracción de Mineral</h1>
 
             </div>
           </div>

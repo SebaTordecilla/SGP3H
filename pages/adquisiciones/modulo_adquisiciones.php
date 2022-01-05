@@ -116,10 +116,25 @@ include "../../conexion.php";
 
                                 <!-- /.card-header -->
                                 <div class="card-body">
-                                    <!-- CONTENIDO PAGINA -->
-                                    <form>
-
-                                    </form>
+                                    <table id="example1" class="table table-bordered table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>N°OC</th>
+                                                <th>Empresa</th>
+                                                <th>Proveedor</th>
+                                                <th>Fecha</th>
+                                                <th>Cond.Pago</th>
+                                                <th>N°Cotiz.</th>
+                                                <th>N°Pedido</th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <?php
+                                        include('tabla_oc_activo.php')
+                                        ?>
+                                    </table>
                                 </div>
                             </div>
 
@@ -130,7 +145,7 @@ include "../../conexion.php";
                     <!-- /.col -->
                 </div>
                 <!-- /.row -->
-                <?php include('modal_adquisiciones.php') 
+                <?php include('modal_adquisiciones.php')
                 ?>
 
             </section>

@@ -9,18 +9,18 @@ FROM guias_camiones  gc left join ubicaciones_minas um on gc.id_ubicacion= um.id
 $total = $resultado->num_rows;
 $tabla = "";
 if ($total > 0) {
-    $tabla = "<table id=\"example1\" class=\"table table-sm\">";
-    $tabla .= "<thead><tr><th>N°Guía</th><th>Fecha</th><th>Hora</th><th>Mina</th><th>Patente</th><th>Chofer</th><th>Tonelaje</th><th>LeyVis</th></tr></thead>";
+    $tabla = "<table id=\"ejemplo2\" class=\"table table-sm\">";
+    $tabla .= "<thead><tr><th>N°Guía</th><th>Fecha</th><th>Hora</th><th>Mina</th><th>Patente</th><th>Chofer</th><th>Tonelaje</th></tr></thead>";
     while ($row = $resultado->fetch_assoc()) {
         $tabla .= "<tr>";
         $tabla .= "<td>" . $row['num_guia'] . "</td>";
-        $tabla .= "<td>" . date("d-m-Y", strtotime($row['fecha'])) . "</td>";
+        $tabla .= "<td>" . date("d/m/Y", strtotime($row['fecha'])) . "</td>";
         $tabla .= "<td>" . $row['hora'] . "</td>";
         $tabla .= "<td>" . $row['mina'] . "</td>";
         $tabla .= "<td>" . $row['patente'] . "</td>";
         $tabla .= "<td>" . $row['chofer'] . "</td>";
         $tabla .= "<td>" . number_format($row['tonelaje'], 0, ",", ".") . "</td>";
-        $tabla .= "<td>" . $row['leyvis'] . "</td>";
+        //$tabla .= "<td>" . $row['leyvis'] . "</td>";
         $tabla .= "</tr>";
     }
 
@@ -32,7 +32,31 @@ if ($total > 0) {
     $ton_total = number_format($row0['tonelaje'], 0, ",", ".");
     $promedio = $row0['promedio'];
 
-    $tabla .= "<tfoot><tr><th></th><th></th><th></th><th></th><th></th><th></th><th>" . $ton_total . "</th><th>" . $promedio . "</th></tr></tfoot>";
+    $tabla .= "<tfoot><tr><th></th><th></th><th></th><th></th><th></th><th></th><th>" . $ton_total . "</th></tr></tfoot>";
+
     $tabla .= "</table>";
     echo $tabla;
 }
+
+
+?>
+
+<script>
+    $(function() {
+      $("#ejemplo1").DataTable({
+        "responsive": true,
+        "lengthChange": false,
+        "autoWidth": false,
+        //"buttons": ["excel", "colvis"]
+      }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+      $('#ejemplo2').DataTable({
+        "paging": false,
+        "lengthChange": false,
+        "searching": false,
+        "ordering": true,
+        "info": false,
+        "autoWidth": false,
+        "responsive": true,
+      });
+    });
+  </script>
