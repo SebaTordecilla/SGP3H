@@ -46,7 +46,7 @@ if ($fecha == "") {
     ,em.id_ubicacion,em.id_manto,em.id_calle,em.id_labor,em.id_equipo,em.id_op,	em.id_mineral,em.id_obs_min,
     if(em.hora1='00:00:00',' ',em.hora1) as hora1,if(em.hora2='00:00:00',' ',em.hora2) as hora2,if(em.hora3='00:00:00',' ',em.hora3) as hora3,	if(em.hora4='00:00:00',' ',em.hora4) as hora4,
     if(em.hora5='00:00:00',' ',em.hora5) as hora5 FROM extraccion_mineral em inner join lista_equipos le on em.id_equipo= le.id_equipo inner join ubicaciones_minas um on em.id_ubicacion = um.id_ubicacion
-    inner join operadores o on em.id_op = o.id_op inner join mantos m on m.id_manto = em.id_manto inner join calles c on c.id_calle = em.id_calle left join levantes l on l.id_levante = em.id_labor
+    inner join operadores o on em.id_op = o.id_op inner join mantos m on m.id_manto = em.id_manto LEFT join calles c on c.id_calle = em.id_calle left join levantes l on l.id_levante = em.id_labor
     inner join minerales mn on mn.id_mineral = em.id_mineral left join observaciones_minerales osm on em.id_obs_min = osm.id_obs_min where em.estado =2 and fecha = '" . $fecha . "';");
 
     $total = $resultado->num_rows;
@@ -84,7 +84,7 @@ if ($fecha == "") {
             "responsive": true,
             "lengthChange": false,
             "autoWidth": false,
-            //"buttons": ["excel"]
+            "buttons": ["excel"]
         }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
         $('#example2').DataTable({
             "paging": true,

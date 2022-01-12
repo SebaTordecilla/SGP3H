@@ -20,7 +20,7 @@ $usuario = mysqli_real_escape_string($con, $_POST['usuario']);
 
 if ($id_ubicacion > 0) {
     $sql_query = "INSERT INTO extraccion_mineral(id_ubicacion, id_manto, id_calle, id_labor, fecha, id_equipo, id_op, id_mineral, id_obs_min, hora1, hora2, hora3, hora4, hora5, estado, registro) 
-    VALUES (" . $id_ubicacion . ", " . $id_manto . ", " . $id_calle . ", '" . $id_labor . "', '" . $fecha . "', " . $id_equipo . ", " . $id_op . ", '" . $tipo . "','" . $id_obs_min . "' ,'" . $hora1 . "', '" . $hora2 . "', '" . $hora3 . "', '" . $hora4 . "', '" . $hora5 . "', 1,  CONCAT('" . $usuario . " - ', NOW()))";
+    VALUES (" . $id_ubicacion . ", " . $id_manto . ", '" . $id_calle . "', '" . $id_labor . "', '" . $fecha . "', " . $id_equipo . ", " . $id_op . ", '" . $tipo . "','" . $id_obs_min . "' ,'" . $hora1 . "', '" . $hora2 . "', '" . $hora3 . "', '" . $hora4 . "', '" . $hora5 . "', 1,  CONCAT('" . $usuario . " - ', NOW()))";
     $result = mysqli_query($con, $sql_query);
     echo 1;
 } else {

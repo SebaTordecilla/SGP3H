@@ -14,34 +14,33 @@ if ($id_nivel != 8) {
 ?>
 <nav class="mt-2">
     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-        <!--<li class="nav-header">TALLER</li>-->
-        <a href="modulo_parrilla.php" class="nav-link">
+        <a href="modulo_adquisiciones.php" class="nav-link">
             <li class="nav-header">ADQUISICIONES</li>
         </a>
-        <!-- <li class="nav-item">
+         <li class="nav-item">
             <a href="" class="nav-link">
                 <i class="nav-icon far fa-bookmark"></i>
                 <p>
-                    Extracción Mineral
+                    Solicitudes de Compra
                     <i class="fas fa-angle-left right"></i>
                 </p>
             </a>
             <ul class="nav nav-treeview">
                 <li class="nav-item">
-                    <a href="nueva_extraccion.php" class="nav-link">
+                    <a href="solicitudes_compra.php" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Nuevo</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="reporte_diario.php" class="nav-link">
+                    <a href="solicitudes_activas.php" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
-                        <p>Reporte</p>
+                        <p>Activas</p>
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a href="informe_extraccion_mensual.php" class="nav-link">
+                    <a href="informe_solicitudes.php" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Informe</p>
                     </a>
@@ -54,21 +53,27 @@ if ($id_nivel != 8) {
             <a href="" class="nav-link">
                 <i class="nav-icon far fa-bookmark"></i>
                 <p>
-                    Viajes Sulfuro
+                    Ordenes de Compra
                     <i class="fas fa-angle-left right"></i>
                 </p>
             </a>
             <ul class="nav nav-treeview">
                 <li class="nav-item">
-                    <a href="nueva_ingreso_sulfuro.php" class="nav-link">
+                    <a href="modulo_adquisiciones.php" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Nuevo</p>
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="oc_activas.php" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Activas</p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="reporte_guias_sulf.php" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
-                        <p>Reporte</p>
+                        <p>Informe</p>
                     </a>
                 </li>
 
@@ -79,31 +84,19 @@ if ($id_nivel != 8) {
             <a href="" class="nav-link">
                 <i class="nav-icon far fa-bookmark"></i>
                 <p>
-                    Viajes Óxido
+                    Proveedores
                     <i class="fas fa-angle-left right"></i>
                 </p>
             </a>
             <ul class="nav nav-treeview">
                 <li class="nav-item">
-                    <a href="nueva_ingreso_oxido.php" class="nav-link">
+                    <a href="proveedores.php" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
-                        <p>Nuevo</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="reporte_lotes_oxido.php" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Lotes</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="reporte_guias_oxido.php" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Guías</p>
+                        <p>Lista</p>
                     </a>
                 </li>
             </ul>
-        </li>-->
+        </li>
 
     </ul>
 

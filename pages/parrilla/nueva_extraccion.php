@@ -115,7 +115,7 @@ include "../../conexion.php";
                     <button type="button" class="btn naranjo btn-info dropdown-toggle dropdown-icon" data-toggle="dropdown">Acciones </button>
                     <div class="dropdown-menu">
                       <a class="dropdown-item" data-toggle="modal" data-target="#modal_nueva_extraccion">Registro Dumpada</a>
-                      <a class="dropdown-item" data-toggle="modal" data-target="#modal_nueva_coordenada">Nueva coordenada</a>
+                      <a class="dropdown-item" data-toggle="modal" data-target="#modal_coordenada23">Nueva coordenada</a>
                     </div>
                   </div>
                 </div>
@@ -133,6 +133,7 @@ include "../../conexion.php";
                         <th>Tipo</th>
                         <th>Observaciones</th>
                         <th>Cant.</th>
+                        <th></th>
                         <th></th>
                       </tr>
                     </thead>
@@ -233,6 +234,20 @@ include "../../conexion.php";
         "autoWidth": false,
         "responsive": true,
       });
+    });
+
+    $(function() {
+      $("#tipo_coordenada").change(function() {
+        if ($(this).val() === "1") {
+          $("#coord_mina").prop("disabled", false);
+        } else if ($(this).val() === "2") {
+          $("#coord_mina").prop("enabled", false);
+        } else if ($(this).val() === "3") {
+          $("#coord_mina").prop("enabled", false);
+
+        }
+      });
+
     });
   </script>
 

@@ -347,6 +347,57 @@
     </div>
 </div>
 
+<!-- MODAL NUEVA COORDENADA -->
+<div class="modal fade" id="modal_coordenada23">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Nueva Coordenada</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group"><label for="state_id" class="control-label">Tipo</label>
+                            <select class="form-control" id="tipo_coordenada" name="tipo_coordenada">
+                                <option value=""></option>
+                                <option value="1">MANTO</option>
+                                <option value="2">CALLE</option>
+                                <option value="3">LABOR</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label for="state_id" class="control-label">Coordenada</label>
+                            <input type="text" class="form-control" id="coordenada" name="coordenada">
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group"><label for="state_id" class="control-label">Mina</label>
+                            <select class="form-control" id="coord_mina" name="coord_mina" disabled>
+                                <option value=""></option>
+                                <?php
+                                $query = $con->query("SELECT * FROM ubicaciones_minas");
+                                while ($valores = mysqli_fetch_array($query)) {
+                                    echo '<option value="' . $valores[id_ubicacion] . '">' . $valores[nombre] . '</option>';
+                                }
+                                ?>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <input type="button" class="btn naranjo" value="Ingresar" onclick="nueva_coordenada()">
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <!--./ Modal Nueva Lote Oxido-->
 <div class="modal fade" id="modal_nuevo_lote">
@@ -402,8 +453,6 @@
                                     <option value="11">NOVIEMBRE</option>
                                     <option value="12">DICIEMBRE</option>
                                 </select>
-
-                                <!-- /.input group -->
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -667,8 +716,8 @@
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                 <input type="button" class="btn naranjo" value="Ingresar" onclick="guia_sulfuro()">
             </div>
-
         </div>
-
     </div>
 </div>
+
+

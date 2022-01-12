@@ -9,7 +9,7 @@ $ano = mysqli_real_escape_string($con, $_POST['ano']);
 
 
 $cadena = "";
-for ($i = 1; $i <= 2; $i++) {
+for ($i = 1; $i <= 3; $i++) {
 
     $sql = "SELECT sum(if(hora1 = '00:00:00',0,1)+ if(hora2 = '00:00:00',0,1) +if(hora3 = '00:00:00',0,1) +if(hora4 = '00:00:00',0,1) +if(hora5 = '00:00:00',0,1)) as tipo FROM extraccion_mineral where month(fecha) = " . $mes . " and year(fecha)=" . $ano . "   and estado = 2 and id_mineral = " . $i . " ";
     $result = mysqli_query($con, $sql);
@@ -39,12 +39,12 @@ echo $tabla;
         var areaChartData = {
 
             labels: [
-                'Óxido', 'Sulfuro',
+                'Óxido', 'Sulfuro','Esteril'
             ],
             datasets: [{
-                data: [list2[0], list2[1]],
+                data: [list2[0], list2[1], list2[2]],
                 // data: [5, 3, 4, 6, 1],
-                backgroundColor: [ '#00a65a','#f56954'],
+                backgroundColor: ['#00a65a', '#f56954', '#A9B3B4'],
             }]
 
         }

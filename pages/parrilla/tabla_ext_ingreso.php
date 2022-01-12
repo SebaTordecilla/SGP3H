@@ -31,7 +31,10 @@
                     <a><small class="badge badge-success"><?php echo $cantidad ?></small></a>
                 </td>
                 <td align="center">
-                    <a href="#" onclick="cerrar_extmin('<?php echo $row['id_extmin']; ?>')"><small class="badge badge-danger">Conf.</small></a>
+                    <a href="#" onclick="cerrar_extmin('<?php echo $row['id_extmin']; ?>')"><small class="badge badge-warning">Conf.</small></a>
+                </td>
+                <td align="center">
+                    <a href="#" onclick="borrar_extmin('<?php echo $row['id_extmin']; ?>')"><small class="badge badge-danger">Borrar</small></a>
                 </td>
 
             </tr>

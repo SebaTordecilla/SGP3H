@@ -840,3 +840,65 @@ function reporte_mensual_guias_ox() {
         }
     }
 }
+
+function borrar_extmin(id_extmin) {
+    var id_extmin = id_extmin;
+    if (confirm('Desea Eliminar Registro?')) {
+        $.ajax({
+            url: 'borrar_extraccion.php',
+            type: 'post',
+            data: {
+                id_extmin: id_extmin
+            },
+            success: function(response) {
+                if (response == 1) {
+                    window.alert("Registro Borrado");
+                    location.reload();
+                } else {
+                    window.alert("Error");
+                    return;
+                }
+            }
+        });
+    }
+
+}
+
+function nueva_coordenada() {
+    const tipo = document.getElementById('tipo_coordenada').value;
+    const coordenada = document.getElementById('coordenada').value;
+    const id_ubicacion = document.getElementById('coord_mina').value;
+    if (tipo == "") {
+        alert('Debe ingresar Tipo');
+        return;
+    } else {
+        if (coordenada == "") {
+            alert('Debe ingresar Coordenada');
+            return;
+        } else {
+            if (confirm('Desea Ingresar Coordenada?')) {
+                $.ajax({
+                    url: 'nueva_coordenada.php',
+                    type: 'post',
+                    data: {
+                        tipo: tipo,
+                        coordenada: coordenada,
+                        id_ubicacion: id_ubicacion
+                    },
+                    success: function(response) {
+                        if (response == 1) {
+                            window.alert("Coordenada ya existe");
+                            return;
+                        } else if (response == 2) {
+                            window.alert("Coordenada Creada");
+                            location.reload();
+                        } else {
+                            window.alert("Error");
+                            return;
+                        }
+                    }
+                });
+            }
+        }
+    }
+}
