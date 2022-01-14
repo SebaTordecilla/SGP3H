@@ -266,32 +266,64 @@ function nueva_solicitud() {
                             alert('Debe ingresar Justificación');
                             return;
                         } else {
-                            if (confirm('Desea crear Solicitud de Compra?')) {
-                                $.ajax({
-                                    url: 'nueva_solicitud.php',
-                                    type: 'post',
-                                    data: {
-                                        solicitado: solicitado,
-                                        hora: hora,
-                                        fecha: fecha,
-                                        area: area,
-                                        prioridad: prioridad,
-                                        justificacion: justificacion,
-                                        id_solicitud: id_solicitud
-                                    },
-                                    success: function(response) {
-                                        if (response == 1) {
-                                            window.alert("Solicitud Ingresada");
-                                            location.reload();
-                                        } else if (response == 2) {
-                                            window.alert("Solicitud Editada");
-                                            location.reload();
-                                        } else {
-                                            window.alert("Error");
-                                            return;
+                            if (id_solicitud > 0) {
+                                if (confirm('Desea Editar Solicitud de Compra?')) {
+                                    $.ajax({
+                                        url: 'nueva_solicitud.php',
+                                        type: 'post',
+                                        data: {
+                                            solicitado: solicitado,
+                                            hora: hora,
+                                            fecha: fecha,
+                                            area: area,
+                                            prioridad: prioridad,
+                                            justificacion: justificacion,
+                                            id_solicitud: id_solicitud
+                                        },
+                                        success: function(response) {
+                                            if (response == 1) {
+                                                window.alert("Solicitud Ingresada");
+                                                location.reload();
+                                            } else if (response == 2) {
+                                                window.alert("Solicitud Editada");
+                                                location.reload();
+                                            } else {
+                                                window.alert("Error");
+                                                return;
+                                            }
                                         }
-                                    }
-                                });
+                                    });
+                                }
+
+                            } else {
+                                if (confirm('Desea crear Solicitud de Compra?')) {
+                                    $.ajax({
+                                        url: 'nueva_solicitud.php',
+                                        type: 'post',
+                                        data: {
+                                            solicitado: solicitado,
+                                            hora: hora,
+                                            fecha: fecha,
+                                            area: area,
+                                            prioridad: prioridad,
+                                            justificacion: justificacion,
+                                            id_solicitud: id_solicitud
+                                        },
+                                        success: function(response) {
+                                            if (response == 1) {
+                                                window.alert("Solicitud Ingresada");
+                                                location.reload();
+                                            } else if (response == 2) {
+                                                window.alert("Solicitud Editada");
+                                                location.reload();
+                                            } else {
+                                                window.alert("Error");
+                                                return;
+                                            }
+                                        }
+                                    });
+                                }
+
                             }
                         }
                     }
@@ -469,6 +501,9 @@ function confirmar_oc(id_oc) {
                 if (response == 1) {
                     window.alert("OC Confirmada");
                     location.reload();
+                } else if (response == 2) {
+                    window.alert("OC no tiene artículos");
+                    return;
                 } else {
                     window.alert("Error");
                     return;
@@ -542,5 +577,186 @@ function agregar_documento() {
                 });
             }
         }
+    }
+}
+
+function edit_sol(id_solicitud, solicitado, hora, fecha, area, prioridad, justificacion) {
+    $('#sol_solicitado').val(solicitado);
+    $('#sol_hora').val(hora);
+    $('#sol_fecha').val(fecha);
+    $('#sol_area').val(area);
+    $('#sol_prioridad').val(prioridad);
+    $('#sol_justificacion').val(justificacion);
+    $('#id_solicitud').val(id_solicitud);
+
+    $('#modal_nueva_solicitud').modal('show');
+
+}
+
+function confirmar_sol(id_solicitud) {
+    var id_solicitud = id_solicitud;
+    if (confirm('Desea Confirmar Solicitud de Compra?')) {
+        $.ajax({
+            url: 'confirmar_sol.php',
+            type: 'post',
+            data: {
+                id_solicitud: id_solicitud
+            },
+            success: function(response) {
+                if (response == 1) {
+                    window.alert("Solicitud Confirmada");
+                    location.reload();
+                } else if (response == 2) {
+                    window.alert("Solicitud No contiene Artículos");
+                    return;
+                } else {
+                    window.alert("Error");
+                    return;
+                }
+            }
+        });
+    }
+}
+
+function oc_sol(id_pedido) {
+    var id_pedido = id_pedido;
+    document.getElementById('num_id_sol').innerHTML = 'N°Solicitud: ' + id_pedido;
+    $('#id_pedido').val(id_pedido);
+    $('#oc_sol').modal('show');
+    $.ajax({
+        url: 'tabla_sol_oc.php',
+        type: 'post',
+        data: {
+            id_pedido: id_pedido
+        },
+        success: function(datos) {
+            $('#tabla_sol_oc').html(datos);
+        }
+    });
+
+}
+
+function cerrar_sol(id_solicitud) {
+    var id_solicitud = id_solicitud;
+
+    if (confirm('Desea Cerrar Solicitud de Compra?')) {
+        $.ajax({
+            url: 'cerrar_sol.php',
+            type: 'post',
+            data: {
+                id_solicitud: id_solicitud
+            },
+            success: function(response) {
+                if (response == 1) {
+                    window.alert("Solicitud Cerrada");
+                    location.reload();
+                } else {
+                    window.alert("Error");
+                    return;
+                }
+            }
+        });
+    }
+}
+
+function informe_mensual_solicitudes() {
+    const mes = document.getElementById('mes_sol_informe').value;
+    const ano = document.getElementById('ano_sol_informe').value;
+    $.ajax({
+        url: 'tabla_sol_inf.php',
+        type: 'post',
+        data: {
+            mes: mes,
+            ano: ano
+        },
+        success: function(datos) {
+            $('#tabla_sol_inf').html(datos);
+
+        }
+    });
+
+}
+
+
+function informe_mensual_oc() {
+    const mes = document.getElementById('mes_oc_informe').value;
+    const ano = document.getElementById('ano_oc_informe').value;
+    $.ajax({
+        url: 'tabla_oc_inf.php',
+        type: 'post',
+        data: {
+            mes: mes,
+            ano: ano
+        },
+        success: function(datos) {
+            $('#tabla_oc_inf').html(datos);
+
+        }
+    });
+
+}
+
+function cerrar_oc(id_oc) {
+    var id_oc = id_oc;
+
+    if (confirm('Desea Cerrar Orden de Compra?')) {
+        $.ajax({
+            url: 'cerrar_oc.php',
+            type: 'post',
+            data: {
+                id_oc: id_oc
+            },
+            success: function(response) {
+                if (response == 1) {
+                    window.alert("Orden de Compra Cerrada");
+                    location.reload();
+                } else if (response == 2) {
+                    window.alert("Orden de Compra No tiene documentos asociados");
+                    return;
+                } else {
+                    window.alert("Error");
+                    return;
+                }
+            }
+        });
+    }
+}
+
+
+function doc_oc2(id_oc, num_oc) {
+    var id_oc = id_oc;
+    var num_oc = num_oc;
+    document.getElementById('num_oc2').innerHTML = 'OC ' + num_oc;
+    $('#doc_oc2').modal('show');
+    $.ajax({
+        url: 'tabla_doc_oc.php',
+        type: 'post',
+        data: {
+            id_oc: id_oc,
+        },
+        success: function(datos) {
+            $('#tabla_doc_oc2').html(datos);
+        }
+    });
+}
+
+function buscar_Articulos() {
+    const buscar = document.getElementById('buscar_art').value;
+    const tipo = document.getElementById('tipo_busqueda').value;
+    if (tipo == "") {
+        alert('Debe ingresar Tipo');
+        return;
+    } else {
+        $.ajax({
+            url: 'tabla_busqueda_art.php',
+            type: 'post',
+            data: {
+                buscar: buscar,
+                tipo: tipo
+            },
+            success: function(datos) {
+                $('#tabla_busqueda_art').html(datos);
+            }
+        });
     }
 }

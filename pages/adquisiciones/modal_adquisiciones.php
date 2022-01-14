@@ -70,7 +70,7 @@
                                 <select class="form-control" id="adq_id_pedido" name="adq_id_proveedor">
                                     <option value=""></option>
                                     <?php
-                                    $query = $con->query("SELECT id_pedido FROM solicitudes_compra where estado =1 order by id_pedido desc");
+                                    $query = $con->query("SELECT id_pedido FROM solicitudes_compra where estado =2 order by id_pedido desc");
                                     while ($valores = mysqli_fetch_array($query)) {
                                         echo '<option value="' . $valores[id_pedido] . '">' . $valores[id_pedido] . '</option>';
                                     }
@@ -377,6 +377,46 @@
                     </div>
                 </div>
                 <div id="tabla_doc_oc" style="padding-top:10px;"></div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="modal fade" id="oc_sol">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Ordenes de Compra
+                    <label id="num_id_sol"></label>
+                </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="tabla_sol_oc" style="padding-top:10px;"></div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="modal fade" id="doc_oc2">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Documentos
+                    <label id="num_oc2"></label>
+                </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="tabla_doc_oc2" style="padding-top:10px;"></div>
             </div>
         </div>
 

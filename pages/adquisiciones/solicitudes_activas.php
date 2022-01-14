@@ -119,17 +119,18 @@ include "../../conexion.php";
                                             <tr>
                                                 <th>N°SOL.</th>
                                                 <th>SOLICITADO</th>
-                                                <th>HORA</th>
                                                 <th>FECHA</th>
                                                 <th>ÁREA</th>
                                                 <th>PRIORIDAD</th>
-                                                <th></th>
-                                                <th></th>
+                                                <th>Art.Sol</th>
+                                                <th>Art.OC</th>
+                                                <th>%</th>
+
                                                 <th></th>
                                             </tr>
                                         </thead>
                                         <?php
-                                        include('tabla_sol_activo.php')
+                                        include('tabla_sol_conf.php')
                                         ?>
                                     </table>
                                 </div>

@@ -1,8 +1,50 @@
+function ingresar() {
+    const username = document.getElementById('txt_uname').value;
+    const password = document.getElementById('txt_pwd').value;
+    $.ajax({
+        url: 'pages/checkUser.php',
+        type: 'post',
+        data: {
+            username: username,
+            password: password,
+        },
+        success: function(response) {
+            if (response == 2) {
+                window.location = "pages/taller/modulo_taller_mecanico.php";
+            } else if (response == 3) {
+                window.location = "pages/supervisores/modulo_supervisor.php";
+            } else if (response == 4) {
+                window.location = "pages/geologia/modulo_geologia.php";
+            } else if (response == 5) {
+                window.location = "pages/laboratorio/modulo_laboratorio.php";
+            } else if (response == 6) {
+                window.location = "pages/operaciones/modulo_operaciones.php";
+            } else if (response == 7) {
+                window.location = "pages/mecanicos/modulo_mecanicos.php";
+            } else if (response == 8) {
+                window.location = "pages/parrilla/modulo_parrilla.php";
+            } else if (response == 9) {
+                window.location = "pages/parrilla_info/modulo_parrilla.php";
+            } else {
+                window.alert("nombre o contraseña inválida");
+                return;
+            }
+        }
+    });
+}
+
+
+
+
+
 /**
  * --------------------------------------------
  * Funciones Taller Mecanico
  * --------------------------------------------
  */
+
+
+
 $(document).ready(function() {
     $('#tequipo').val(1);
     recargarLista();

@@ -81,7 +81,7 @@ include "../../conexion.php";
             </div>
 
             <!-- Sidebar Menu -->
-            <?php include("lateral_parrilla.php") ?>
+            <?php include("lateral_adquisiciones.php") ?>
             <!-- /.sidebar-menu -->
 
             <!-- /.sidebar -->
@@ -94,8 +94,7 @@ include "../../conexion.php";
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1><img src="../../dist/img/operaciones.png" width="60" height="60"> Parrilla</h1>
-
+                            <h1><img src="../../dist/img/adquisiciones.png" width="60" height="60">BÚSQUEDA ARTÍCULOS OC</h1>
                         </div>
                     </div>
                 </div><!-- /.container-fluid -->
@@ -107,56 +106,45 @@ include "../../conexion.php";
             <!-- Main content -->
             <section class="content">
                 <div class="container-fluid">
+
+
+                    <form>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <input type="text" class="form-control " id="buscar_art" name="buscar_art">
+                                    <label>Nombre:</label>
+                                    <!-- /.input group -->
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <select class="form-control" id="tipo_busqueda" name="tipo_busqueda">
+                                        <option value=""></option>
+                                        <option value="1">ARTÍCULO</option>
+                                        <option value="2">PROVEEDOR</option>
+                                        <option value="3">ÁREA</option>
+                                    </select>
+                                    <label>tipo:</label>
+                                    <!-- /.input group -->
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <input type="button" class="btn btn-block btn-primary btn-lg naranjo" value="Buscar" onclick="buscar_Articulos()">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
-                                <div class="card-header">
-                                    <h3 class="card-title">
-                                        <!--subtitulo de pagina-->
-                                    </h3>
-                                    <br>
-                                </div>
 
                                 <!-- /.card-header -->
                                 <div class="card-body">
-                                    <!-- CONTENIDO PAGINA -->
-                                    <form>
-                                        <div class="row">
-                                            <div class="col-3">
-                                            </div>
-                                            <div class="col-6">
-                                                <a href="nueva_extraccion.php" target="_parent">
-                                                    <button type="button" class="btn btn-block btn-outline-info btn-lg">Ext. Mineral</button>
-                                                </a>
-                                            </div>
-                                            <div class="col-3">
-                                            </div>
-                                        </div>
-                                        <br>
-                                        <div class="row">
-                                            <div class="col-3">
-                                            </div>
-                                            <div class="col-6">
-                                                <a href="nueva_ingreso_sulfuro.php" target="_parent">
-                                                    <button type="button" class="btn btn-block btn-outline-danger btn-lg">Viajes Sulfuro</button>
-                                                </a>
-                                            </div>
-                                            <div class="col-3">
-                                            </div>
-                                        </div>
-                                        <br>
-                                        <div class="row">
-                                            <div class="col-3">
-                                            </div>
-                                            <div class="col-6">
-                                                <a href="nueva_ingreso_oxido.php" target="_parent">
-                                                    <button type="button" class="btn btn-block btn-outline-success btn-lg">Viajes Óxido</button>
-                                                </a>
-                                            </div>
-                                            <div class="col-3">
-                                            </div>
-                                        </div>
-                                    </form>
+
+                                    <div id="tabla_busqueda_art" style="padding-top:10px;"></div>
+
                                 </div>
                             </div>
 
@@ -167,7 +155,8 @@ include "../../conexion.php";
                     <!-- /.col -->
                 </div>
                 <!-- /.row -->
-                <?php include('modal_parrilla.php') ?>
+                <?php include('modal_adquisiciones.php')
+                ?>
 
             </section>
 
@@ -225,11 +214,33 @@ include "../../conexion.php";
     <script src="../../dist/js/adminlte.min.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="../../dist/js/demo.js"></script>
+
     <!-- Page specific script -->
     <!-- <script src="../funcionesjs/funciones_taller.js"></script> -->
-    <script src="../funcionesjs/funciones_parrilla.js"></script>
+    <script src="../funcionesjs/funciones_adquisiciones.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+    <script>
+        $(function() {
+            $("#example1").DataTable({
+                "responsive": true,
+                "lengthChange": false,
+                "autoWidth": false,
+                "buttons": ["excel"]
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+            $('#example2').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "responsive": true,
+            });
+        });
+    </script>
+
 
 </body>
 

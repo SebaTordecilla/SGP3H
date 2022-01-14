@@ -12,7 +12,7 @@ $id_solicitud = mysqli_real_escape_string($con, $_POST['id_solicitud']);
 
 
 if ($id_solicitud > 0) {
-    $sql_query = "UPDATE ordenes_compras SET id_empresa='" . $id_empresa . "',id_proveedor='" . $id_proveedor . "',pago='" . $pago . "',cotizacion='" . $cotizacion . "',id_pedido='" . $id_pedido . "',fecha='" . $fecha . "' where id_oc ='" . $id_oc . "'";
+    $sql_query = "UPDATE solicitudes_compra SET solicitado='" . $solicitado . "',hora='" . $hora . "',fecha='" . $fecha . "',area='" . $area . "',prioridad='" . $prioridad . "',justificacion='" . $justificacion . "' WHERE id_solicitud =" . $id_solicitud . ";";
     $result = mysqli_query($con, $sql_query);
     echo 2;
 } else {

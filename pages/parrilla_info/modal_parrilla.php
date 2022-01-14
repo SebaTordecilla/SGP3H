@@ -700,7 +700,7 @@
                             <div class="col-sm-2">
                                 <div class="form-group">
                                     <label for="state_id" class="control-label">Sector</label>
-                                    <input type="text" class="form-control" id="sulf_sector" name="sulf_sector">
+                                    <input type="number" class="form-control" id="sulf_sector" name="sulf_sector">
                                 </div>
                             </div>
                             <div class="col-sm-3">

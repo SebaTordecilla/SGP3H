@@ -58,6 +58,8 @@
             <!-- /.col -->
             <div class="col-4">
               <input type="button" class="btn btn-user btn-block naranjo" value="ingresa" name="but_submit" id="but_submit">
+              <!-- <input type="button" class="btn btn-user btn-block naranjo" value="Ingresar" onclick="ingresar()"> -->
+
             </div>
             <!-- /.col -->
           </div>
@@ -118,7 +120,9 @@
                   window.location = "pages/mecanicos/modulo_mecanicos.php";
                 } else if (response == 8) {
                   window.location = "pages/parrilla/modulo_parrilla.php";
-                }else {
+                } else if (response == 9) {
+                  window.location = "pages/parrilla_info/modulo_parrilla.php";
+                } else {
                   window.alert("nombre o contraseña inválida");
                   return;
                 }

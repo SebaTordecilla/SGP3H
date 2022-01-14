@@ -125,7 +125,7 @@ include "../../conexion.php";
                                             <div class="col-3">
                                             </div>
                                             <div class="col-6">
-                                                <a href="nueva_extraccion.php" target="_parent">
+                                                <a href="informe_extraccion_mensual.php" target="_parent">
                                                     <button type="button" class="btn btn-block btn-outline-info btn-lg">Ext. Mineral</button>
                                                 </a>
                                             </div>
@@ -137,7 +137,7 @@ include "../../conexion.php";
                                             <div class="col-3">
                                             </div>
                                             <div class="col-6">
-                                                <a href="nueva_ingreso_sulfuro.php" target="_parent">
+                                                <a href="reporte_guias_sulf.php" target="_parent">
                                                     <button type="button" class="btn btn-block btn-outline-danger btn-lg">Viajes Sulfuro</button>
                                                 </a>
                                             </div>
@@ -149,7 +149,7 @@ include "../../conexion.php";
                                             <div class="col-3">
                                             </div>
                                             <div class="col-6">
-                                                <a href="nueva_ingreso_oxido.php" target="_parent">
+                                                <a href="reporte_lotes_oxido.php" target="_parent">
                                                     <button type="button" class="btn btn-block btn-outline-success btn-lg">Viajes Óxido</button>
                                                 </a>
                                             </div>
