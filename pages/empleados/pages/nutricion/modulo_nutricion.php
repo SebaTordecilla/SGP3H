@@ -84,7 +84,7 @@ include "../../conexion.php";
       </div>
 
       <!-- Sidebar Menu -->
-      <?php include("lateral_bienestar.php") ?>
+      <?php include("lateral_nutricion.php") ?>
       <!-- /.sidebar-menu -->
   </div>
   <!-- /.sidebar -->
@@ -97,7 +97,7 @@ include "../../conexion.php";
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1><img src="../../../../dist/img/trabajadores.png" width="60" height="60"> Trabajadores | Bienestar</h1>
+            <h1><img src="../../../../dist/img/trabajadores.png" width="60" height="60"> Trabajadores | Nutrición</h1>
 
           </div>
         </div>
@@ -111,11 +111,9 @@ include "../../conexion.php";
             <div class="card">
               <div class="card-header">
                 <div class="btn-group">
-                  <button type="button" class="btn naranjo btn-info dropdown-toggle dropdown-icon" data-toggle="dropdown">Acciones </button>
-                  <div class="dropdown-menu">
-                    <a class="dropdown-item" data-toggle="modal" data-target="#modal_nuevo_empleado">Nuevo Trabajador</a>
-                    <a class="dropdown-item" data-toggle="modal" onclick="modal_grupo_familiar()">Grupo Familiar</a>
-                  </div>
+
+                  <input type="button" class="btn naranjo" value="Nueva Ficha" onclick="modal_ficha_nutri()">
+
                 </div>
               </div>
 
@@ -128,18 +126,19 @@ include "../../conexion.php";
                     <thead>
                       <tr>
                         <th>Rut</th>
-                        <th>Nombres</th>
-                        <th>ApPaterno</th>
-                        <th>ApMaterno</th>
-                        <th>FechaNac</th>
-                        <th>Cargo</th>
-                        <th>Estado</th>
+                        <th>Nombre</th>
+                        <th>Peso</th>
+                        <th>Talla</th>
+                        <th>IMC</th>
+                        <th>%G.Corp</th>
+                        <th>%G.Musc</th>
+                        <th>%G.Visc</th>
                         <th></th>
 
                       </tr>
                     </thead>
                     <?php
-                    include('tabla_empleados_bienestar.php')
+                    include('tabla_ficha_nutricional.php')
                     ?>
 
                   </table>
@@ -157,7 +156,7 @@ include "../../conexion.php";
         <!-- /.container-fluid -->
 
         <!--Se debe incluir modales-->
-        <?php include('modal_empleados.php');
+        <?php include('modal_nutricion.php');
         ?>
 
     </section>

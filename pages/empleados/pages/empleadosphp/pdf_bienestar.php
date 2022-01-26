@@ -135,7 +135,9 @@ while ($fila = $resultado->fetch_array()) {
 	$pdf->Cell(20, 8, utf8_decode('F.MAT: '), 0, 0, 'L');
 	$pdf->setFont('Arial', '', 12);
 	if($fila['fecha_matrimonio']==''){
-		$pdf->Cell(35, 8, $fila['fecha_matrimonio'], 0, 1, 'L');
+		$pdf->Cell(35, 8, '', 0, 1, 'L');
+	}else if($fila['fecha_matrimonio']=='0000-00-00'){
+		$pdf->Cell(35, 8, '', 0, 1, 'L');
 	}else{
 		$pdf->Cell(35, 8, date("d/m/Y", strtotime($fila['fecha_matrimonio'])), 0, 1, 'L');
 	}
@@ -194,7 +196,7 @@ while ($fila = $resultado->fetch_array()) {
 	$pdf->Cell(30, 8, utf8_decode('OCUPACIÓN'), 1, 0, 'C',1);
 	$pdf->Cell(30, 8, utf8_decode('PARENTESCO'), 1, 1, 'C',1);
 
-	$pdf->setFont('Arial', '', 10);
+	$pdf->setFont('Arial', '', 9);
 	$query ="SELECT * FROM grupo_familiar WHERE id_empleado = $id";
 	$resultado = $mysqli->query($query);
 	while ($fila = $resultado->fetch_array()) {
@@ -217,5 +219,3 @@ while ($fila = $resultado->fetch_array()) {
 $pdf->Image('../../../../dist/img/logo3H.png', 15, 5, 25);
 
 $pdf->Output();
-
-?>

@@ -15,8 +15,8 @@ const ingresar = () => {
                 window.location = "pages/empleadosphp/modulo_bienestar.php";
                 window.alert("BIENESTAR");
             } else if (response == 2) {
-                //window.location = "pages/empleadosphp/modulo_parrilla.php";
-                window.alert("NUTRICION");
+                window.location = "pages/nutricion/modulo_nutricion.php";
+                window.alert("NUTRICIÓN");
             } else if (response == 3) {
                 //window.location = "pages/empleadosphp/modulo_parrilla.php";
                 window.alert("SALUD");
@@ -352,3 +352,124 @@ const borrar_gf = (id_empleado, id_grupo) => {
 const pdf_bienestar = (id_empleado) => {
     window.open('pdf_bienestar.php?id=' + id_empleado);
 };
+
+
+/* funciones nutricion  */
+
+const modal_ficha_nutri = () => {
+    $('#modal_ficha_nutri').modal('show');
+}
+
+const ficha_nutricional = () => {
+    var id_empleado = document.getElementById('fn_id_empleado').value;
+    var peso = document.getElementById('fn_peso').value;
+    var talla = document.getElementById('fn_talla').value;
+    var imc = document.getElementById('fn_imc').value;
+    var grasa_corporal = document.getElementById('fn_gcorporal').value;
+    var grasa_muscular = document.getElementById('fn_gmuscular').value;
+    var grasa_visceral = document.getElementById('fn_gvisceral').value;
+    var est_nutricional = document.getElementById('fn_estnutri').value;
+    var enfermedades = document.getElementById('fn_enfermedades').value;
+    var habitos = document.getElementById('fn_habitos').value;
+    var medicamentos = document.getElementById('fn_medicamentos').value;
+    var alergias = document.getElementById('fn_alergias').value;
+    var act_fisica = document.getElementById('fn_actividadf').value;
+    $.ajax({
+        url: 'crear_ficha.php',
+        type: 'post',
+        data: {
+            id_empleado,
+            peso,
+            talla,
+            imc,
+            grasa_corporal,
+            grasa_muscular,
+            grasa_visceral,
+            est_nutricional,
+            enfermedades,
+            habitos,
+            medicamentos,
+            alergias,
+            act_fisica
+        },
+        success: (response) => {
+            if (response == 1) {
+                window.alert("Trabajador ya tiene su ficha creada");
+                return;
+            } else if (response == 2) {
+                window.alert("Ficha de TRabajador Creada");
+                location.reload();
+            } else {
+                window.alert("Error");
+                return;
+            }
+        }
+    });
+}
+
+const editar_ficha = (id_empleado, peso, talla, imc, grasa_corporal, grasa_muscular, grasa_visceral, est_nutricional, enfermedades, habitos, medicamentos, alergias, act_fisica) => {
+    $('#efn_id_empleado').val(id_empleado);
+    $('#efn_talla').val(talla);
+    $('#efn_peso').val(peso);
+    $('#efn_imc').val(imc);
+    $('#efn_gcorporal').val(grasa_corporal);
+    $('#efn_gmuscular').val(grasa_muscular);
+    $('#efn_gvisceral').val(grasa_visceral);
+    $('#efn_estnutri').val(est_nutricional);
+    $('#efn_enfermedades').val(enfermedades);
+    $('#efn_habitos').val(habitos);
+    $('#efn_medicamentos').val(medicamentos);
+    $('#efn_alergias').val(alergias);
+    $('#efn_actividadf').val(act_fisica);
+
+
+    $('#modal_ficha_nutri_edit').modal('show');
+}
+
+const edit_ficha_nutricional = () => {
+    var id_empleado = document.getElementById('efn_id_empleado').value;
+    var peso = document.getElementById('efn_peso').value;
+    var talla = document.getElementById('efn_talla').value;
+    var imc = document.getElementById('efn_imc').value;
+    var grasa_corporal = document.getElementById('efn_gcorporal').value;
+    var grasa_muscular = document.getElementById('efn_gmuscular').value;
+    var grasa_visceral = document.getElementById('efn_gvisceral').value;
+    var est_nutricional = document.getElementById('efn_estnutri').value;
+    var enfermedades = document.getElementById('efn_enfermedades').value;
+    var habitos = document.getElementById('efn_habitos').value;
+    var medicamentos = document.getElementById('efn_medicamentos').value;
+    var alergias = document.getElementById('efn_alergias').value;
+    var act_fisica = document.getElementById('efn_actividadf').value;
+    $.ajax({
+        url: 'edit_ficha.php',
+        type: 'post',
+        data: {
+            id_empleado,
+            peso,
+            talla,
+            imc,
+            grasa_corporal,
+            grasa_muscular,
+            grasa_visceral,
+            est_nutricional,
+            enfermedades,
+            habitos,
+            medicamentos,
+            alergias,
+            act_fisica
+        },
+        success: (response) => {
+            if (response == 1) {
+                window.alert("Ficha de TRabajador Editada");
+                location.reload();
+            } else {
+                window.alert("Error");
+                return;
+            }
+        }
+    });
+}
+
+const pdf_nutri = (id_empleado) => {
+    window.open('pdf_nutri.php?id=' + id_empleado);
+}

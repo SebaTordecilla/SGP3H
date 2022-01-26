@@ -122,6 +122,12 @@
                   window.location = "pages/parrilla/modulo_parrilla.php";
                 } else if (response == 9) {
                   window.location = "pages/parrilla_info/modulo_parrilla.php";
+                } else if (response == 10) {
+                  window.location = "pages/empleados/pages/empleadosphp/modulo_bienestar.php";
+                } else if (response == 11) {
+                  window.location = "pages/empleados/pages/empleadosphp/modulo_nutricion.php";
+                } else if (response == 12) {
+                  window.location = "pages/parrilla_info/modulo_parrilla.php";
                 } else {
                   window.alert("nombre o contraseña inválida");
                   return;

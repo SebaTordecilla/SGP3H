@@ -37,6 +37,15 @@ if ($uname != "" && $password != "") {
     } else if ($nivel == 8 && $permiso == 2) {
         $_SESSION['uname'] = $uname;
         echo 9;
+    } else if ($nivel == 10 && $permiso == 1) {
+        $_SESSION['uname'] = $uname;
+        echo 10;
+    } else if ($nivel == 10 && $permiso == 2) {
+        $_SESSION['uname'] = $uname;
+        echo 11;
+    } else if ($nivel == 10 && $permiso == 3) {
+        $_SESSION['uname'] = $uname;
+        echo 12;
     } else {
         echo 0;
     }

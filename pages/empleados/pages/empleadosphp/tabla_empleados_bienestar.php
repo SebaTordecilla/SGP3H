@@ -16,6 +16,16 @@
                 <td><?php echo strtoupper($row['ap_materno']); ?></td>
                 <td><?php echo date("d/m/Y", strtotime($row['fecha_nac'])); ?></td>
                 <td><?php echo strtoupper($row['cargo']); ?></td>
+
+                <?php
+                if ($row['estado'] = 1) {
+                ?> <td style="color:green"><?php echo strtoupper('ACTIVO'); ?></td>
+                <?php
+                } else {
+                ?> <td style="color:red"><?php echo strtoupper('INACTIVO'); ?></td>
+                <?php
+                }
+                ?>
                 <td align="center">
                     <a href="#" onclick="editar_trabajador('<?php echo $row['id_empleado']; ?>','<?php echo $row['rut']; ?>','<?php echo $row['nombres']; ?>','<?php echo $row['ap_paterno']; ?>',	'<?php echo $row['ap_materno']; ?>',	'<?php echo $row['fecha_nac']; ?>',	'<?php echo $row['nacionalidad']; ?>',	'<?php echo $row['sexo']; ?>',	'<?php echo $row['est_civil']; ?>',	'<?php echo $row['cargo']; ?>',	'<?php echo $row['fecha_ing']; ?>',	'<?php echo $row['correo']; ?>',	'<?php echo $row['telefono']; ?>',	'<?php echo $row['tipo_contrato']; ?>',	'<?php echo $row['contacto_emergencia']; ?>',	'<?php echo $row['titulo']; ?>',	'<?php echo $row['nivel_estudios']; ?>',	'<?php echo $row['fecha_matrimonio']; ?>',	'<?php echo $row['enfermedad_cronica']; ?>',	'<?php echo $row['rsh']; ?>',	'<?php echo $row['tratamiento']; ?>',	'<?php echo $row['discapacidad']; ?>',	'<?php echo $row['tipo_discapacidad']; ?>',	'<?php echo $row['prog_interv']; ?>',	'<?php echo $row['estado']; ?>')"><small class="badge badge-success">Editar</small></a>
                     <a href="#" onclick="pdf_bienestar('<?php echo $row['id_empleado']; ?>')"><small class="badge badge-danger">Pdf</small></a>
